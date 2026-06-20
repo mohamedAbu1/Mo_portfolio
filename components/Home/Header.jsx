@@ -1,7 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useTheme } from "@/context/ThemeContext";
-import { FaBars, FaTimes, FaMoon, FaSun } from "react-icons/fa";
+import {
+  FaBars,
+  FaTimes,
+  FaMoon,
+  FaSun,
+  FaUserCircle,
+  FaComments,
+} from "react-icons/fa";
 
 const HeaderComponent = () => {
   const [showModal, setShowModal] = useState(false);
@@ -18,7 +25,7 @@ const HeaderComponent = () => {
           }
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.6 },
     );
 
     sections.forEach((sec) => observer.observe(sec));
@@ -61,7 +68,7 @@ const HeaderComponent = () => {
       </button>
 
       {/* روابط الناف (تظهر على الديسكتوب) */}
-      <nav className="desktop-nav" style={{ width:"40%",}}>
+      <nav className="desktop-nav" style={{ width: "40%" }}>
         <ul
           style={{
             display: "flex",
@@ -101,6 +108,62 @@ const HeaderComponent = () => {
         </ul>
       </nav>
 
+      {/* مربع المستخدم */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          marginLeft: "20px",
+          padding: "0.4rem 0.8rem",
+          borderRadius: "8px",
+          backgroundColor: theme.cardInnerBg,
+          boxShadow: theme.shadow,
+        }}
+      >
+        <img
+          src="/images/3d-avatar-cartoon-character_113255-92170.webp" // ضع صورة المستخدم هنا
+          alt="User Avatar"
+          style={{
+            width: "35px",
+            height: "35px",
+            borderRadius: "50%",
+            objectFit: "cover",
+            marginRight: "10px",
+          }}
+        />
+        <span
+          style={{ color: theme.text, fontSize: "0.95rem", fontWeight: "500" }}
+        >
+          Mohamed Abu
+        </span>
+      </div>
+      {/* أيقونة تسجيل الدخول */}
+      <button
+        style={{
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          color: theme.icon,
+          fontSize: "1.5rem",
+          marginLeft: "20px",
+        }}
+      >
+        <FaUserCircle />
+      </button>
+
+      {/* أيقونة الدردشة */}
+      <button
+        style={{
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          color: theme.icon,
+          fontSize: "1.5rem",
+          marginLeft: "15px",
+        }}
+      >
+        <FaComments />
+      </button>
       {/* زر تبديل الثيم */}
       <button
         onClick={toggleThemeFun}
@@ -110,12 +173,11 @@ const HeaderComponent = () => {
           cursor: "pointer",
           color: theme.icon,
           fontSize: "1.5rem",
-          marginLeft:"25px"
+          marginLeft: "25px",
         }}
       >
         {themeName === "dark" ? <FaMoon /> : <FaSun />}
       </button>
-
       {/* المودال (يظهر على الموبايل) */}
       {showModal && (
         <div

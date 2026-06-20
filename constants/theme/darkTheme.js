@@ -37,7 +37,8 @@ const DarkTheme = {
   buttonPrimaryBg: "darkorange",
   buttonPrimaryText: "#000000",
   buttonPrimaryHover: "#B9972F",
-
+primary:"darkorange",
+secondary :"#FF6F61",
   // الأزرار الثانوية
   buttonSecondaryBg: "#2A2A2A",
   buttonSecondaryText: "#E6DCCF",

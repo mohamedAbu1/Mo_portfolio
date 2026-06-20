@@ -8,6 +8,7 @@ import React, { useEffect, useState } from "react";
 import About from "@/components/Home/About";
 import { useTheme } from "@/context/ThemeContext";
 import { FaArrowUp } from "react-icons/fa";
+import Testimonials from "@/components/Home/Testimonials";
 
 const HomePage = () => {
   const [showScrollBTN, setshowScrollBTN] = useState(false);
@@ -50,17 +51,37 @@ const HomePage = () => {
         <Hero />
 
         {/* Divider */}
-        <div style={{ borderBottom: `1px solid ${theme.border}`, margin: "3rem 0" }} />
+        <div
+          style={{
+            borderBottom: `1px solid ${theme.border}`,
+            margin: "3rem 0",
+          }}
+        />
 
         <About />
-        <div style={{ borderBottom: `1px solid ${theme.border}`, margin: "3rem 0" }} />
+        <div
+          style={{
+            borderBottom: `1px solid ${theme.border}`,
+            margin: "3rem 0",
+          }}
+        />
 
         <Main />
-        <div style={{ borderBottom: `1px solid ${theme.border}`, margin: "3rem 0" }} />
+        <div
+          style={{
+            borderBottom: `1px solid ${theme.border}`,
+            margin: "3rem 0",
+          }}
+        />
 
         <Contact />
-        <div style={{ borderBottom: `1px solid ${theme.border}`, margin: "3rem 0" }} />
-
+        <div
+          style={{
+            borderBottom: `1px solid ${theme.border}`,
+            margin: "3rem 0",
+          }}
+        />
+        <Testimonials />
         <Footer />
       </div>
 

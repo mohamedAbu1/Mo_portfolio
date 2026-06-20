@@ -37,7 +37,8 @@ const LightTheme = {
   buttonPrimaryBg: "#D4AF37",
   buttonPrimaryText: "#FFFFFF",
   buttonPrimaryHover: "#B9972F",
-
+primary:"#D4AF37",
+secondary :"#FF6F61",
   // الأزرار الثانوية
   buttonSecondaryBg: "#F5F5F5",
   buttonSecondaryText: "#1A1A1A",
