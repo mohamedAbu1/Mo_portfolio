@@ -57,7 +57,7 @@ const CategoryButtons = ({ currentActive, handleClick, theme }) => {
   };
 
   return (
-    <LeftButtons style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+    <LeftButtons style={{ display: "flex", flexDirection: "column",alignItems:"center",justifyContent:"center", gap: "1rem" }}>
       <motion.div
         variants={containerVariants}
         initial="hidden"

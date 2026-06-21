@@ -6,38 +6,24 @@ import { MainFlex } from "../../app/style/HomeStyle";
 import CategoryButtons from "./components/CategoryButtons";
 import ProjectGrid from "./components/ProjectGrid";
 import Pagination from "./components/Pagination";
-import { motion } from "framer-motion";
 
 const Main = () => {
   const [currentActive, setCurrentActive] = useState("all");
   const [arr, setArr] = useState(myProjects);
   const [currentPage, setCurrentPage] = useState(1);
-  const [inView, setInView] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
   const { theme } = useTheme();
 
   useEffect(() => {
-    // تحديد إذا كان الجهاز موبايل
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth <= 1100);
+    // دالة لتحديد حجم الشاشة
+    const checkScreenSize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024); // لو أكبر من 1024px → ديسكتوب
     };
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
-  useEffect(() => {
-    const section = document.getElementById("projects");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setInView(true);
-        });
-      },
-      { threshold: 0.6 }
-    );
-    if (section) observer.observe(section);
-    return () => section && observer.unobserve(section);
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+
+    return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
   const projectsPerPage = 6;
@@ -54,25 +40,34 @@ const Main = () => {
       return;
     }
     const newArr = myProjects.filter((item) =>
-      item.category.includes(category)
+      item.category.includes(category),
     );
     setArr(newArr);
     setCurrentPage(1);
   };
 
   return (
-   <motion.section
-  id="projects"
-  initial={{ opacity: 0, y: 50 }}
-  animate={isMobile ? { opacity: 1, y: 0 } : inView ? { opacity: 1, y: 0 } : {}}
-  transition={{ duration: 1, ease: "easeOut" }}
->
-
+    <section
+      id="projects"
+      style={{
+        width: "100%",
+        maxWidth: "1400px",
+        margin: "0 auto",
+        padding: "clamp(1rem, 3vw, 2rem)",
+      }}
+    >
       <MainFlex
+        id="container"
         style={{
+          display: "flex",
+          flexDirection: isLargeScreen ? "row" : "column", // هنا التغيير حسب حجم الشاشة
+          gap: "2rem",
+          alignItems: "center",
+          justifyContent: "center",
+          transition: "all 0.3s ease",
           backgroundColor: theme.background,
           color: theme.text,
-          padding: "1rem",
+          padding: "clamp(1rem, 2vw, 2rem)",
           borderRadius: "12px",
         }}
       >
@@ -82,12 +77,7 @@ const Main = () => {
           theme={theme}
         />
 
-        {/* الكروت مع أنيميشن متتالي */}
-        <ProjectGrid
-          projects={currentProjects}
-          theme={theme}
-          inView={!isMobile && inView}
-        />
+        <ProjectGrid projects={currentProjects} theme={theme} inView={true} />
 
         {totalPages > 1 && (
           <Pagination
@@ -98,7 +88,7 @@ const Main = () => {
           />
         )}
       </MainFlex>
-    </motion.section>
+    </section>
   );
 };
 

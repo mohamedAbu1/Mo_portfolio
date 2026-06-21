@@ -85,7 +85,7 @@ export default function TechStackIcons() {
       >
         {row1.map(({ name, icon: Icon, color }) => (
           <motion.span key={name} variants={iconVariants}>
-            <Tippy content={<span className="text-black px-2 py-1 rounded shadow">{name}</span>}>
+            <Tippy theme={name} content={<span className="text-black px-2 py-1 rounded shadow">{name}</span>}>
               <span style={{ paddingLeft: "20px" }}>
                 <Icon size={50} color={color} className="hover:scale-110 transition-transform" />
               </span>
@@ -104,7 +104,7 @@ export default function TechStackIcons() {
         {row2.map(({ name, icon: Icon, svg, color }) =>
           Icon ? (
             <motion.span key={name} variants={iconVariants}>
-              <Tippy content={<span className="text-black px-2 py-1 rounded shadow">{name}</span>}>
+              <Tippy theme={name} content={<span className="text-black px-2 py-1 rounded shadow">{name}</span>}>
                 <span style={{ paddingLeft: "20px" }}>
                   <Icon size={50} color={color} className="hover:scale-110 transition-transform" />
                 </span>
@@ -112,7 +112,7 @@ export default function TechStackIcons() {
             </motion.span>
           ) : (
             <motion.span key={name} variants={iconVariants}>
-              <Tippy content={<span className="text-black px-2 py-1 rounded shadow">{name}</span>}>
+              <Tippy theme={name} content={<span className="text-black px-2 py-1 rounded shadow">{name}</span>}>
                 <span style={{ paddingLeft: "20px" }}>
                   <svg
                     role="img"

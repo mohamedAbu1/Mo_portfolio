@@ -180,7 +180,7 @@ const HeaderComponent = () => {
 
       {/* CSS للتجاوب */}
       <style jsx>{`
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
           .desktop-nav {
             display: none;
           }

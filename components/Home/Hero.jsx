@@ -99,7 +99,8 @@ const Hero = () => {
             color: theme.title,
           }}
         >
-          Software designer, founder, and amateur astronaut.
+          Creative software architect, visionary founder, and passionate
+          explorer.{" "}
         </motion.h1>
 
         <motion.p
@@ -121,7 +122,7 @@ const Hero = () => {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: .2 }}
+          transition={{ delay: 0.2 }}
         >
           <SocialIcons />
         </motion.div>

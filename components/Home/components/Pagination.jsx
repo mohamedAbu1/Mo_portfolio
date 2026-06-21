@@ -12,7 +12,7 @@ const Pagination = ({ currentPage, totalPages, setCurrentPage, theme }) => {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", gap: "0.5rem", marginTop: "1.5rem" }}>
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", marginTop: "1.5rem" , marginBottom: "auto"}}>
       <button
         disabled={currentPage === 1}
         onClick={() => setCurrentPage(currentPage - 1)}

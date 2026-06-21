@@ -110,12 +110,17 @@ export const MainFlex = styled.main`
 
 export const LeftButtons = styled.section`
   display: flex;
+  width: 23%;
   flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  justify-content: center;
+  margin-bottom: auto;
   gap: 10px;
 
   button {
     background-color: rgba(36, 37, 46, 1);
-    width: 11rem;
+    width: 12rem;
     padding: 0.75rem 0;
     text-align: center;
     font-size: 1.05rem;

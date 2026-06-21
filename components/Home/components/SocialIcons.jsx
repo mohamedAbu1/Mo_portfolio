@@ -17,14 +17,14 @@ import { motion } from "framer-motion";
 
 export default function SocialIcons() {
   const icons = [
-    { name: "Twitter", href: "https://twitter.com/YourUsername", color: "#1DA1F2", icon: FaTwitter },
-    { name: "Instagram", href: "https://instagram.com/YourUsername", color: "#E1306C", icon: FaInstagram },
-    { name: "GitHub", href: "https://github.com/YourUsername", color: "#333", icon: FaGithub },
-    { name: "LinkedIn", href: "https://linkedin.com/in/YourUsername", color: "#0077B5", icon: FaLinkedin },
-    { name: "Facebook", href: "https://facebook.com/YourUsername", color: "#1877F2", icon: FaFacebook },
+    { name: "Twitter", href: "https://x.com/MohamedAhm20475", color: "#1DA1F2", icon: FaTwitter },
+    { name: "Instagram", href: "https://www.instagram.com/mohamedahmed33m11/", color: "#E1306C", icon: FaInstagram },
+    { name: "GitHub", href: "https://github.com/mohamedAbu1", color: "#333", icon: FaGithub },
+    { name: "LinkedIn", href: "https://www.linkedin.com/in/mohamed-ahmed-a993b729b/", color: "#0077B5", icon: FaLinkedin },
+    { name: "Facebook", href: "https://www.facebook.com/share/1AeawYzziL/?mibextid=wwXIfr", color: "#1877F2", icon: FaFacebook },
     { name: "WhatsApp", href: "https://wa.me/201234567890", color: "#25D366", icon: FaWhatsapp },
     { name: "Email", href: "mailto:yourmail@example.com", color: "#D44638", icon: FaEnvelope },
-    { name: "YouTube", href: "https://youtube.com/@YourChannel", color: "#D44638", icon: FaYoutube },
+    { name: "YouTube", href: "https://www.youtube.com/@M_Developer", color: "#D44638", icon: FaYoutube },
   ];
 
   // إعدادات الأنيميشن
