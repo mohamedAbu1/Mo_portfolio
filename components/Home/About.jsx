@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   AboutSection,
   AboutText,
@@ -8,42 +8,60 @@ import {
 } from "../../app/style/HomeStyle";
 import { motion } from "framer-motion";
 import { images } from "../../constants/images";
-import {
-  FaReact,
-  FaNodeJs,
-  FaCss3Alt,
-  FaHtml5,
-  FaGithub,
-  FaBootstrap,
-  FaJs,
-  FaTripadvisor,
-  FaFigma,
-} from "react-icons/fa";
-import { SiNextdotjs, SiExpo, SiTailwindcss, SiMui } from "react-icons/si";
 import { useTheme } from "@/context/ThemeContext";
-import { siSupabase, siHostinger, siVercel } from "simple-icons/icons";
+import TechStackIcons from "./components/TechStackIcons";
 
 const About = () => {
   const { theme, themeName } = useTheme();
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const section = document.getElementById("about");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // لو السكشن ظاهر بنسبة 60% أو أكثر
+          if (entry.isIntersecting) {
+            setInView(true);
+          }
+        });
+      },
+      { threshold: 0.6 }
+    );
+    if (section) observer.observe(section);
+    return () => section && observer.unobserve(section);
+  }, []);
 
   return (
     <AboutSection
-      id="About"
+      id="about"
       style={{
         backgroundColor: theme.background,
         display: "flex",
-        flexWrap: "wrap", // متجاوب
+        flexDirection: "row",
+        flexWrap: "wrap",
         gap: "2rem",
         justifyContent: "space-between",
+        padding: "2rem 1rem",
       }}
     >
       {/* النص */}
-      <AboutText style={{ flex: "1 1 400px", minWidth: "300px" }}>
+      <AboutText
+        style={{
+          flex: "1 1 400px",
+          minWidth: "280px",
+          maxWidth: "600px",
+        }}
+      >
         <motion.h1
-          style={{ color: theme.title, fontSize: "clamp(1.8rem, 3vw, 2.2rem)" }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
+          style={{
+            color: theme.title,
+            fontSize: "clamp(1.8rem, 3vw, 2.2rem)",
+            textAlign: "start",
+          }}
+          initial={{ opacity: 0, y: -30 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1 }}
         >
           About Me
         </motion.h1>
@@ -53,10 +71,12 @@ const About = () => {
             color: theme.subText,
             fontSize: "clamp(0.9rem, 2vw, 1rem)",
             lineHeight: "1.6rem",
+            textAlign: "justify",
+            marginTop: "1rem",
           }}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 2 }}
+          initial={{ opacity: 0, y: 40 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 1.2 }}
         >
           Hi, I’m <strong style={{ color: theme.icon }}>Mohamed Abu</strong>, a
           passionate software developer with 3 years of experience. I specialize
@@ -76,145 +96,58 @@ const About = () => {
             marginTop: "2rem",
             width: "100%",
           }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={inView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 1.5 }}
         >
-          {/* الصف الأول */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "2rem",
-              flexWrap: "wrap",
-            }}
-          >
-            <FaHtml5 size={50} color="#E34F26" />
-            <FaCss3Alt size={50} color="#1572B6" />
-            <FaBootstrap size={50} color="#7952B3" />
-            <SiMui size={50} color="#007FFF" />
-            <SiTailwindcss size={50} color="#38BDF8" />
-            <FaJs size={50} color="#F7DF1E" />
-            <FaReact size={50} color="#61DBFB" />
-            <SiNextdotjs size={50} color="#000000" />
-          </div>
-
-          {/* الصف الثاني */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: "2rem",
-              flexWrap: "wrap",
-            }}
-          >
-            <FaGithub size={50} color="#333333" />
-            <SiExpo size={50} color="#000020" />
-            <FaNodeJs size={50} color="#68A063" />
-            <FaFigma size={50} color="#F24E1E" />
-            <FaTripadvisor size={50} color="#34E0A1" />
-            <svg
-              role="img"
-              viewBox="0 0 24 24"
-              width={50}
-              height={50}
-              fill="#3FCF8E" // اللون الرسمي لـ Supabase
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <title>Supabase</title>
-              <path d={siSupabase.path} />
-            </svg>
-            {/* Hostinger */}
-            <svg
-              role="img"
-              viewBox="0 0 24 24"
-              width={50}
-              height={50}
-              fill="#673DE6" // اللون الرسمي لـ Hostinger
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <title>Hostinger</title>
-              <path d={siHostinger.path} />
-            </svg>
-
-            {/* Vercel */}
-            <svg
-              role="img"
-              viewBox="0 0 24 24"
-              width={50}
-              height={50}
-              fill="#000000" // اللون الرسمي لـ Vercel (أسود)
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <title>Vercel</title>
-              <path d={siVercel.path} />
-            </svg>
-          </div>
+          <TechStackIcons />
         </motion.div>
       </AboutText>
 
-      {/* الصور بشكل كارتين بحرف V مع تأثير 3D */}
+      {/* الصور */}
       <AboutImageWrapper
         style={{
           flex: "1 1 400px",
-          minWidth: "300px",
+          minWidth: "280px",
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          gap: "2rem",
+          gap: "1.5rem",
           marginTop: "2rem",
           perspective: "1000px",
-          flexWrap: "wrap", // متجاوب
+          flexWrap: "wrap",
         }}
       >
-        {/* الصورة الأولى */}
-        <AboutImage
+        <motion.img
           src={images[themeName][0]}
           alt="Mohamed Abu portrait 1"
           style={{
-            width: "clamp(220px, 30vw, 300px)",
-            height: "clamp(320px, 45vw, 480px)",
+            width: "clamp(200px, 28vw, 280px)",
+            height: "clamp(280px, 40vw, 420px)",
             objectFit: "cover",
             borderRadius: "12px",
             border: `1px solid ${theme.border}`,
             boxShadow: "0 15px 25px rgba(0,0,0,0.35)",
-            transform: "rotateY(15deg) rotate(-8deg) translateY(-20px)",
-            transition: "transform 0.3s ease, box-shadow 0.3s ease",
           }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "rotateY(0deg) scale(1.05)";
-            e.currentTarget.style.boxShadow = "0 20px 30px rgba(0,0,0,0.4)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform =
-              "rotateY(15deg) rotate(-8deg) translateY(-20px)";
-            e.currentTarget.style.boxShadow = "0 15px 25px rgba(0,0,0,0.35)";
-          }}
+          initial={{ opacity: 0, x: -50, rotateY: 30 }}
+          animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
+          transition={{ duration: 1.2 }}
         />
 
-        {/* الصورة الثانية */}
-        <AboutImage
+        <motion.img
           src={images[themeName][1]}
           alt="Mohamed Abu portrait 2"
           style={{
-            width: "clamp(220px, 30vw, 300px)",
-            height: "clamp(320px, 45vw, 480px)",
+            width: "clamp(200px, 28vw, 280px)",
+            height: "clamp(280px, 40vw, 420px)",
             objectFit: "cover",
             borderRadius: "12px",
             border: `1px solid ${theme.border}`,
             boxShadow: "0 15px 25px rgba(0,0,0,0.35)",
-            transform: "rotateY(-15deg) rotate(8deg) translateY(-20px)",
-            transition: "transform 0.3s ease, box-shadow 0.3s ease",
           }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = "rotateY(0deg) scale(1.05)";
-            e.currentTarget.style.boxShadow = "0 20px 30px rgba(0,0,0,0.4)";
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform =
-              "rotateY(-15deg) rotate(8deg) translateY(-20px)";
-            e.currentTarget.style.boxShadow = "0 15px 25px rgba(0,0,0,0.35)";
-          }}
+          initial={{ opacity: 0, x: 50, rotateY: -30 }}
+          animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
+          transition={{ duration: 1.2 }}
         />
       </AboutImageWrapper>
     </AboutSection>

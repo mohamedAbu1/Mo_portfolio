@@ -9,6 +9,7 @@ import About from "@/components/Home/About";
 import { useTheme } from "@/context/ThemeContext";
 import { FaArrowUp } from "react-icons/fa";
 import Testimonials from "@/components/Home/Testimonials";
+import Divider from "@/components/layout/Divider";
 
 const HomePage = () => {
   const [showScrollBTN, setshowScrollBTN] = useState(false);
@@ -51,36 +52,17 @@ const HomePage = () => {
         <Hero />
 
         {/* Divider */}
-        <div
-          style={{
-            borderBottom: `1px solid ${theme.border}`,
-            margin: "3rem 0",
-          }}
-        />
+        <Divider theme={theme}/>
 
         <About />
-        <div
-          style={{
-            borderBottom: `1px solid ${theme.border}`,
-            margin: "3rem 0",
-          }}
-        />
+        <Divider theme={theme}/>
 
         <Main />
-        <div
-          style={{
-            borderBottom: `1px solid ${theme.border}`,
-            margin: "3rem 0",
-          }}
-        />
+        <Divider theme={theme} />
 
         <Contact />
-        <div
-          style={{
-            borderBottom: `1px solid ${theme.border}`,
-            margin: "3rem 0",
-          }}
-        />
+        <Divider theme={theme}/>
+
         <Testimonials />
         <Footer />
       </div>

@@ -2,17 +2,15 @@
 import React, { useState, useEffect } from "react";
 import { useTheme } from "@/context/ThemeContext";
 import {
-  FaBars,
-  FaTimes,
   FaMoon,
   FaSun,
   FaUserCircle,
   FaComments,
 } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const HeaderComponent = () => {
-  const [showModal, setShowModal] = useState(false);
-  const [activeSection, setActiveSection] = useState("Home");
+  const [activeSection, setActiveSection] = useState("home");
   const { theme, themeName, toggleThemeFun } = useTheme();
 
   useEffect(() => {
@@ -25,17 +23,20 @@ const HeaderComponent = () => {
           }
         });
       },
-      { threshold: 0.6 },
+      { threshold: 0.6 }
     );
 
     sections.forEach((sec) => observer.observe(sec));
     return () => sections.forEach((sec) => observer.unobserve(sec));
   }, []);
 
-  const navItems = ["Home", "About", "Projects", "Contact", "Footer"];
+  const navItems = ["home", "about", "projects", "contact", "footer"];
 
   return (
-    <header
+    <motion.header
+      initial={{ y: -80, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
       style={{
         position: "fixed",
         top: 0,
@@ -51,23 +52,8 @@ const HeaderComponent = () => {
         transition: "background-color 0.3s ease, padding 0.3s ease",
       }}
     >
-      {/* زر القائمة (يظهر على الموبايل) */}
-      <button
-        onClick={() => setShowModal(true)}
-        style={{
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          color: theme.icon,
-          fontSize: "1.5rem",
-          display: "none", // نخفيه على الديسكتوب
-        }}
-        className="menu-btn"
-      >
-        <FaBars />
-      </button>
-
-      {/* روابط الناف (تظهر على الديسكتوب) */}
+ 
+      {/* روابط الناف */}
       <nav className="desktop-nav" style={{ width: "40%" }}>
         <ul
           style={{
@@ -81,12 +67,19 @@ const HeaderComponent = () => {
             border: `1px solid ${theme.border}`,
           }}
         >
-          {navItems.map((item) => (
-            <li key={item}>
-              <a
-                href={`#${item.toLowerCase()}`}
+          {navItems.map((item, index) => (
+            <motion.li
+              key={item}
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.15 }}
+            >
+              <motion.a
+                href={`#${item}`}
+                whileHover={{ scale: 1.1 }}
                 style={{
                   textDecoration: "none",
+                  textTransform: "capitalize",
                   fontSize: "1rem",
                   color:
                     activeSection === item
@@ -102,14 +95,17 @@ const HeaderComponent = () => {
                 }}
               >
                 {item}
-              </a>
-            </li>
+              </motion.a>
+            </motion.li>
           ))}
         </ul>
       </nav>
 
       {/* مربع المستخدم */}
-      <div
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, delay: 0.5 }}
         style={{
           display: "flex",
           alignItems: "center",
@@ -121,7 +117,7 @@ const HeaderComponent = () => {
         }}
       >
         <img
-          src="/images/3d-avatar-cartoon-character_113255-92170.webp" // ضع صورة المستخدم هنا
+          src="/images/3d-avatar-cartoon-character_113255-92170.webp"
           alt="User Avatar"
           style={{
             width: "35px",
@@ -136,9 +132,11 @@ const HeaderComponent = () => {
         >
           Mohamed Abu
         </span>
-      </div>
-      {/* أيقونة تسجيل الدخول */}
-      <button
+      </motion.div>
+
+      {/* أيقونات */}
+      <motion.button
+        whileHover={{ scale: 1.2 }}
         style={{
           background: "none",
           border: "none",
@@ -149,10 +147,10 @@ const HeaderComponent = () => {
         }}
       >
         <FaUserCircle />
-      </button>
+      </motion.button>
 
-      {/* أيقونة الدردشة */}
-      <button
+      <motion.button
+        whileHover={{ scale: 1.2 }}
         style={{
           background: "none",
           border: "none",
@@ -163,9 +161,10 @@ const HeaderComponent = () => {
         }}
       >
         <FaComments />
-      </button>
-      {/* زر تبديل الثيم */}
-      <button
+      </motion.button>
+
+      <motion.button
+        whileHover={{ rotate: 180 }}
         onClick={toggleThemeFun}
         style={{
           background: "none",
@@ -177,72 +176,9 @@ const HeaderComponent = () => {
         }}
       >
         {themeName === "dark" ? <FaMoon /> : <FaSun />}
-      </button>
-      {/* المودال (يظهر على الموبايل) */}
-      {showModal && (
-        <div
-          style={{
-            position: "fixed",
-            inset: 0,
-            backgroundColor: "rgba(0,0,0,0.5)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <div
-            style={{
-              backgroundColor: theme.card,
-              padding: "2rem",
-              borderRadius: "12px",
-              minWidth: "250px",
-            }}
-          >
-            <ul style={{ listStyle: "none", padding: 0 }}>
-              <li>
-                <button
-                  onClick={() => setShowModal(false)}
-                  style={{
-                    background: "none",
-                    border: "none",
-                    cursor: "pointer",
-                    color: theme.icon,
-                    fontSize: "1.5rem",
-                  }}
-                >
-                  <FaTimes />
-                </button>
-              </li>
-              {navItems.map((item) => (
-                <li key={item} style={{ margin: "1rem 0" }}>
-                  <a
-                    href={`#${item.toLowerCase()}`}
-                    style={{
-                      textDecoration: "none",
-                      fontSize: "1rem",
-                      color:
-                        activeSection === item
-                          ? theme.buttonPrimaryText
-                          : theme.subText,
-                      backgroundColor:
-                        activeSection === item
-                          ? theme.buttonPrimaryBg
-                          : "transparent",
-                      padding: "0.4rem 0.8rem",
-                      borderRadius: "8px",
-                      transition: "all 0.3s ease",
-                    }}
-                  >
-                    {item}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      )}
+      </motion.button>
 
-      {/* CSS بسيط للتجاوب */}
+      {/* CSS للتجاوب */}
       <style jsx>{`
         @media (max-width: 768px) {
           .desktop-nav {
@@ -253,7 +189,7 @@ const HeaderComponent = () => {
           }
         }
       `}</style>
-    </header>
+    </motion.header>
   );
 };
 

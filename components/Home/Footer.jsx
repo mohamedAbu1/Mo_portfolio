@@ -1,24 +1,48 @@
 "use client";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useTheme } from "@/context/ThemeContext";
-import {
-  FaTwitter,
-  FaInstagram,
-  FaGithub,
-  FaLinkedin,
-  FaFacebook,
-  FaWhatsapp,
-  FaEnvelope,
-} from "react-icons/fa";
 import Image from "next/image";
+import SocialIcons from "./components/SocialIcons";
+import { motion } from "framer-motion";
 
 const FooterComponent = () => {
   const { theme } = useTheme();
+  const [inView, setInView] = useState(false);
+
+  useEffect(() => {
+    const section = document.getElementById("footer");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setInView(true);
+        });
+      },
+      { threshold: 0.6 }
+    );
+    if (section) observer.observe(section);
+    return () => section && observer.unobserve(section);
+  }, []);
+
+  // إعدادات الأنيميشن
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
 
   return (
-    <section id="Footer">
-      {" "}
-      <footer
+    <motion.section
+      id="footer"
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      variants={containerVariants}
+    >
+      <motion.footer
+        variants={containerVariants}
         style={{
           display: "flex",
           flexDirection: "column",
@@ -30,7 +54,7 @@ const FooterComponent = () => {
         }}
       >
         {/* اللوجو */}
-        <div style={{ marginBottom: "1rem" }}>
+        <motion.div variants={itemVariants} style={{ marginBottom: "1rem" }}>
           <Image
             src="/images/logo.webp"
             alt="Mohamed Abu Logo"
@@ -42,10 +66,11 @@ const FooterComponent = () => {
               boxShadow: "0 4px 12px rgba(0,0,0,0.25)",
             }}
           />
-        </div>
+        </motion.div>
 
         {/* روابط التنقل */}
-        <ul
+        <motion.ul
+          variants={itemVariants}
           style={{
             display: "flex",
             gap: "1.5rem",
@@ -65,18 +90,17 @@ const FooterComponent = () => {
                   transition: "color 0.3s ease",
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = theme.icon)}
-                onMouseLeave={(e) =>
-                  (e.currentTarget.style.color = theme.subText)
-                }
+                onMouseLeave={(e) => (e.currentTarget.style.color = theme.subText)}
               >
                 {item}
               </a>
             </li>
           ))}
-        </ul>
+        </motion.ul>
 
         {/* أيقونات السوشيال ميديا */}
-        <div
+        <motion.div
+          variants={itemVariants}
           style={{
             display: "flex",
             justifyContent: "center",
@@ -85,17 +109,12 @@ const FooterComponent = () => {
             marginBottom: "1rem",
           }}
         >
-          <FaTwitter color="#1DA1F2" />
-          <FaInstagram color="#E1306C" />
-          <FaGithub color="#333" />
-          <FaLinkedin color="#0077B5" />
-          <FaFacebook color="#1877F2" />
-          <FaWhatsapp color="#25D366" />
-          <FaEnvelope color="#D44638" />
-        </div>
+          <SocialIcons />
+        </motion.div>
 
         {/* رقم الهاتف */}
-        <p
+        <motion.p
+          variants={itemVariants}
           style={{
             color: theme.subText,
             fontSize: "0.95rem",
@@ -109,19 +128,20 @@ const FooterComponent = () => {
           >
             +201018539889
           </a>
-        </p>
+        </motion.p>
 
         {/* الحقوق */}
-        <p
+        <motion.p
+          variants={itemVariants}
           style={{
             color: theme.subText,
             fontSize: "0.85rem",
           }}
         >
           © 2026 Mohamed Abu. All rights reserved.
-        </p>
-      </footer>
-    </section>
+        </motion.p>
+      </motion.footer>
+    </motion.section>
   );
 };
 

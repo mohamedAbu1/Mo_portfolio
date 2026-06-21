@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 import { useTheme } from "@/context/ThemeContext";
-
 const testimonials = [
   {
     name: "John Smith",
@@ -60,23 +59,52 @@ const testimonials = [
 const Testimonials = () => {
   const { theme } = useTheme();
   const [page, setPage] = useState(0);
+  const [inView, setInView] = useState(false);
 
   const itemsPerPage = 3;
   const totalPages = Math.ceil(testimonials.length / itemsPerPage);
   const start = page * itemsPerPage;
   const currentItems = testimonials.slice(start, start + itemsPerPage);
 
-  // Auto change every 30 seconds
   useEffect(() => {
     const interval = setInterval(() => {
       setPage((prev) => (prev + 1) % totalPages);
-    }, 30000); // 30000ms = 30 seconds
-
+    }, 30000);
     return () => clearInterval(interval);
   }, [totalPages]);
 
+  // مراقبة السكشن
+  useEffect(() => {
+    const section = document.getElementById("testimonials");
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) setInView(true);
+        });
+      },
+      { threshold: 0.6 }
+    );
+    if (section) observer.observe(section);
+    return () => section && observer.unobserve(section);
+  }, []);
+
+  // إعدادات الأنيميشن
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+  };
+
   return (
-    <div
+    <motion.div
+      id="testimonials"
+      initial="hidden"
+      animate={inView ? "visible" : "hidden"}
+      variants={containerVariants}
       style={{
         padding: "2rem",
         borderRadius: "12px",
@@ -86,41 +114,41 @@ const Testimonials = () => {
         transition: "background-color 0.3s ease, color 0.3s ease",
       }}
     >
-      <h2
+      <motion.h2
+        variants={itemVariants}
         style={{
           textAlign: "center",
-          fontSize: "clamp(2rem, 4vw, 2.8rem)", // متجاوب
+          fontSize: "clamp(2rem, 4vw, 2.8rem)",
           marginBottom: "2rem",
           fontWeight: "700",
           letterSpacing: "1px",
           backgroundImage: `linear-gradient(90deg, ${theme.primary}, ${theme.secondary})`,
           WebkitBackgroundClip: "text",
           WebkitTextFillColor: "transparent",
-          display: "inline-block", // مهم علشان يظهر النص
+          display: "inline-block",
         }}
       >
         Client Testimonials
-      </h2>
+      </motion.h2>
 
-      {/* خط سفلي متدرج */}
-      <div
+      <motion.div
+        variants={itemVariants}
         style={{
           width: "180px",
           height: "4px",
-          margin: "0 auto 2rem 0",
+          margin: "0 auto 1rem 0",
           borderRadius: "2px",
           background: `linear-gradient(90deg, ${theme.primary}, ${theme.secondary})`,
-          animation: "slideIn 1s ease forwards",
         }}
-      ></div>
+      ></motion.div>
 
       <AnimatePresence mode="wait">
         <motion.div
           key={page}
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -100 }}
-          transition={{ duration: 0.6 }}
+          variants={containerVariants}
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          exit="hidden"
           style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
@@ -130,6 +158,7 @@ const Testimonials = () => {
           {currentItems.map((item, index) => (
             <motion.div
               key={index}
+              variants={itemVariants}
               whileHover={{ scale: 1.05 }}
               style={{
                 backgroundColor: theme.cardInnerBg,
@@ -171,9 +200,7 @@ const Testimonials = () => {
               >
                 {item.date}
               </span>
-              <div
-                style={{ display: "flex", gap: "0.2rem", marginTop: "0.8rem" }}
-              >
+              <div style={{ display: "flex", gap: "0.2rem", marginTop: "0.8rem" }}>
                 {[...Array(item.rating)].map((_, i) => (
                   <FaStar key={i} color={theme.starColor || "#FFD700"} />
                 ))}
@@ -182,7 +209,7 @@ const Testimonials = () => {
           ))}
         </motion.div>
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 };
 

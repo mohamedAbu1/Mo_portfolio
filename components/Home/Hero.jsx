@@ -4,23 +4,18 @@ import devAnimation from "../../public/animation/dev.json";
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "@/context/ThemeContext";
-import {
-  FaTwitter,
-  FaInstagram,
-  FaGithub,
-  FaLinkedin,
-  FaFacebook,
-  FaWhatsapp,
-  FaEnvelope,
-} from "react-icons/fa";
+import SocialIcons from "./components/SocialIcons";
 
 const Hero = () => {
   const lottieRef = useRef();
   const { theme } = useTheme();
 
   return (
-    <section
-    id="Home"
+    <motion.section
+      id="home"
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeOut" }}
       style={{
         marginTop: "3rem",
         display: "flex",
@@ -33,7 +28,12 @@ const Hero = () => {
       }}
     >
       {/* Left Section */}
-      <div style={{ flex: "1 1 400px", minWidth: "300px" }}>
+      <motion.div
+        initial={{ x: -60, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
+        style={{ flex: "1 1 400px", minWidth: "300px" }}
+      >
         {/* الترحيب */}
         <div
           style={{
@@ -44,8 +44,8 @@ const Hero = () => {
           }}
         >
           <motion.img
-            initial={{ transform: "scale(0)" }}
-            animate={{ transform: "scale(1.1)" }}
+            initial={{ scale: 0 }}
+            animate={{ scale: 1.1 }}
             transition={{ damping: 6, type: "spring", stiffness: 100 }}
             src="/images/logo.webp"
             alt="Mohamed Abu Logo"
@@ -59,7 +59,10 @@ const Hero = () => {
               boxShadow: "2px 2px 40px rgba(203,200,200,0.586) inset",
             }}
           />
-          <div
+          <motion.div
+            initial={{ rotate: -90, opacity: 0 }}
+            animate={{ rotate: 0, opacity: 1 }}
+            transition={{ duration: 1 }}
             style={{
               color: theme.icon,
               fontSize: "1.1rem",
@@ -67,15 +70,15 @@ const Hero = () => {
             }}
           >
             ✔
-          </div>
+          </motion.div>
         </div>
 
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.5 }}
+          transition={{ duration: 1.2 }}
           style={{
-            fontSize: "clamp(1.5rem, 2vw, 2rem)", // يتغير حسب الشاشة
+            fontSize: "clamp(1.5rem, 2vw, 2rem)",
             fontWeight: "600",
             paddingTop: "20px",
             color: theme.title,
@@ -88,9 +91,9 @@ const Hero = () => {
         <motion.h1
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 2 }}
+          transition={{ duration: 1.5 }}
           style={{
-            fontSize: "clamp(2rem, 4vw, 3rem)", // متجاوب
+            fontSize: "clamp(2rem, 4vw, 3rem)",
             lineHeight: "clamp(2.5rem, 5vw, 3.5rem)",
             margin: "24px 0",
             color: theme.title,
@@ -99,41 +102,36 @@ const Hero = () => {
           Software designer, founder, and amateur astronaut.
         </motion.h1>
 
-        <p
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.8 }}
           style={{
             color: theme.subText,
-            fontSize: "clamp(0.85rem, 1.5vw, 1rem)", // أصغر على الموبايل
+            fontSize: "clamp(0.85rem, 1.5vw, 1rem)",
             lineHeight: "1.65rem",
             marginBottom: "32px",
           }}
         >
           I’m Mohamed Abu, a software developer and entrepreneur based in Luxor,
           Egypt...
-        </p>
+        </motion.p>
 
         {/* أيقونات السوشيال ميديا */}
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "1.5rem",
-            fontSize: "clamp(1.2rem, 2vw, 1.8rem)", // حجم الأيقونات متجاوب
-            width: "100%",
-            padding: "1rem 0",
-          }}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: .2 }}
         >
-          <FaTwitter color="#1DA1F2" />
-          <FaInstagram color="#E1306C" />
-          <FaGithub color="#333" />
-          <FaLinkedin color="#0077B5" />
-          <FaFacebook color="#1877F2" />
-          <FaWhatsapp color="#25D366" />
-          <FaEnvelope color="#D44638" />
-        </div>
-      </div>
+          <SocialIcons />
+        </motion.div>
+      </motion.div>
 
       {/* Right Section */}
-      <div
+      <motion.div
+        initial={{ x: 60, opacity: 0 }}
+        animate={{ x: 0, opacity: 1 }}
+        transition={{ duration: 1, ease: "easeOut" }}
         style={{
           flex: "1 1 400px",
           minWidth: "300px",
@@ -150,8 +148,8 @@ const Hero = () => {
           animationData={devAnimation}
           style={{ maxWidth: "100%", height: "auto" }}
         />
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 };
 
