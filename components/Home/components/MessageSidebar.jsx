@@ -5,52 +5,51 @@ import { useState, useEffect } from "react";
 import { useTheme } from "@/context/ThemeContext";
 import { useAuth } from "@/context/AuthContext";
 import { useMessages } from "@/context/MessageContext";
-import { supabase } from "@/lib/supabaseClient"; // ✅ استيراد Supabase Client
 import MessageList from "./components/MessageList";
 import MessageForm from "./components/MessageForm";
 
 export default function MessageSidebar({ isOpen, onClose }) {
   const [message, setMessage] = useState("");
   const [selectedUser, setSelectedUser] = useState(null);
-  const [usersList, setUsersList] = useState([]); // ✅ قائمة المستخدمين من Auth
+  const [usersList, setUsersList] = useState([]);
   const { theme } = useTheme();
   const { user } = useAuth();
   const { messages, sendMessage, fetchMessages } = useMessages();
 
   const isAdmin = user?.user_metadata?.role === "admin";
 
-  // ✅ جلب الرسائل
   useEffect(() => {
     if (user?.id) {
       fetchMessages(user.id, isAdmin);
     }
   }, [user?.id, isAdmin]);
 
-  // ✅ جلب جميع المستخدمين من Supabase Auth
   useEffect(() => {
     const fetchUsers = async () => {
-      const { data, error } = await supabase.auth.admin.listUsers();
+      try {
+        const res = await fetch("/api/users");
+        if (!res.ok) return console.error("❌ Fetch failed:", res.statusText);
 
-      if (!error) {
-        setUsersList(
-          data.users.map((u) => ({
-            user_id: u.id,
-            user_name: u.user_metadata?.name || u.email,
-            user_image:
-              u.user_metadata?.avatar_url ||
-              u.user_metadata?.picture ||
-              "/default-avatar.png",
-          }))
-        );
-      } else {
-        console.error("❌ Error fetching users:", error.message);
+        const json = await res.json();
+        if (json.error) {
+          console.error("❌ Error fetching users:", json.error);
+        } else {
+          setUsersList(
+            (json.users || []).map((u) => ({
+              user_id: u.id,
+              user_name: u.user_metadata?.name,
+              user_role: u.user_metadata?.role,
+              user_image: u.user_metadata?.avatar_url || "/default-avatar.png",
+            })),
+          );
+        }
+      } catch (err) {
+        console.error("❌ Fetch failed:", err.message);
       }
     };
-
     fetchUsers();
   }, []);
 
-  // ✅ فلترة الرسائل حسب المستخدم المختار
   const filteredMessages = isAdmin
     ? selectedUser
       ? messages.filter((msg) => msg.user_id === selectedUser.user_id)
@@ -74,7 +73,7 @@ export default function MessageSidebar({ isOpen, onClose }) {
     <motion.div
       initial={{ x: "100%" }}
       animate={{ x: isOpen ? 0 : "100%" }}
-      transition={{ duration: 0.5, ease: "easeInOut" }}
+      transition={{ duration: 0.6, ease: "easeInOut" }}
       style={{
         position: "fixed",
         top: 0,
@@ -83,34 +82,40 @@ export default function MessageSidebar({ isOpen, onClose }) {
         width: isAdmin ? "600px" : "400px",
         backgroundColor: theme.cardInnerBg,
         color: theme.text,
-        boxShadow: "-2px 0 15px rgba(0,0,0,0.4)",
+        boxShadow: "-2px 0 20px rgba(0,0,0,0.5)",
         zIndex: 3000,
         display: "flex",
         flexDirection: "row",
+        borderLeft: `2px solid ${theme.border}`,
       }}
     >
       {/* زر الإغلاق */}
-      <div style={{ position: "absolute", top: "1rem", right: "1rem" }}>
-        <button
-          onClick={onClose}
-          style={{
-            background: "none",
-            border: "none",
-            color: theme.icon,
-            fontSize: "1.4rem",
-            cursor: "pointer",
-          }}
-        >
-          <FaTimes />
-        </button>
-      </div>
+      <motion.button
+        whileHover={{ scale: 1.2, color: theme.buttonPrimaryBg }}
+        whileTap={{ scale: 0.9 }}
+        onClick={onClose}
+        style={{
+          position: "absolute",
+          top: "1rem",
+          right: "1rem",
+          background: "none",
+          border: "none",
+          color: theme.icon,
+          fontSize: "1.6rem",
+          cursor: "pointer",
+        }}
+      >
+        <FaTimes />
+      </motion.button>
 
       {isAdmin ? (
         <>
           {/* ✅ عمود المستخدمين */}
-          <div
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
             style={{
-              width: "200px",
+              width: "220px",
               borderRight: `1px solid ${theme.border}`,
               backgroundColor: theme.card,
               padding: "1rem",
@@ -118,37 +123,45 @@ export default function MessageSidebar({ isOpen, onClose }) {
             }}
           >
             <h4 style={{ color: theme.title, marginBottom: "1rem" }}>Users</h4>
-            {usersList.map((u) => (
-              <div
-                key={u.user_id}
-                onClick={() => setSelectedUser(u)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.6rem",
-                  padding: "0.5rem",
-                  borderRadius: "8px",
-                  cursor: "pointer",
-                  backgroundColor:
-                    selectedUser?.user_id === u.user_id
-                      ? theme.cardInnerBg
-                      : "transparent",
-                }}
-              >
-                <img
-                  src={u.user_image}
-                  alt={u.user_name}
-                  style={{
-                    width: "35px",
-                    height: "35px",
-                    borderRadius: "50%",
-                    objectFit: "cover",
+            {usersList
+              .filter((u) => u.user_role !== "admin")
+              .map((u) => (
+                <motion.div
+                  key={u.user_id}
+                  whileHover={{
+                    scale: 1.05,
+                    backgroundColor: theme.cardInnerBg,
                   }}
-                />
-                <span>{u.user_name}</span>
-              </div>
-            ))}
-          </div>
+                  onClick={() => setSelectedUser(u)}
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "0.6rem",
+                    padding: "0.6rem",
+                    borderRadius: "10px",
+                    cursor: "pointer",
+                    backgroundColor:
+                      selectedUser?.user_id === u.user_id
+                        ? theme.cardInnerBg
+                        : "transparent",
+                    transition: "all 0.3s ease",
+                  }}
+                >
+                  <img
+                    src={u.user_image}
+                    alt={u.user_name}
+                    style={{
+                      width: "38px",
+                      height: "38px",
+                      borderRadius: "50%",
+                      objectFit: "cover",
+                      border: `1px solid ${theme.border}`,
+                    }}
+                  />
+                  <span style={{ color: theme.text }}>{u.user_name}</span>
+                </motion.div>
+              ))}
+          </motion.div>
 
           {/* ✅ نافذة الشات مع المستخدم المختار */}
           <div
@@ -165,7 +178,7 @@ export default function MessageSidebar({ isOpen, onClose }) {
                 : "Select a user"}
             </h3>
 
-            <MessageList messages={filteredMessages} />
+            <MessageList messages={filteredMessages} user={user}/>
 
             {selectedUser && (
               <MessageForm
@@ -186,17 +199,37 @@ export default function MessageSidebar({ isOpen, onClose }) {
             padding: "1rem",
           }}
         >
-          <h3
-            style={{
-              color: theme.title,
-              marginBottom: "1rem",
-              textAlign: "center",
-            }}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            style={{ textAlign: "center", marginBottom: "1.5rem" }}
           >
-            💬 My Messages
-          </h3>
+            <h3
+              style={{
+                color: theme.title,
+                marginBottom: "0.3rem",
+                fontSize: "1.6rem",
+                fontWeight: "bold",
+              }}
+            >
+              💬 My Messages
+            </h3>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              style={{
+                color: theme.subText,
+                fontSize: "0.9rem",
+                fontStyle: "italic",
+              }}
+            >
+              Connect & talk with me
+            </motion.p>
+          </motion.div>
 
-          <MessageList messages={filteredMessages} />
+          <MessageList messages={filteredMessages}  user={user}/>
 
           <MessageForm
             message={message}

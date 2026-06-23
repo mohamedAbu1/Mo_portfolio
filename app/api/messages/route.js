@@ -50,24 +50,40 @@ export async function POST(req) {
 
 // ✅ تعديل حالة أو محتوى الرسالة
 export async function PUT(req) {
-  const body = await req.json();
-  const { id, content, status } = body;
+  try {
+    const body = await req.json();
+    const { id, content, status } = body;
 
-  if (!id) {
-    return NextResponse.json({ error: "Message ID required" }, { status: 400 });
+    if (!id) {
+      return new Response(JSON.stringify({ error: "Message ID is required" }), {
+        status: 400,
+      });
+    }
+
+    const { data, error } = await supabase
+      .from("messages")
+      .update(
+        {
+          ...(content && { content }),
+          ...(status && { status }),
+        }
+      )
+      .eq("id", id)
+      .select();
+
+    if (error) {
+      return new Response(JSON.stringify({ error: error.message }), {
+        status: 400,
+      });
+    }
+
+    // ✅ مهم: لازم ترجع JSON حتى لو فاضي
+    return new Response(JSON.stringify(data?.[0] || {}), { status: 200 });
+  } catch (err) {
+    return new Response(JSON.stringify({ error: err.message }), { status: 500 });
   }
-
-  const { data, error } = await supabase
-    .from("messages")
-    .update({ content, status })
-    .eq("id", id);
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 });
-  }
-
-  return NextResponse.json(data, { status: 200 });
 }
+
 
 // ✅ حذف رسالة
 export async function DELETE(req) {

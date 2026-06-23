@@ -164,20 +164,22 @@ const HeaderComponent = ({setIsOpen}) => {
       >
         {themeName === "dark" ? <FaMoon /> : <FaSun />}
       </motion.button>
-       <motion.button
-        whileHover={{ scale: 1.2 }}
-        onClick={() => setIsOpen(true)} // ✅ فتح النافذة
-        style={{
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          color: "white",
-          fontSize: "1.5rem",
-          marginLeft: "55px",
-        }}
-      >
-        <FaComments />
-      </motion.button>
+      {user && (
+        <motion.button
+          whileHover={{ scale: 1.2 }}
+          onClick={() => setIsOpen(true)} // ✅ فتح النافذة
+          style={{
+            background: "none",
+            border: "none",
+            cursor: "pointer",
+            color: "white",
+            fontSize: "1.5rem",
+            marginLeft: "55px",
+          }}
+        >
+          <FaComments color={theme.icon} />
+        </motion.button>
+      )}
     </motion.header>
   );
 };
