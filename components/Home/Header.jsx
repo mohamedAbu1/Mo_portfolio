@@ -103,6 +103,7 @@ const HeaderComponent = ({setIsOpen}) => {
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.5 }}
           style={{
+            width:"50%",
             display: "flex",
             alignItems: "center",
             marginLeft: "20px",
@@ -169,6 +170,7 @@ const HeaderComponent = ({setIsOpen}) => {
           whileHover={{ scale: 1.2 }}
           onClick={() => setIsOpen(true)} // ✅ فتح النافذة
           style={{
+            display:{xs:"none",lg: "flex"},
             background: "none",
             border: "none",
             cursor: "pointer",
