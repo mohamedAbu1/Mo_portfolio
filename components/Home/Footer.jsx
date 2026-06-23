@@ -4,11 +4,11 @@ import { useTheme } from "@/context/ThemeContext";
 import Image from "next/image";
 import SocialIcons from "./components/SocialIcons";
 import { motion } from "framer-motion";
-
+import { FaPhone } from "react-icons/fa";
 const FooterComponent = () => {
   const { theme } = useTheme();
   const [inView, setInView] = useState(false);
-
+  const phoneNumbers = ["+201018539889"];
   useEffect(() => {
     const section = document.getElementById("footer");
     const observer = new IntersectionObserver(
@@ -17,7 +17,7 @@ const FooterComponent = () => {
           if (entry.isIntersecting) setInView(true);
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.6 },
     );
     if (section) observer.observe(section);
     return () => section && observer.unobserve(section);
@@ -31,7 +31,11 @@ const FooterComponent = () => {
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
   };
 
   return (
@@ -90,7 +94,9 @@ const FooterComponent = () => {
                   transition: "color 0.3s ease",
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.color = theme.icon)}
-                onMouseLeave={(e) => (e.currentTarget.style.color = theme.subText)}
+                onMouseLeave={(e) =>
+                  (e.currentTarget.style.color = theme.subText)
+                }
               >
                 {item}
               </a>
@@ -121,13 +127,29 @@ const FooterComponent = () => {
             marginBottom: "0.5rem",
           }}
         >
-          📞{" "}
-          <a
-            href="tel:+201018539889"
-            style={{ color: theme.icon, textDecoration: "none" }}
-          >
-            +201018539889
-          </a>
+          <div style={{ display: "flex", gap: "1rem" }}>
+            {phoneNumbers.map((num, i) => (
+              <motion.a
+                key={i}
+                href={`tel:${num}`}
+                whileHover={{ scale: 1.1 }}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.4rem",
+                  backgroundColor: theme.cardInnerBg,
+                  padding: "0.4rem 0.8rem",
+                  borderRadius: "8px",
+                  color: theme.text,
+                  textDecoration: "none",
+                  boxShadow: theme.shadow,
+                }}
+              >
+                <FaPhone style={{ color: theme.icon }} />
+                {num}
+              </motion.a>
+            ))}
+          </div>
         </motion.p>
 
         {/* الحقوق */}

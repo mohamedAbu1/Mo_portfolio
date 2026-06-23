@@ -1,4 +1,4 @@
-/* @import "./theme.css";
+@import "./theme.css";
 @import "./scrollbar.css";
 @import "./animations.css";
 @import "./swiper.css";
@@ -6,11 +6,8 @@
 @import "./mui-inputs.css";
 @import "./datepicker.css";
 @import "./luxury-input.css";
-@import "./select.css"; */
+@import "./select.css";
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700&display=swap");
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 
 html {
   font-family: "Roboto", sans-serif;

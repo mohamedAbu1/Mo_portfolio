@@ -1,17 +1,14 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { useTheme } from "@/context/ThemeContext";
-import {
-  FaMoon,
-  FaSun,
-  FaUserCircle,
-  FaComments,
-} from "react-icons/fa";
+import { FaMoon, FaSun, FaComments } from "react-icons/fa";
 import { motion } from "framer-motion";
-
-const HeaderComponent = () => {
+import { useAuth } from "@/context/AuthContext";
+import Box from '@mui/material/Box';
+const HeaderComponent = ({setIsOpen}) => {
   const [activeSection, setActiveSection] = useState("home");
   const { theme, themeName, toggleThemeFun } = useTheme();
+  const { isLoggedIn, user, loginWithGoogle, logout } = useAuth();
 
   useEffect(() => {
     const sections = document.querySelectorAll("section[id]");
@@ -23,7 +20,7 @@ const HeaderComponent = () => {
           }
         });
       },
-      { threshold: 0.6 }
+      { threshold: 0.6 },
     );
 
     sections.forEach((sec) => observer.observe(sec));
@@ -49,15 +46,13 @@ const HeaderComponent = () => {
         padding: "1rem 2rem",
         backgroundColor: theme.background,
         boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
-        transition: "background-color 0.3s ease, padding 0.3s ease",
       }}
     >
- 
       {/* روابط الناف */}
-      <nav className="desktop-nav" style={{ width: "40%" }}>
-        <ul
-          style={{
-            display: "flex",
+      <Box className="desktop-nav" sx={{ width:{ xs: "0%", lg: "40%" } }}>
+        <Box
+          sx={{
+            display: { xs: "none", lg: "flex" },
             justifyContent: "center",
             gap: "1.5rem",
             listStyle: "none",
@@ -98,70 +93,62 @@ const HeaderComponent = () => {
               </motion.a>
             </motion.li>
           ))}
-        </ul>
-      </nav>
+        </Box>
+      </Box>
 
       {/* مربع المستخدم */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, delay: 0.5 }}
-        style={{
-          display: "flex",
-          alignItems: "center",
-          marginLeft: "20px",
-          padding: "0.4rem 0.8rem",
-          borderRadius: "8px",
-          backgroundColor: theme.cardInnerBg,
-          boxShadow: theme.shadow,
-        }}
-      >
-        <img
-          src="/images/3d-avatar-cartoon-character_113255-92170.webp"
-          alt="User Avatar"
+      {isLoggedIn && (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
           style={{
-            width: "35px",
-            height: "35px",
-            borderRadius: "50%",
-            objectFit: "cover",
-            marginRight: "10px",
+            display: "flex",
+            alignItems: "center",
+            marginLeft: "20px",
+            padding: "0.4rem 0.8rem",
+            borderRadius: "8px",
+            backgroundColor: theme.cardInnerBg,
+            boxShadow: theme.shadow,
           }}
-        />
-        <span
-          style={{ color: theme.text, fontSize: "0.95rem", fontWeight: "500" }}
         >
-          Mohamed Abu
-        </span>
-      </motion.div>
-
-      {/* أيقونات */}
-      <motion.button
-        whileHover={{ scale: 1.2 }}
-        style={{
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          color: theme.icon,
-          fontSize: "1.5rem",
-          marginLeft: "20px",
-        }}
-      >
-        <FaUserCircle />
-      </motion.button>
-
-      <motion.button
-        whileHover={{ scale: 1.2 }}
-        style={{
-          background: "none",
-          border: "none",
-          cursor: "pointer",
-          color: theme.icon,
-          fontSize: "1.5rem",
-          marginLeft: "15px",
-        }}
-      >
-        <FaComments />
-      </motion.button>
+          <img
+            src={user?.user_metadata?.image}
+            alt="User Avatar"
+            style={{
+              width: "35px",
+              height: "35px",
+              borderRadius: "50%",
+              objectFit: "cover",
+              marginRight: "10px",
+            }}
+          />
+          <span
+            style={{
+              color: theme.text,
+              fontSize: "0.95rem",
+              fontWeight: "500",
+              textTransform: "capitalize",
+            }}
+          >
+            {user?.user_metadata?.name}
+          </span>
+          <button
+            onClick={logout} // ✅ من AuthContext
+            style={{
+              marginLeft: "10px",
+              background: "none",
+              border: "1px solid",
+              borderRadius: "6px",
+              padding: "0.2rem 0.6rem",
+              cursor: "pointer",
+              color: theme.text,
+            }}
+          >
+            Logout
+          </button>
+        </motion.div>
+      )}
 
       <motion.button
         whileHover={{ rotate: 180 }}
@@ -177,18 +164,20 @@ const HeaderComponent = () => {
       >
         {themeName === "dark" ? <FaMoon /> : <FaSun />}
       </motion.button>
-
-      {/* CSS للتجاوب */}
-      <style jsx>{`
-        @media (max-width: 1024px) {
-          .desktop-nav {
-            display: none;
-          }
-          .menu-btn {
-            display: block;
-          }
-        }
-      `}</style>
+       <motion.button
+        whileHover={{ scale: 1.2 }}
+        onClick={() => setIsOpen(true)} // ✅ فتح النافذة
+        style={{
+          background: "none",
+          border: "none",
+          cursor: "pointer",
+          color: "white",
+          fontSize: "1.5rem",
+          marginLeft: "55px",
+        }}
+      >
+        <FaComments />
+      </motion.button>
     </motion.header>
   );
 };

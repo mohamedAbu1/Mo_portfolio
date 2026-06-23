@@ -7,7 +7,7 @@ import {
   AboutImage,
 } from "../../app/style/HomeStyle";
 import { motion } from "framer-motion";
-import { images } from "../../constants/images";
+import { images } from "../../constants/api";
 import { useTheme } from "@/context/ThemeContext";
 import TechStackIcons from "./components/TechStackIcons";
 

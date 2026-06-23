@@ -29,7 +29,7 @@ const ProjectGrid = ({ projects, theme, inView }) => {
           style={{ display: "contents" }}
         >
           {projects.map((item) => (
-            <ProjectCard key={item.imgPath} item={item} theme={theme} />
+            <ProjectCard key={item.id} item={item} theme={theme} />
           ))}
         </motion.div>
       </AnimatePresence>

@@ -10,12 +10,13 @@ import { useTheme } from "@/context/ThemeContext";
 import { FaArrowUp } from "react-icons/fa";
 import Testimonials from "@/components/Home/Testimonials";
 import Divider from "@/components/layout/Divider";
+import GoogleLoginBanner from "@/components/Home/components/GoogleLoginBanner";
+import MessageSidebar from "@/components/Home/components/MessageSidebar";
 
 const HomePage = () => {
   const [showScrollBTN, setshowScrollBTN] = useState(false);
   const { theme } = useTheme();
-
-  useEffect(() => {
+  const [isOpen, setIsOpen] = useState(false);  useEffect(() => {
     const handleScroll = () => {
       setshowScrollBTN(window.scrollY > 300);
     };
@@ -48,20 +49,22 @@ const HomePage = () => {
           transition: "background-color 0.3s ease, color 0.3s ease",
         }}
       >
-        <Header />
+        <Header setIsOpen={setIsOpen} />
+        <GoogleLoginBanner />
+        <MessageSidebar isOpen={isOpen} onClose={() => setIsOpen(false)} />
         <Hero />
 
         {/* Divider */}
-        <Divider theme={theme}/>
+        <Divider theme={theme} />
 
         <About />
-        <Divider theme={theme}/>
+        <Divider theme={theme} />
 
         <Main />
         <Divider theme={theme} />
 
         <Contact />
-        <Divider theme={theme}/>
+        <Divider theme={theme} />
 
         <Testimonials />
         <Footer />

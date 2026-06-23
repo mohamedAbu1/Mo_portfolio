@@ -1,6 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
-import { myProjects } from "../../constants/images";
+import { myProjects } from "../../constants/api";
 import { useTheme } from "@/context/ThemeContext";
 import { MainFlex } from "../../app/style/HomeStyle";
 import CategoryButtons from "./components/CategoryButtons";

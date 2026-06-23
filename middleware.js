@@ -22,7 +22,7 @@ export function middleware(req) {
     url.pathname.startsWith("/Alexandria")||
     url.pathname.startsWith("/Siwa")||
     url.pathname.startsWith("/Historicaltourism")||
-    url.pathname.startsWith("/avater")||
+    url.pathname.startsWith("/avatar")||
     url.pathname.startsWith("/images")
   ) {
     return NextResponse.next();

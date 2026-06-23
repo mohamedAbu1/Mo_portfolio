@@ -37,11 +37,11 @@ const CategoryButtons = ({ currentActive, handleClick, theme }) => {
 
   const buttons = [
     { key: "all", label: "All Projects", icon: FaGlobe },
-    { key: "css", label: "Electronic Services", icon: FaCog },
-    { key: "js", label: "Tourism Projects", icon: FaSuitcase },
-    { key: "react", label: "Commercial Projects", icon: MdBusinessCenter },
-    { key: "node", label: "Medical Projects", icon: FaHospital },
-    { key: "mobile", label: "Mobile Apps", icon: FaMobileAlt },
+    { key: "Services", label: "Electronic Services", icon: FaCog },
+    { key: "Tourism", label: "Tourism Projects", icon: FaSuitcase },
+    { key: "Commercial", label: "Commercial Projects", icon: MdBusinessCenter },
+    { key: "Medical", label: "Medical Projects", icon: FaHospital },
+    { key: "Apps", label: "Mobile Apps", icon: FaMobileAlt },
     { key: "website", label: "Websites", icon: FaLaptopCode },
   ];
 
