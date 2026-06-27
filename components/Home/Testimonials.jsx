@@ -56,7 +56,7 @@ const Testimonials = ({ projectId }) => {
       animate={inView ? "visible" : "hidden"}
       variants={containerVariants}
       style={{
-        padding: "2rem",
+        padding: "0.5rem",
         borderRadius: "12px",
         backgroundColor: theme.cardBg,
         color: theme.text,

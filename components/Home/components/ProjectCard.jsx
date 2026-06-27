@@ -38,7 +38,7 @@ const ProjectCard = ({ item }) => {
       <Card
         sx={{
           borderRadius: 6,
-          width:"450px",
+          width:{xs:"300px", lg:"450px"},
           boxShadow: "0 0 25px rgba(201,163,74,0.3)",
           overflow: "hidden",
           backgroundColor: theme.card,

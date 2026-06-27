@@ -16,7 +16,7 @@ const ProjectGrid = ({ projects, theme, inView }) => {
     <RightCards
       style={{
         display: "grid",
-        gridTemplateColumns: "repeat(auto-fit, minmax(400px, 1fr))",
+        gridTemplateColumns: "repeat(auto-fit, minmax(350px, 1fr))",
         gap: "1rem",
         width: "100%",
         flexWrap :"wrap"
@@ -27,7 +27,7 @@ const ProjectGrid = ({ projects, theme, inView }) => {
           variants={containerVariants}
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
-          style={{ display: "contents", flexWrap:"wrap"}}
+          style={{ display: "flex", alignItems:"center", justifyContent:"center", flexWrap:"wrap", gap:"1.5rem"}}
         >
           {projects.map((item) => (
             <ProjectCard key={item.id} item={item} theme={theme} />

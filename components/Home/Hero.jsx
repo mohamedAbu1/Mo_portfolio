@@ -21,7 +21,7 @@ const Hero = () => {
         display: "flex",
         flexWrap: "wrap",
         borderRadius: "15px",
-        padding: "20px",
+        padding: "10px",
         backgroundColor: theme.background,
         alignItems: "center",
         justifyContent: "space-between",

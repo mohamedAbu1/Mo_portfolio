@@ -62,8 +62,8 @@ const Main = () => {
           display: "flex",
           flexDirection: isLargeScreen ? "row" : "column", // هنا التغيير حسب حجم الشاشة
           gap: "2rem",
-          alignItems: "center",
-          justifyContent: "center",
+          alignItems: { xs: "center", lg: "start" },
+          justifyContent: "strat",
           transition: "all 0.3s ease",
           backgroundColor: theme.background,
           color: theme.text,

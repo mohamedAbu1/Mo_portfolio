@@ -32,8 +32,8 @@ export default function GoogleLoginBanner() {
     <div
       style={{
         position: "fixed",
-        top: "1rem",
-        right: "1rem",
+        top: "4rem",
+        right: "2rem",
         zIndex: 2000,
         animation: "fadeIn 0.8s ease",
       }}
