@@ -42,7 +42,7 @@ const ReviewCard = ({ item }) => {
     >
       {/* ✅ صورة المستخدم */}
       <img
-        src={item.avatar_url}
+        src={item.avatar_url === null ? "/avatar/3d-rendered-photo-woman-wearing-glasses-smiles-camera_1103059-4400.webp" : item.avatar_url}
         alt={item.name}
         style={{
           width: "70px",

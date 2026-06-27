@@ -14,22 +14,36 @@ import TechStackIcons from "./components/TechStackIcons";
 const About = () => {
   const { theme, themeName } = useTheme();
   const [inView, setInView] = useState(false);
+  const [enableAnimation, setEnableAnimation] = useState(true);
 
   useEffect(() => {
+    // ✅ تعطيل الأنيميشن في الشاشات الصغيرة
+    const handleResize = () => {
+      if (window.innerWidth < 768) {
+        setEnableAnimation(false);
+      } else {
+        setEnableAnimation(true);
+      }
+    };
+
+    handleResize(); // استدعاء أولي
+    window.addEventListener("resize", handleResize);
+
     const section = document.getElementById("about");
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          // لو السكشن ظاهر بنسبة 60% أو أكثر
-          if (entry.isIntersecting) {
-            setInView(true);
-          }
+          if (entry.isIntersecting) setInView(true);
         });
       },
       { threshold: 0.6 }
     );
     if (section) observer.observe(section);
-    return () => section && observer.unobserve(section);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+      section && observer.unobserve(section);
+    };
   }, []);
 
   return (
@@ -59,8 +73,8 @@ const About = () => {
             fontSize: "clamp(1.8rem, 3vw, 2.2rem)",
             textAlign: "start",
           }}
-          initial={{ opacity: 0, y: -30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={enableAnimation ? { opacity: 0, y: -30 } : {}}
+          animate={inView && enableAnimation ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1 }}
         >
           About Me
@@ -74,8 +88,8 @@ const About = () => {
             textAlign: "justify",
             marginTop: "1rem",
           }}
-          initial={{ opacity: 0, y: 40 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
+          initial={enableAnimation ? { opacity: 0, y: 40 } : {}}
+          animate={inView && enableAnimation ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1.2 }}
         >
           Hi, I’m <strong style={{ color: theme.icon }}>Mohamed Abu</strong>, a
@@ -96,8 +110,8 @@ const About = () => {
             marginTop: "2rem",
             width: "100%",
           }}
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={inView ? { opacity: 1, scale: 1 } : {}}
+          initial={enableAnimation ? { opacity: 0, scale: 0.8 } : {}}
+          animate={inView && enableAnimation ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 1.5 }}
         >
           <TechStackIcons />
@@ -129,8 +143,8 @@ const About = () => {
             border: `1px solid ${theme.border}`,
             boxShadow: "0 15px 25px rgba(0,0,0,0.35)",
           }}
-          initial={{ opacity: 0, x: -50, rotateY: 30 }}
-          animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
+          initial={enableAnimation ? { opacity: 0, x: -50, rotateY: 30 } : {}}
+          animate={inView && enableAnimation ? { opacity: 1, x: 0, rotateY: 0 } : {}}
           transition={{ duration: 1.2 }}
         />
 
@@ -145,8 +159,8 @@ const About = () => {
             border: `1px solid ${theme.border}`,
             boxShadow: "0 15px 25px rgba(0,0,0,0.35)",
           }}
-          initial={{ opacity: 0, x: 50, rotateY: -30 }}
-          animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
+          initial={enableAnimation ? { opacity: 0, x: 50, rotateY: -30 } : {}}
+          animate={inView && enableAnimation ? { opacity: 1, x: 0, rotateY: 0 } : {}}
           transition={{ duration: 1.2 }}
         />
       </AboutImageWrapper>

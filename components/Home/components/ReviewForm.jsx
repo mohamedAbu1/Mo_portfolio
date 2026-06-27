@@ -9,7 +9,7 @@ import { FaStar, FaPlus } from "react-icons/fa";
 const ReviewForm = ({user}) => {
   const { addReview } = useReviews();
   const { theme } = useTheme();
-
+console.log(user)
   const [newReview, setNewReview] = useState({
     name: user?.user_metadata?.name || "",
     avatar_url: user?.user_metadata?.image || "",
@@ -25,7 +25,7 @@ const ReviewForm = ({user}) => {
     addReview(newReview);
     setNewReview({
       name: user?.user_metadata?.name || "",
-      avatar_url: user?.user_metadata?.image || "",
+      avatar_url: user?.user_metadata?.image|| "/avatar/3d-rendered-photo-woman-wearing-glasses-smiles-camera_1103059-4400.webp",
       content: "",
       rating: 5,
       user_id: user?.id,

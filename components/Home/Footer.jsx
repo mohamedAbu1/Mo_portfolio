@@ -5,10 +5,12 @@ import Image from "next/image";
 import SocialIcons from "./components/SocialIcons";
 import { motion } from "framer-motion";
 import { FaPhone } from "react-icons/fa";
+
 const FooterComponent = () => {
   const { theme } = useTheme();
   const [inView, setInView] = useState(false);
   const phoneNumbers = ["+201018539889"];
+
   useEffect(() => {
     const section = document.getElementById("footer");
     const observer = new IntersectionObserver(
@@ -17,7 +19,7 @@ const FooterComponent = () => {
           if (entry.isIntersecting) setInView(true);
         });
       },
-      { threshold: 0.6 },
+      { threshold: 0.6 }
     );
     if (section) observer.observe(section);
     return () => section && observer.unobserve(section);
@@ -77,6 +79,8 @@ const FooterComponent = () => {
           variants={itemVariants}
           style={{
             display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
             gap: "1.5rem",
             listStyle: "none",
             margin: "0 0 1rem 0",
@@ -110,6 +114,7 @@ const FooterComponent = () => {
           style={{
             display: "flex",
             justifyContent: "center",
+            flexWrap: "wrap",
             gap: "1.5rem",
             fontSize: "1.5rem",
             marginBottom: "1rem",
@@ -119,38 +124,36 @@ const FooterComponent = () => {
         </motion.div>
 
         {/* رقم الهاتف */}
-        <motion.p
+        <motion.div
           variants={itemVariants}
           style={{
-            color: theme.subText,
-            fontSize: "0.95rem",
+            display: "flex",
+            gap: "1rem",
             marginBottom: "0.5rem",
           }}
         >
-          <div style={{ display: "flex", gap: "1rem" }}>
-            {phoneNumbers.map((num, i) => (
-              <motion.a
-                key={i}
-                href={`tel:${num}`}
-                whileHover={{ scale: 1.1 }}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "0.4rem",
-                  backgroundColor: theme.cardInnerBg,
-                  padding: "0.4rem 0.8rem",
-                  borderRadius: "8px",
-                  color: theme.text,
-                  textDecoration: "none",
-                  boxShadow: theme.shadow,
-                }}
-              >
-                <FaPhone style={{ color: theme.icon }} />
-                {num}
-              </motion.a>
-            ))}
-          </div>
-        </motion.p>
+          {phoneNumbers.map((num, i) => (
+            <motion.a
+              key={i}
+              href={`tel:${num}`}
+              whileHover={{ scale: 1.1 }}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: "0.4rem",
+                backgroundColor: theme.cardInnerBg,
+                padding: "0.4rem 0.8rem",
+                borderRadius: "8px",
+                color: theme.text,
+                textDecoration: "none",
+                boxShadow: theme.shadow,
+              }}
+            >
+              <FaPhone style={{ color: theme.icon }} />
+              {num}
+            </motion.a>
+          ))}
+        </motion.div>
 
         {/* الحقوق */}
         <motion.p
@@ -158,6 +161,7 @@ const FooterComponent = () => {
           style={{
             color: theme.subText,
             fontSize: "0.85rem",
+            textAlign: "center",
           }}
         >
           © 2026 Mohamed Abu. All rights reserved.
