@@ -10,6 +10,7 @@ export function middleware(req) {
     url.pathname.startsWith("/_next") ||
     url.pathname.startsWith("/favicon.ico") ||
     url.pathname.startsWith("/api") ||
+    url.pathname === "/google49366a773d42ea4a.html" ||
     url.pathname.startsWith("/assets") ||
     url.pathname.startsWith("/HomePageImage") ||
     url.pathname.startsWith("/Aswan")||
