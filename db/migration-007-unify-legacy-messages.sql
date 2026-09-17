@@ -11,7 +11,7 @@ FROM conversations c
 LEFT JOIN profiles p ON p.id = c.user_id
 ON DUPLICATE KEY UPDATE
   status = VALUES(status),
-  updated_at = GREATEST(updated_at, VALUES(updated_at));
+  updated_at = GREATEST(chat_conversations.updated_at, VALUES(updated_at));
 
 INSERT INTO chat_messages (
   conversation_id, sender_key, sender_name, sender_image, content, is_admin, read_at, created_at
@@ -44,3 +44,4 @@ WHERE NOT EXISTS (
 -- engagements -> deliverables -> deliverable_files / deliverable_technologies
 -- chat_conversations -> chat_messages
 -- The legacy tables remain untouched for rollback and audit purposes.
+
