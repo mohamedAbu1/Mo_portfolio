@@ -36,7 +36,7 @@ export async function GET() {
       if (!project.appUrl && row.android_url) project.appUrl = row.android_url;
       if (!project.category.includes(row.service_name)) project.category.push(row.service_name);
       project.platforms.push({ name: row.service_name, detail: row.public_description || row.title });
-      project.connectedDeliverables.push({ title, service: row.service_name, status: row.status === "delivered" ? "Delivered · Sold" : "In progress", url: row.live_url || row.source_url || row.android_url || row.ios_url || "", technologies: [] });
+      project.connectedDeliverables.push({ id: row.deliverable_id, title, service: row.service_name, status: row.status === "delivered" ? "Delivered · Sold" : "In progress", url: row.live_url || row.source_url || row.android_url || row.ios_url || "", technologies: [], imgPaths: [] });
     }
 
     for (const project of projects.values()) {
@@ -48,6 +48,8 @@ export async function GET() {
           query("SELECT file_url FROM deliverable_files WHERE deliverable_id=? AND is_public=TRUE ORDER BY sort_order ASC,id ASC", [deliverable.id]),
         ]);
         technologyRows.forEach((item) => technologyNames.add(item.name));
+        const connected = project.connectedDeliverables.find((item) => String(item.id) === String(deliverable.id));
+        if (connected) connected.imgPaths = files.map((file) => file.file_url);
         files.forEach((file) => { if (!project.imgPaths.includes(file.file_url)) project.imgPaths.push(file.file_url); });
       }
       project.technologies = [...technologyNames].map((name) => ({ name }));

@@ -77,6 +77,15 @@ export default function ProjectDetails() {
     () => p.imgPaths.map((src, index) => ({ src, index, label: galleryLabels[index] || `Interface screen ${index + 1}`, type: index >= 13 ? "mobile" : "desktop" })),
     [p.imgPaths]
   );
+  const deliverableGalleries = useMemo(
+    () => (p.connectedDeliverables || []).map((item, deliverableIndex) => ({
+      ...item,
+      gallery: (item.imgPaths || []).map((src, index) => ({ src, index, label: `${item.service} — ${galleryLabels[index] || `Interface screen ${index + 1}`}` })),
+      deliverableIndex,
+    })).filter((item) => item.gallery.length > 0),
+    [p.connectedDeliverables]
+  );
+  const heroGallery = deliverableGalleries[0]?.gallery || gallery;
   const platforms = localizedPlatforms?.length ? localizedPlatforms : [{ name: categories?.[0] || "Digital product", detail: categories?.slice(1).join(" · ") || "Custom solution" }];
 
   return (
@@ -122,7 +131,7 @@ export default function ProjectDetails() {
             <div><span>{t("caseStudy.delivered", { defaultValue: "Delivered" })}</span><strong>{p.date}</strong></div>
           </div>
         </div>
-        <ProjectImageSlider gallery={gallery} />
+        <ProjectImageSlider gallery={heroGallery} />
       </header>
 
       <section className="details-content">
@@ -156,11 +165,12 @@ export default function ProjectDetails() {
         </aside>
       </section>
 
-      {p.connectedDeliverables?.length > 0 && <section className="connected-deliverables"><div><p className="eyebrow">03 / {t("caseStudy.connected", { defaultValue: "connected deliverables" })}</p><h3>{t("caseStudy.connectedTitle", { defaultValue: "One product, multiple touchpoints." })}</h3><p className="connected-copy">{t("caseStudy.connectedCopy", { defaultValue: "This project is presented as separate deliverables so you can quickly understand what you need: website, mobile application, dashboard, or a complete connected product." })}</p></div><div className="connected-list">{p.connectedDeliverables.map((item) => <article key={item.title}><div><span className="connected-service">{item.service}</span><h4>{item.title}</h4><div className="details-tech-list">{item.technologies.map((technology) => <span key={technology}>{technology}</span>)}</div></div><div className="connected-side"><span>{item.status}</span><Link className="quote-link" href={`/${locale}#contact`}>{t("caseStudy.quote", { defaultValue: "Request a quote" })} <FaArrowUpRightFromSquare /></Link><a href={item.url} target="_blank" rel="noreferrer">{t("caseStudy.openBuild", { defaultValue: "Open build" })} <FaArrowUpRightFromSquare /></a></div></article>)}</div></section>}\n\n      <ProjectEngagement projectKey={String(p.id)} />
+      {deliverableGalleries.slice(1).map((item) => <section className="deliverable-gallery-section" key={item.id || item.service}><div className="gallery-heading"><div><p className="eyebrow">{item.service} / SEPARATE GALLERY</p><h3>{item.title}</h3></div></div><ProjectImageSlider gallery={item.gallery} /></section>)}`r`n`r`n      {p.connectedDeliverables?.length > 0 && <section className="connected-deliverables"><div><p className="eyebrow">03 / {t("caseStudy.connected", { defaultValue: "connected deliverables" })}</p><h3>{t("caseStudy.connectedTitle", { defaultValue: "One product, multiple touchpoints." })}</h3><p className="connected-copy">{t("caseStudy.connectedCopy", { defaultValue: "This project is presented as separate deliverables so you can quickly understand what you need: website, mobile application, dashboard, or a complete connected product." })}</p></div><div className="connected-list">{p.connectedDeliverables.map((item) => <article key={item.title}><div><span className="connected-service">{item.service}</span><h4>{item.title}</h4><div className="details-tech-list">{item.technologies.map((technology) => <span key={technology}>{technology}</span>)}</div></div><div className="connected-side"><span>{item.status}</span><Link className="quote-link" href={`/${locale}#contact`}>{t("caseStudy.quote", { defaultValue: "Request a quote" })} <FaArrowUpRightFromSquare /></Link><a href={item.url} target="_blank" rel="noreferrer">{t("caseStudy.openBuild", { defaultValue: "Open build" })} <FaArrowUpRightFromSquare /></a></div></article>)}</div></section>}\n\n      <ProjectEngagement projectKey={String(p.id)} />
       <section className="details-cta"><p className="eyebrow">{t("caseStudy.nextBuild", { defaultValue: "NEXT BUILD" })}</p><h2>{t("caseStudy.similarChallenge", { defaultValue: "Have a similar challenge?" })}</h2><Link className="button primary" href={`/${locale}#contact`}>{t("caseStudy.conversation", { defaultValue: "Start a conversation" })} <FaArrowUpRightFromSquare /></Link></section>
     </main>
   );
 }
+
 
 
 
