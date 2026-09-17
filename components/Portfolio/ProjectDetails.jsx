@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useParams, useSearchParams } from "next/navigation";
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   FaArrowLeft,
@@ -58,7 +58,13 @@ export default function ProjectDetails() {
   const q = useSearchParams();
   const { locale = "en" } = useParams();
   const { t } = useTranslation();
-  const p = myProjects.find((item) => String(item.id) === q.get("id")) || myProjects[0];
+  const [projects, setProjects] = useState(myProjects);
+  useEffect(() => {
+    fetch("/api/portfolio").then((response) => response.ok ? response.json() : null).then((payload) => {
+      if (payload?.data?.length) setProjects(payload.data);
+    }).catch(() => {});
+  }, []);
+  const p = projects.find((item) => String(item.id) === q.get("id")) || projects[0];
   const translated = p.id === 1 ? t("caseStudy.project", { returnObjects: true, defaultValue: {} }) : {};
   const project = translated && typeof translated === "object" && !Array.isArray(translated) ? translated : {};
   const projectTitle = project.title || p.projectTitle;
