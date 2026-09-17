@@ -61,7 +61,7 @@ export default function ProjectDetails() {
   const [projects, setProjects] = useState(myProjects);
   useEffect(() => {
     fetch("/api/portfolio").then((response) => response.ok ? response.json() : null).then((payload) => {
-      if (payload?.data?.length) setProjects(payload.data);
+      if (payload?.data?.length) setProjects([...payload.data, ...myProjects.filter((fallback) => !payload.data.some((item) => String(item.id) === String(fallback.id)))]);
     }).catch(() => {});
   }, []);
   const p = projects.find((item) => String(item.id) === q.get("id")) || projects[0];
@@ -161,6 +161,7 @@ export default function ProjectDetails() {
     </main>
   );
 }
+
 
 
 

@@ -83,11 +83,24 @@ export const myProjects = [
     ],
     connectedDeliverables: [{ title: "One Time Life Travel — Android Application", service: "Android App", status: "Delivered · Sold", url: "https://expo.dev/accounts/mohamed_abu_1997/projects/onetimelifetravel/builds/49506968-2780-43f6-a836-53584f731344", technologies: ["React Native", "Expo", "JavaScript"] }],
   },
-];
+  {
+    id: 3,
+    projectTitle: "UX/UI Resume Collection",
+    date: "2026",
+    category: ["UX/UI Design", "Resume design", "Visual systems"],
+    solutionType: "Single design collection",
+    projectSummary: "A curated collection of ten resume layouts designed for different professional roles, presented as one visual design project.",
+    platforms: [{ name: "Design gallery", detail: "Ten resume concepts in one collection" }],
+    imgPaths: Array.from({ length: 10 }, (_, index) => `/uploads/projects/uxui-resume-collection/${String(index + 1).padStart(2, "0")}.svg`),
+    technologies: ["Figma", "UX/UI Design", "Typography", "Visual Design", "Responsive Layouts"].map((name) => ({ name })),
+    features: ["Ten role-specific resume layouts", "Consistent visual design system", "Clear information hierarchy", "Professional typography and spacing"],
+    connectedDeliverables: []
+  },];
 export const images = {
   dark: ["/images/mohamedAbou.webp", "/images/MohamedAbu.webp"],
   light: ["/images/MyPic.webp", "/images/Mypic2.webp"],
 };
+
 
 
 
