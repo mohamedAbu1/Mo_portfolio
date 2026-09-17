@@ -16,7 +16,7 @@ export async function GET() {
       FROM engagements e
       INNER JOIN deliverables d ON d.engagement_id = e.id
       INNER JOIN services s ON s.id = d.service_id
-      WHERE d.visibility = 'public' AND d.status IN ('in_progress', 'delivered')
+      WHERE d.visibility = 'public' AND (d.status IN ('in_progress', 'delivered') OR d.is_sold = TRUE)
       ORDER BY e.created_at DESC, d.created_at ASC
     `);
 
@@ -39,7 +39,7 @@ export async function GET() {
     }
 
     for (const project of projects.values()) {
-      const deliverables = await query("SELECT id FROM deliverables WHERE engagement_id=? AND visibility='public' AND status IN ('in_progress','delivered')", [project.id]);
+      const deliverables = await query("SELECT id FROM deliverables WHERE engagement_id=? AND visibility='public' AND (status IN ('in_progress','delivered') OR is_sold=TRUE)", [project.id]);
       const technologyNames = new Set();
       for (const deliverable of deliverables) {
         const [technologyRows, files] = await Promise.all([
