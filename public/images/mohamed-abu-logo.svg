@@ -1,0 +1,25 @@
+<svg width="640" height="180" viewBox="0 0 640 180" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">Mohamed Abu Developer Logo</title>
+  <desc id="desc">Three dimensional MA monogram combined with a programming code symbol.</desc>
+  <defs>
+    <linearGradient id="face" x1="24" y1="20" x2="148" y2="156" gradientUnits="userSpaceOnUse"><stop stop-color="#B9FFE0"/><stop offset=".45" stop-color="#52DCA8"/><stop offset="1" stop-color="#16845E"/></linearGradient>
+    <linearGradient id="edge" x1="45" y1="142" x2="142" y2="176" gradientUnits="userSpaceOnUse"><stop stop-color="#0B573F"/><stop offset="1" stop-color="#062D24"/></linearGradient>
+    <linearGradient id="word" x1="190" y1="35" x2="530" y2="135" gradientUnits="userSpaceOnUse"><stop stop-color="#F5F7F8"/><stop offset="1" stop-color="#AAB6C0"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="170%" height="190%"><feDropShadow dx="0" dy="13" stdDeviation="10" flood-color="#000" flood-opacity=".42"/></filter>
+  </defs>
+  <g filter="url(#shadow)">
+    <path d="M20 42 86 8l67 34v75l-67 35-66-35V42Z" fill="#062D24" transform="translate(0 17)"/>
+    <path d="M20 42 86 8l67 34v75l-67 35-66-35V42Z" fill="url(#face)" stroke="#D2FFEC" stroke-width="2"/>
+    <path d="m20 117 66 35 67-35v18l-67 35-66-35v-18Z" fill="url(#edge)"/>
+    <path d="m86 8 67 34-20 10-47-24L39 52l-19-10L86 8Z" fill="#D2FFEC" fill-opacity=".35"/>
+    <path d="m48 70 15-9 23 35 27-52 15 8-42 75-38-57Z" fill="#062D24"/>
+    <path d="m36 82 11-7 15 23-11 8-15-24Zm76-40 14 7-23 45-12-7 21-45Z" fill="#F5FFFB" fill-opacity=".85"/>
+    <path d="M54 118 70 91l14 23 19-35 15 8-31 57-33-26Z" fill="#062D24"/>
+  </g>
+  <g transform="translate(190 35)">
+    <text x="0" y="65" fill="#52DCA8" font-family="monospace" font-size="44" font-weight="700">&lt;/&gt;</text>
+    <text x="105" y="65" fill="url(#word)" font-family="Arial,Helvetica,sans-serif" font-size="39" font-weight="700" letter-spacing="1">MOHAMED ABU</text>
+    <path d="M2 91h322" stroke="#52DCA8" stroke-width="3" stroke-linecap="round"/>
+    <text x="2" y="120" fill="#8F9AA6" font-family="monospace" font-size="14" letter-spacing="4">FULL-STACK DEVELOPER</text>
+  </g>
+</svg>

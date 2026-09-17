@@ -5,7 +5,7 @@ const supabaseAdmin = createClient(
   process.env.SUPABASE_SERVICE_ROLE_KEY
 );
 
-export async function GET(req) {
+export async function GET(_req) {
   try {
     const { data, error } = await supabaseAdmin.auth.admin.listUsers();
 
@@ -27,3 +27,4 @@ export async function GET(req) {
     );
   }
 }
+

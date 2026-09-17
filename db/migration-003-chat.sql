@@ -1,0 +1,14 @@
+CREATE TABLE IF NOT EXISTS chat_conversations (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, user_key VARCHAR(255) NOT NULL,
+ status ENUM('open','closed') NOT NULL DEFAULT 'open', created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+ UNIQUE KEY uq_chat_user(user_key)
+) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS chat_messages (
+ id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, conversation_id BIGINT UNSIGNED NOT NULL,
+ sender_key VARCHAR(255) NOT NULL, sender_name VARCHAR(160) NOT NULL, sender_image VARCHAR(500),
+ content VARCHAR(2000) NOT NULL, is_admin BOOLEAN NOT NULL DEFAULT FALSE,
+ read_at TIMESTAMP NULL, created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+ FOREIGN KEY(conversation_id) REFERENCES chat_conversations(id) ON DELETE CASCADE,
+ INDEX idx_chat_messages_conversation(conversation_id,created_at)
+) ENGINE=InnoDB;
