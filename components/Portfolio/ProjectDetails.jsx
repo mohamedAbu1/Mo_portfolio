@@ -73,6 +73,7 @@ export default function ProjectDetails() {
   const categories = Array.isArray(project.category) ? project.category : p.category;
   const features = Array.isArray(project.features) ? project.features : p.features;
   const localizedPlatforms = Array.isArray(project.platforms) ? project.platforms : p.platforms;
+  const isResumeCollection = /resume|cv/i.test(`${projectTitle} ${categories?.join(" ") || ""}`);
   const gallery = useMemo(
     () => p.imgPaths.map((src, index) => ({ src, index, label: galleryLabels[index] || `Interface screen ${index + 1}`, type: index >= 13 ? "mobile" : "desktop" })),
     [p.imgPaths]
@@ -122,8 +123,8 @@ export default function ProjectDetails() {
           </div>
           <div className="details-actions">
             <Link className="button primary" href={`/${locale}#contact`}><FaArrowUpRightFromSquare /> {t("caseStudy.quote", { defaultValue: "Request a quote" })}</Link>
-            <a className="button ghost" href={p.liveUrl} target="_blank" rel="noreferrer"><FaGlobe /> {t("caseStudy.live", { defaultValue: "Visit live project" })} <FaArrowUpRightFromSquare /></a>
-            <a className="button ghost" href={p.githubUrl} target="_blank" rel="noreferrer"><FaGithub /> {t("caseStudy.source", { defaultValue: "View source" })}</a>
+            {!isResumeCollection && <a className="button ghost" href={p.liveUrl} target="_blank" rel="noreferrer"><FaGlobe /> {t("caseStudy.live", { defaultValue: "Visit live project" })} <FaArrowUpRightFromSquare /></a>}
+            {!isResumeCollection && <a className="button ghost" href={p.githubUrl} target="_blank" rel="noreferrer"><FaGithub /> {t("caseStudy.source", { defaultValue: "View source" })}</a>}
           </div>
           <div className="case-study-stats">
             <div><span>{t("caseStudy.projectType", { defaultValue: "Project type" })}</span><strong>{solutionType || t("caseStudy.customProduct", { defaultValue: "Custom digital product" })}</strong></div>
