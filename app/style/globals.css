@@ -40,10 +40,16 @@ html[dir="rtl"] .eyebrow { flex-direction: row-reverse; }
 .memorial-content p { margin: 0; color: #c7d0da; font-size: .78rem; line-height: 1.55; }
 .memorial-signature { margin-top: 1rem; color: #e7c980; font-size: .72rem; }
 @keyframes memorial-in { from { opacity: 0; transform: translateY(-18px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
-.memorial-prayer.embedded { position: absolute; top: auto; right: 6vw; bottom: 18px; left: auto; width: min(330px, 34vw); transition: opacity .45s ease, transform .55s cubic-bezier(.2,.8,.2,1); }
+.memorial-prayer.embedded { position: absolute; top: 50%; right: 6vw; bottom: auto; left: auto; display: grid; grid-template-columns: 124px minmax(0, 1fr); width: min(430px, 39vw); transform: translateY(-50%); border-color: color-mix(in srgb, var(--season-accent, #8ff0c2) 42%, rgba(255,255,255,.16)); box-shadow: 0 24px 70px rgba(0,0,0,.42), 0 0 32px color-mix(in srgb, var(--season-accent, #8ff0c2) 13%, transparent); transition: opacity .45s ease, transform .55s cubic-bezier(.2,.8,.2,1); }
+.memorial-prayer.embedded .memorial-photo { height: 100%; min-height: 156px; }
+.memorial-prayer.embedded .memorial-content { display: flex; flex-direction: column; justify-content: center; padding: 1rem 1.1rem; }
+.memorial-prayer.embedded .memorial-content h2 { font-size: .98rem; }
+.memorial-prayer.embedded .memorial-content p { font-size: .75rem; }
+.memorial-prayer.embedded .memorial-signature { margin-top: .7rem; }
 .memorial-prayer.embedded.is-closed { opacity: 0; transform: translateY(16px) scale(.96); pointer-events: none; }
-.memorial-prayer.embedded.is-open { opacity: 1; transform: translateY(0) scale(1); }
-@media (max-width: 640px) { .memorial-prayer { left: .75rem; right: .75rem; top: max(5.5rem, calc(env(safe-area-inset-top) + 4.75rem)); width: auto; } .memorial-prayer.embedded { left: .75rem; right: .75rem; top: auto; bottom: 12px; width: auto; } .memorial-photo { height: 135px; } }
+.memorial-prayer.embedded.is-open { opacity: 1; transform: translateY(-50%) scale(1); }
+@media (max-width: 900px) { .memorial-prayer.embedded { right: 4vw; width: min(390px, 43vw); } }
+@media (max-width: 640px) { .memorial-prayer { left: .75rem; right: .75rem; top: max(5.5rem, calc(env(safe-area-inset-top) + 4.75rem)); width: auto; } .memorial-prayer.embedded { left: .75rem; right: .75rem; top: auto; bottom: 12px; display: grid; grid-template-columns: 96px minmax(0, 1fr); width: auto; transform: translateY(16px) scale(.96); } .memorial-prayer.embedded.is-open { transform: translateY(0) scale(1); } .memorial-prayer.embedded .memorial-photo { min-height: 145px; } .memorial-prayer.embedded .memorial-content { padding: .8rem .85rem; } .memorial-photo { height: 135px; } }
 
 *,
 *:before,
