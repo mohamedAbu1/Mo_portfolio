@@ -45,7 +45,7 @@ export async function GET() {
       for (const deliverable of deliverables) {
         const [technologyRows, files] = await Promise.all([
           query("SELECT t.name FROM technologies t JOIN deliverable_technologies dt ON dt.technology_id=t.id WHERE dt.deliverable_id=? ORDER BY t.name ASC", [deliverable.id]),
-          query("SELECT file_url FROM deliverable_files WHERE deliverable_id=? AND is_public=TRUE ORDER BY sort_order ASC,id ASC", [deliverable.id]),
+          query("SELECT file_url FROM deliverable_files WHERE deliverable_id=? AND file_type='image' AND is_public=TRUE ORDER BY sort_order ASC,id ASC", [deliverable.id]),
         ]);
         technologyRows.forEach((item) => technologyNames.add(item.name));
         const connected = project.connectedDeliverables.find((item) => String(item.id) === String(deliverable.id));

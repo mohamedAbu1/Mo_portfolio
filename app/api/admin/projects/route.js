@@ -5,6 +5,7 @@ import { query } from "@/lib/mysql";
 
 async function guard() { const session = await getServerSession(authOptions); return session?.user?.role === "admin"; }
 const clean = (value) => { const text = String(value ?? "").trim(); return text || null; };
+const unique = (values) => [...new Set(values.filter(Boolean))];
 
 async function attachDetails(deliverable) {
   const files = await query("SELECT id,file_type,file_url,is_public,alt_text,sort_order FROM deliverable_files WHERE deliverable_id=? ORDER BY sort_order ASC,id ASC", [deliverable.id]);
@@ -24,14 +25,16 @@ async function saveDeliverable(engagementId, item, existingId = null) {
     deliverableId = result.insertId;
   }
   if (existingId && Array.isArray(item.removedImageUrls) && item.removedImageUrls.length) {
-    await query("DELETE FROM deliverable_files WHERE deliverable_id=? AND file_url IN (?)", [deliverableId, item.removedImageUrls]);
+    for (const url of unique(item.removedImageUrls)) {
+      await query("DELETE FROM deliverable_files WHERE deliverable_id=? AND file_url=?", [deliverableId, url]);
+    }
   }
   if (existingId && item.removeCover && !item.coverImageUrl) {
     await query("UPDATE deliverables SET cover_image_url=NULL WHERE id=? AND engagement_id=?", [deliverableId, engagementId]);
   }
   const currentFiles = await query("SELECT file_url FROM deliverable_files WHERE deliverable_id=?", [deliverableId]);
   const knownFiles = new Set(currentFiles.map((file) => file.file_url));
-  const imageUrls = String(item.imageUrls || "").split(/\r?\n/).map((url) => url.trim()).filter(Boolean).filter((url) => !item.removedImageUrls?.includes(url));
+  const imageUrls = unique(String(item.imageUrls || "").split(/\r?\n/).map((url) => url.trim()).filter((url) => !item.removedImageUrls?.includes(url)));
   for (const url of imageUrls) {
     if (knownFiles.has(url)) continue;
     const count = await query("SELECT COUNT(*) AS total FROM deliverable_files WHERE deliverable_id=?", [deliverableId]);
