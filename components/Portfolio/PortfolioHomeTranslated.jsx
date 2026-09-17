@@ -32,7 +32,7 @@ export default function PortfolioHomeTranslated() {
   const [workPage, setWorkPage] = useState(1);
   const projectTypes = useMemo(() => [...new Set(projects.flatMap((project) => project.category || []).filter(Boolean))].sort(), [projects]);
   const visibleProjects = useMemo(() => projectType === "all" ? projects : projects.filter((project) => (project.category || []).includes(projectType)), [projects, projectType]);
-  const projectsPerPage = workLayout === "vertical" ? 4 : 6;
+  const projectsPerPage = 4;
   const totalWorkPages = Math.max(1, Math.ceil(visibleProjects.length / projectsPerPage));
   const paginatedProjects = useMemo(() => visibleProjects.slice((workPage - 1) * projectsPerPage, workPage * projectsPerPage), [visibleProjects, workPage, projectsPerPage]);
   const navItems = [["work", t("nav.work")], ["stack", t("nav.stack")], ["about", t("nav.about")], ["contact", t("nav.contact")]];
