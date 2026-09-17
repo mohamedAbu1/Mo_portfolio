@@ -117,5 +117,8 @@
       "咨询技术方案",
       "申请支持或维护"
     ]
+  },
+  "caseStudy": {
+    "back": "返回项目", "eyebrow": "案例研究", "status": "已交付 · 已售出", "lede": "围绕用户、业务目标以及日常使用的平台打造的数字产品。", "included": "项目包含什么？", "customProduct": "定制数字产品", "quote": "索取报价", "live": "访问线上项目", "source": "查看源码", "projectType": "项目类型", "scope": "项目范围", "deliverables": "个关联交付物", "delivered": "交付时间", "build": "项目实现", "buildTitle": "让埃及变得更近的体验。", "buildIntro": "Basttet Travel 是一个响应式旅行体验，围绕探索、信任与周到规划打造。", "buildResult": "最终形成了包含旅行平台、行程详情、登录、联系入口和运营工作区的完整产品。", "metadata": "项目资料", "category": "类别", "delivery": "交付方式", "platforms": "平台", "timeline": "时间线", "completed": "完成于", "visibility": "客户可见性", "privateClient": "私人客户 · 公开交付", "technology": "技术栈", "privacy": "客户身份和私密业务信息已从本公开案例中省略。", "connected": "关联交付物", "connectedTitle": "一个产品，多处触点。", "connectedCopy": "项目按交付物展示：网站、移动应用、管理面板或完整的互联产品。", "openBuild": "打开版本", "nextBuild": "下一个项目", "similarChallenge": "有类似挑战吗？", "conversation": "开始交流", "project": {"title":"Basttet Travel — 埃及旅游平台","summary":"完整的旅游产品，包括公共网站、Android 应用和连接同一后端的运营面板。","solutionType":"网站 + Android 应用","category":["网站","旅游平台","全栈开发"],"features":["精选埃及旅行和筛选功能","响应式桌面与移动体验","行程详情图库和规划流程","身份验证与账户状态","运营面板和消息功能","公共联系与预订流程"],"platforms":[{"name":"网站","detail":"响应式全栈 Web 平台"},{"name":"Android 应用","detail":"面向移动用户的 React Native 应用"},{"name":"管理面板","detail":"内容、项目、消息和运营管理"}],"deliverable":{"title":"Basttet Travel — Android 应用","service":"Android 应用","status":"已交付 · 已售出"}}
   }
 }

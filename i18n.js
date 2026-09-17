@@ -24,12 +24,14 @@ const resources = {
 if (!i18n.isInitialized) {
   i18n.use(LanguageDetector).use(initReactI18next).init({
     resources,
+    lng: "en",
     defaultNS: "translation",
     fallbackLng: "en",
     supportedLngs: SUPPORTED_LANGUAGES,
     nonExplicitSupportedLngs: true,
     interpolation: { escapeValue: false },
-    detection: { order: ["path", "localStorage", "cookie", "navigator"], caches: ["localStorage", "cookie"] },
+    // The route locale is applied by LocaleRuntime after hydration. Keeping the first render deterministic prevents React hydration mismatches.
+    detection: { order: [], caches: [] },
     react: { useSuspense: false },
   });
 }

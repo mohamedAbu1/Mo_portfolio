@@ -9,14 +9,19 @@ export default function MemorialPrayer() {
   const { t, i18n } = useTranslation();
   const [open, setOpen] = useState(false);
   const firstRender = useRef(true);
+  const hideTimer = useRef(null);
   const language = i18n.resolvedLanguage;
 
   useEffect(() => {
     setOpen(false);
+    if (hideTimer.current) window.clearTimeout(hideTimer.current);
     const delay = firstRender.current ? 30000 : 400;
     firstRender.current = false;
-    const timer = window.setTimeout(() => setOpen(true), delay);
-    return () => window.clearTimeout(timer);
+    const showTimer = window.setTimeout(() => {
+      setOpen(true);
+      hideTimer.current = window.setTimeout(() => setOpen(false), 30000);
+    }, delay);
+    return () => { window.clearTimeout(showTimer); if (hideTimer.current) window.clearTimeout(hideTimer.current); };
   }, [language]);
 
   if (!open) return null;

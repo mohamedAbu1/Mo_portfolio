@@ -2,7 +2,9 @@ import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 export const authOptions={
   providers:[GoogleProvider({clientId:process.env.GOOGLE_CLIENT_ID?.trim(),clientSecret:process.env.GOOGLE_CLIENT_SECRET?.trim()})],
-  secret:process.env.NEXTAUTH_SECRET?.trim(),
+  // NEXTAUTH_SECRET is the canonical production secret. JWT_SECRET remains a
+  // backwards-compatible fallback for existing Hostinger deployments.
+  secret:process.env.NEXTAUTH_SECRET?.trim() || process.env.JWT_SECRET?.trim(),
   trustHost:true,
   session:{strategy:"jwt"},
   callbacks:{

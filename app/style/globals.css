@@ -10,6 +10,8 @@
 @import "./portfolio-motion.css";
 @import "./engagement.css";
 @import "./comment-moderation.css";
+@import "./portfolio.css";
+@import "./language-switcher.css";
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Roboto:wght@100;300;400;500;700&family=Tajawal:wght@400;500;700;800&display=swap");
 
 html {
@@ -20,17 +22,13 @@ html {
 }
 
 .nav-tools { display: flex; align-items: center; gap: 0.75rem; }
-.language-switcher { display: inline-flex; align-items: center; gap: 0.35rem; color: var(--muted, #8b949e); }
-.language-switcher span { font-size: 0.9rem; }
-.language-switcher select { appearance: none; border: 1px solid var(--line, #30363d); border-radius: 999px; background: transparent; color: inherit; padding: 0.45rem 0.7rem; font: inherit; cursor: pointer; }
-.language-switcher option { color: #111827; background: #fff; }
 html[dir="rtl"] body { font-family: "Cairo", "Tajawal", Arial, sans-serif; }
 html[dir="rtl"] .portfolio-shell { direction: rtl; }
 html[dir="rtl"] .dev-nav, html[dir="rtl"] .section-heading, html[dir="rtl"] .about-strip, html[dir="rtl"] .contact-section { text-align: right; }
 html[dir="rtl"] .hero-copy h1, html[dir="rtl"] .section-heading h2, html[dir="rtl"] .about-strip h2, html[dir="rtl"] .contact-section h2 { letter-spacing: -0.04em; }
 html[dir="rtl"] .eyebrow { flex-direction: row-reverse; }
 
-.memorial-prayer { position: fixed; z-index: 80; inset-inline-end: 1.25rem; bottom: 1.25rem; width: min(360px, calc(100vw - 2rem)); overflow: hidden; border: 1px solid rgba(255,255,255,.16); border-radius: 24px; background: linear-gradient(145deg, rgba(25,31,40,.98), rgba(11,15,21,.98)); color: #f5f7fa; box-shadow: 0 24px 70px rgba(0,0,0,.42), 0 0 0 1px rgba(143,240,194,.08); animation: memorial-in .55s cubic-bezier(.2,.8,.2,1); }
+.memorial-prayer { position: fixed; z-index: 80; inset-inline-end: 1.25rem; top: 6.25rem; width: min(360px, calc(100vw - 2rem)); overflow: hidden; border: 1px solid rgba(255,255,255,.16); border-radius: 24px; background: linear-gradient(145deg, rgba(25,31,40,.98), rgba(11,15,21,.98)); color: #f5f7fa; box-shadow: 0 24px 70px rgba(0,0,0,.42), 0 0 0 1px rgba(143,240,194,.08); animation: memorial-in .55s cubic-bezier(.2,.8,.2,1); }
 .memorial-close { position: absolute; z-index: 2; top: .7rem; inset-inline-end: .7rem; display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: rgba(0,0,0,.35); color: #fff; cursor: pointer; }
 .memorial-photo { position: relative; height: 210px; background: #202832; }
 .memorial-photo img { object-fit: cover; object-position: center 28%; filter: saturate(.78) contrast(1.04); }
@@ -40,7 +38,7 @@ html[dir="rtl"] .eyebrow { flex-direction: row-reverse; }
 .memorial-content p { margin: 0; color: #c7d0da; font-size: .94rem; line-height: 1.8; }
 .memorial-signature { margin-top: 1rem; color: #e7c980; font-size: .72rem; }
 @keyframes memorial-in { from { opacity: 0; transform: translateY(20px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
-@media (max-width: 640px) { .memorial-prayer { inset-inline: 1rem; bottom: 1rem; width: auto; } .memorial-photo { height: 190px; } }
+@media (max-width: 640px) { .memorial-prayer { inset-inline: 1rem; top: 5.75rem; bottom: auto; width: auto; } .memorial-photo { height: 190px; } }
 
 *,
 *:before,
@@ -221,13 +219,29 @@ html[dir="rtl"] .eyebrow { flex-direction: row-reverse; }
 }
 
 
-@import './portfolio.css';
-
-
-html[dir="rtl"] body { font-family: "Tajawal", "Cairo", Arial, sans-serif; }
-html[dir="rtl"] .portfolio-shell { direction: rtl; }
+html[dir="rtl"] body { font-family: "Cairo", "Tajawal", Arial, sans-serif; }
+html[dir="rtl"] .portfolio-shell { direction: rtl; font-family: "Cairo", "Tajawal", Arial, sans-serif; }
 html[dir="rtl"] .dev-nav, html[dir="rtl"] .section-heading, html[dir="rtl"] .about-strip, html[dir="rtl"] .contact-section { text-align: right; }
-html[dir="rtl"] .hero-copy h1, html[dir="rtl"] .section-heading h2, html[dir="rtl"] .about-strip h2, html[dir="rtl"] .contact-section h2 { letter-spacing: -0.04em; }
-html[dir="rtl"] .eyebrow { flex-direction: row-reverse; }
-html[dir="rtl"] .hero-actions, html[dir="rtl"] .contact-links { justify-content: flex-start; }
+html[dir="rtl"] .hero-copy, html[dir="rtl"] .project-info, html[dir="rtl"] .case-study-copy, html[dir="rtl"] .details-main, html[dir="rtl"] .details-aside { text-align: right; }
+html[dir="rtl"] .hero-copy h1, html[dir="rtl"] .section-heading h2, html[dir="rtl"] .about-strip h2, html[dir="rtl"] .contact-section h2, html[dir="rtl"] .case-study-copy h1, html[dir="rtl"] .details-main h2 { letter-spacing: -0.045em; }
+html[dir="rtl"] .eyebrow { flex-direction: row; letter-spacing: .02em; }
+html[dir="rtl"] .hero-actions, html[dir="rtl"] .contact-links, html[dir="rtl"] .details-actions { justify-content: flex-start; }
+html[dir="rtl"] .hero-grid, html[dir="rtl"] .case-study-header, html[dir="rtl"] .details-content { direction: rtl; }
+html[dir="rtl"] .terminal-card { direction: ltr; text-align: left; }
+html[dir="rtl"] .terminal-card pre { color: #334155; }
+html[dir="rtl"] .terminal-card i { color: #7c3aed; }
+html[dir="rtl"] .terminal-card em { color: #15803d; }
+html[dir="rtl"] .terminal-card b { color: #047857; }
+html[dir="rtl"] .terminal-title { margin-left: 0; margin-right: 10px; }
+html[dir="rtl"] .contact-form, html[dir="rtl"] .chat-window, html[dir="rtl"] .memorial-prayer { text-align: right; }
+html[dir="rtl"] .contact-form input, html[dir="rtl"] .contact-form textarea, html[dir="rtl"] .chat-form input { direction: rtl; text-align: right; }
+html[dir="rtl"] .details-page .case-study-visual { order: 0; }
+html[dir="rtl"] .details-page .case-study-image-overlay { left: 18px; right: 18px; }
+html[dir="rtl"] .details-page .case-study-kicker, html[dir="rtl"] .details-page .section-marker, html[dir="rtl"] .details-page .meta-row, html[dir="rtl"] .details-page .aside-note { direction: rtl; }
+html[dir="rtl"] .details-page .details-tech-list { justify-content: flex-start; }
+html[dir="rtl"] .details-page .details-actions .button svg:first-child { margin-inline-start: 2px; }
+html[dir="rtl"] .details-page .connected-side { text-align: right; }
+.seasonal-showcase { color: #f2f5f7; }
+.seasonal-showcase .seasonal-copy h2 { color: #f2f5f7; }
+.seasonal-showcase .seasonal-copy p { color: #c7d0da; }
 
