@@ -20,6 +20,7 @@ import {
 import { myProjects } from "@/constants/api";
 import ProjectEngagement from "@/components/Portfolio/ProjectEngagementProfessional";
 import ProjectImageSlider from "@/components/Portfolio/ProjectImageSlider";
+import CodeAtmosphere from "@/components/Portfolio/CodeAtmosphere";
 
 const galleryLabels = [
   "Home experience",
@@ -74,6 +75,7 @@ export default function ProjectDetails() {
 
   return (
     <main className="portfolio-shell details-page">
+      <CodeAtmosphere />
       <nav className="dev-nav details-nav">
         <Link className="brand" href={`/${locale}`}>
           <Image className="brand-logo" src="/images/mohamed-abu-logo.svg" alt="Mohamed Abu Developer" width={156} height={40} priority />

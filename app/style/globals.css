@@ -12,6 +12,7 @@
 @import "./comment-moderation.css";
 @import "./portfolio.css";
 @import "./language-switcher.css";
+@import "./code-atmosphere.css";
 @import url("https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Roboto:wght@100;300;400;500;700&family=Tajawal:wght@400;500;700;800&display=swap");
 
 html {
