@@ -9,7 +9,7 @@ function slugify(value) {
 
 export async function GET(req) {
   try {
-    const configuredOrigin = process.env.NEXT_PUBLIC_SITE_URL || new URL(req.url).origin;
+    const configuredOrigin = process.env.NEXT_PUBLIC_SITE_URL && !/0\\.0\\.0\\.0|localhost/i.test(process.env.NEXT_PUBLIC_SITE_URL) ? process.env.NEXT_PUBLIC_SITE_URL : "https://mohamedabudeveloper.com";
     const publicUrl = (value) => value && value.startsWith("/") ? `${configuredOrigin.replace(/\/$/, "")}${value}` : value;
     const rows = await query(`
       SELECT e.id AS engagement_id, e.title AS engagement_title, e.description AS engagement_description, e.created_at,
@@ -66,6 +66,7 @@ export async function GET(req) {
     return NextResponse.json({ error: "Unable to load portfolio" }, { status: 500 });
   }
 }
+
 
 
 
