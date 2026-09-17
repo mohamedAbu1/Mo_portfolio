@@ -52,7 +52,7 @@ export default function ProjectsAdmin() {
   const [saving, setSaving] = useState(false);
   const [notice, setNotice] = useState("");
   useEffect(() => { if (status === "authenticated") load(); }, [status]);
-  async function load() { const response = await fetch("/api/admin/projects"); const data = await response.json(); setProjects(data.data || []); }
+  async function load() { await fetch("/api/admin/projects/sync", { method: "POST" }).catch(() => {}); const response = await fetch("/api/admin/projects"); const data = await response.json(); setProjects(data.data || []); }
   function update(index, key, value) { setForm((current) => ({ ...current, deliverables: current.deliverables.map((item, i) => i === index ? { ...item, [key]: value } : item) })); }
   function editProject(project) {
     setEditingId(project.id);
