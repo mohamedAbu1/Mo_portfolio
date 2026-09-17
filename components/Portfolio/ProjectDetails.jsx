@@ -59,7 +59,7 @@ export default function ProjectDetails() {
   const { locale = "en" } = useParams();
   const { t } = useTranslation();
   const p = myProjects.find((item) => String(item.id) === q.get("id")) || myProjects[0];
-  const translated = t("caseStudy.project", { returnObjects: true, defaultValue: {} });
+  const translated = p.id === 1 ? t("caseStudy.project", { returnObjects: true, defaultValue: {} }) : {};
   const project = translated && typeof translated === "object" && !Array.isArray(translated) ? translated : {};
   const projectTitle = project.title || p.projectTitle;
   const projectSummary = project.summary || p.projectSummary;
