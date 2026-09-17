@@ -1,3 +1,121 @@
 {
-
+  "nav": {
+    "home": "Accueil",
+    "work": "Projets",
+    "stack": "Technologies",
+    "about": "À propos",
+    "contact": "Contact",
+    "signIn": "Connexion",
+    "dashboard": "Tableau de bord",
+    "language": "Langue",
+    "theme": "Changer le thème"
+  },
+  "hero": {
+    "available": "Disponible pour des projets sélectionnés",
+    "title": "Je crée des produits numériques",
+    "titleAccent": "qui font le travail.",
+    "description": "Développeur full-stack créant des sites fiables, des applications mobiles et des expériences numériques professionnelles.",
+    "explore": "Voir mes projets",
+    "conversation": "Démarrer une conversation",
+    "years": "ans de création",
+    "services": "services essentiels",
+    "curiosity": "curiosité",
+    "role": "Développeur full-stack",
+    "location": "Louxor, Égypte",
+    "focus": "web · mobile",
+    "status": "je donne vie aux idées"
+  },
+  "work": {
+    "eyebrow": "01 / projets sélectionnés",
+    "title": "Des projets livrés.",
+    "note": "Études de cas · 2026",
+    "summary": "Une plateforme touristique pensée pour une expérience fluide et responsive, de la découverte à la réservation.",
+    "caseStudy": "Lire l’étude de cas"
+  },
+  "stack": {
+    "eyebrow": "02 / boîte à outils",
+    "title": "Les outils sont un moyen.",
+    "accent": "La clarté est le métier.",
+    "items": [
+      "React / Next.js",
+      "Node.js / APIs",
+      "MySQL / Supabase",
+      "React Native",
+      "Systèmes UI",
+      "Déploiement"
+    ]
+  },
+  "about": {
+    "eyebrow": "03 / ma méthode",
+    "title": "Moins de bruit.",
+    "accent": "Des logiciels plus utiles.",
+    "description": "Je soigne les détails discrets : interfaces rapides, contenu clair, états réfléchis et systèmes faciles à maintenir après le lancement."
+  },
+  "contact": {
+    "eyebrow": "04 / parlons-en",
+    "title": "Une idée ?",
+    "accent": "Rendons-la réelle.",
+    "description": "Dites-moi ce que vous construisez, ce qui ne fonctionne pas ou où vous voulez aller.",
+    "email": "Email",
+    "whatsapp": "WhatsApp",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "name": "Nom",
+    "namePlaceholder": "Votre nom",
+    "emailLabel": "Email",
+    "emailPlaceholder": "vous@exemple.com",
+    "message": "Message",
+    "messagePlaceholder": "Que construisons-nous ?",
+    "send": "Envoyer le message",
+    "sending": "Envoi en cours…",
+    "invalid": "Veuillez saisir un nom, un email et un message valides.",
+    "sent": "Message envoyé avec succès. Je reviendrai vers vous bientôt.",
+    "failed": "Le message n’a pas pu être envoyé. Réessayez."
+  },
+  "footer": {
+    "built": "Conçu avec intention",
+    "back": "Retour en haut",
+    "rights": "Tous droits réservés"
+  },
+  "details": {
+    "back": "Retour aux projets",
+    "overview": "Aperçu",
+    "gallery": "Galerie",
+    "engagement": "Interaction",
+    "like": "J’aime",
+    "comment": "Commentaire",
+    "send": "Envoyer"
+  },
+  "memorial": {
+    "memory": "En sa mémoire",
+    "close": "Fermer",
+    "eyebrow": "Une prière pour mon père",
+    "title": "Pensez à mon père dans vos prières",
+    "message": "Je vous prie de demander la miséricorde et le pardon pour mon père. Qu’Allah accepte votre prière. 🙏🕊️"
+  },
+  "chat": {
+    "choose": "Choisissez un sujet pour commencer :",
+    "input": "Écrivez votre message…",
+    "continueGoogle": "Continuer avec Google",
+    "welcome": "Bonjour ! Je suis là pour transformer votre idée en produit numérique clair et professionnel.",
+    "responses": [
+      "Excellent. Je vous aiderai à définir l’idée, le périmètre, les fonctionnalités et la prochaine étape.",
+      "Je peux analyser l’expérience actuelle, repérer les problèmes et proposer des améliorations ciblées.",
+      "Je travaille sur les sites, applications mobiles, API, tableaux de bord, UX/UI et le support continu.",
+      "Le prix dépend du périmètre. Partagez vos objectifs et votre échéance pour une estimation adaptée.",
+      "J’utilise notamment Next.js, React Native, Node.js, MySQL et Supabase.",
+      "Dites-moi ce qui ne fonctionne pas et nous trouverons la voie la plus fiable."
+    ],
+    "signInPrompt": "Pour discuter d’un nouveau projet ou améliorer un projet existant, connectez-vous d’abord.",
+    "title": "Parlons-en",
+    "online": "Réponse généralement rapide",
+    "options": [
+      "Démarrer un projet",
+      "Améliorer un projet existant",
+      "Questions sur les services",
+      "Questions sur le prix et les délais",
+      "Questions sur les technologies",
+      "Demander un support ou une maintenance"
+    ]
+  }
 }

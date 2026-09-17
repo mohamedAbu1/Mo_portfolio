@@ -1,3 +1,121 @@
 {
-
+  "nav": {
+    "home": "Home",
+    "work": "Progetti",
+    "stack": "Tecnologie",
+    "about": "Chi sono",
+    "contact": "Contatti",
+    "signIn": "Accedi",
+    "dashboard": "Dashboard",
+    "language": "Lingua",
+    "theme": "Cambia tema"
+  },
+  "hero": {
+    "available": "Disponibile per progetti selezionati",
+    "title": "Creo prodotti digitali",
+    "titleAccent": "che fanno la differenza.",
+    "description": "Sviluppatore full-stack che crea siti affidabili, app mobile ed esperienze digitali professionali.",
+    "explore": "Scopri i miei progetti",
+    "conversation": "Inizia una conversazione",
+    "years": "anni di esperienza",
+    "services": "servizi principali",
+    "curiosity": "curiosità",
+    "role": "Sviluppatore full-stack",
+    "location": "Luxor, Egitto",
+    "focus": "web · mobile",
+    "status": "idee in movimento"
+  },
+  "work": {
+    "eyebrow": "01 / progetti selezionati",
+    "title": "Progetti consegnati.",
+    "note": "Case study · 2026",
+    "summary": "Piattaforma turistica progettata per un’esperienza fluida e responsive, dalla scoperta alla prenotazione.",
+    "caseStudy": "Leggi il case study"
+  },
+  "stack": {
+    "eyebrow": "02 / strumenti",
+    "title": "Gli strumenti sono un mezzo.",
+    "accent": "La chiarezza è il mestiere.",
+    "items": [
+      "React / Next.js",
+      "Node.js / API",
+      "MySQL / Supabase",
+      "React Native",
+      "Sistemi UI",
+      "Deployment"
+    ]
+  },
+  "about": {
+    "eyebrow": "03 / come lavoro",
+    "title": "Meno rumore.",
+    "accent": "Software più utile.",
+    "description": "Curo i dettagli silenziosi: interfacce veloci, contenuti chiari, stati ragionati e sistemi facili da mantenere dopo il lancio."
+  },
+  "contact": {
+    "eyebrow": "04 / parliamone",
+    "title": "Hai un’idea?",
+    "accent": "Rendiamola reale.",
+    "description": "Raccontami cosa stai costruendo, cosa non funziona o dove vuoi arrivare.",
+    "email": "Email",
+    "whatsapp": "WhatsApp",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "name": "Nome",
+    "namePlaceholder": "Il tuo nome",
+    "emailLabel": "Email",
+    "emailPlaceholder": "tu@esempio.com",
+    "message": "Messaggio",
+    "messagePlaceholder": "Cosa costruiamo?",
+    "send": "Invia messaggio",
+    "sending": "Invio in corso…",
+    "invalid": "Inserisci un nome, un’email e un messaggio validi.",
+    "sent": "Messaggio inviato. Ti risponderò presto.",
+    "failed": "Invio non riuscito. Riprova."
+  },
+  "footer": {
+    "built": "Creato con intenzione",
+    "back": "Torna su",
+    "rights": "Tutti i diritti riservati"
+  },
+  "details": {
+    "back": "Torna ai progetti",
+    "overview": "Panoramica",
+    "gallery": "Galleria",
+    "engagement": "Interazione",
+    "like": "Mi piace",
+    "comment": "Commento",
+    "send": "Invia"
+  },
+  "memorial": {
+    "memory": "In sua memoria",
+    "close": "Chiudi",
+    "eyebrow": "Una preghiera per mio padre",
+    "title": "Ricordate mio padre nelle vostre preghiere",
+    "message": "Vi chiedo di pregare perché mio padre riceva misericordia e perdono. Che Allah accolga la vostra preghiera. 🙏🕊️"
+  },
+  "chat": {
+    "choose": "Scegli un argomento:",
+    "input": "Scrivi il tuo messaggio…",
+    "continueGoogle": "Continua con Google",
+    "welcome": "Ciao! Ti aiuto a trasformare la tua idea in un prodotto digitale chiaro e professionale.",
+    "responses": [
+      "Perfetto. Ti aiuterò a definire idea, obiettivi, funzioni e prossimo passo.",
+      "Posso analizzare l’esperienza attuale e proporre miglioramenti mirati.",
+      "Lavoro su siti, app mobile, API, dashboard, UX/UI e supporto continuo.",
+      "Il prezzo dipende dall’ambito. Condividi obiettivi e scadenza per una stima personalizzata.",
+      "Uso Next.js, React Native, Node.js, MySQL e Supabase.",
+      "Dimmi cosa non funziona e troveremo la soluzione più affidabile."
+    ],
+    "signInPrompt": "Per parlare di un nuovo progetto o migliorare un progetto esistente, accedi prima.",
+    "title": "Parliamo",
+    "online": "Di solito rispondo presto",
+    "options": [
+      "Inizia un progetto",
+      "Migliora un progetto esistente",
+      "Chiedi dei servizi",
+      "Chiedi prezzo e tempi",
+      "Chiedi delle tecnologie",
+      "Richiedi supporto o manutenzione"
+    ]
+  }
 }

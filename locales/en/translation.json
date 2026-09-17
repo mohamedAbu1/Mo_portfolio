@@ -1,3 +1,131 @@
 {
- 
+  "nav": {
+    "home": "Home",
+    "work": "Work",
+    "stack": "Stack",
+    "about": "About",
+    "contact": "Contact",
+    "signIn": "Sign in",
+    "dashboard": "Dashboard",
+    "language": "Language",
+    "theme": "Toggle theme"
+  },
+  "hero": {
+    "available": "Available for selected projects",
+    "title": "I build digital products",
+    "titleAccent": "that do the work.",
+    "description": "Full-stack developer creating reliable websites, mobile apps, and professional digital experiences for ambitious people and businesses.",
+    "explore": "Explore my work",
+    "conversation": "Start a conversation",
+    "years": "years building",
+    "services": "core services",
+    "curiosity": "curiosity",
+    "role": "Full-stack developer",
+    "location": "Luxor, Egypt",
+    "focus": "web · mobile",
+    "status": "shipping ideas"
+  },
+  "season": {
+    "studio": "Studio mode",
+    "ramadan": "Ramadan",
+    "eidFitr": "Eid al-Fitr",
+    "eidAdha": "Eid al-Adha",
+    "newYear": "New Year",
+    "valentines": "Valentine's Day",
+    "mothersDay": "Mother's Day",
+    "explore": "Explore the work"
+  },
+  "work": {
+    "eyebrow": "01 / selected work",
+    "title": "Things I’ve shipped.",
+    "note": "Case studies · 2026",
+    "summary": "Tourism platform focused on a smooth, responsive experience from discovery to booking.",
+    "caseStudy": "Read case study"
+  },
+  "stack": {
+    "eyebrow": "02 / toolkit",
+    "title": "Tools are means.",
+    "accent": "Clarity is the craft.",
+    "items": [
+      "React / Next.js",
+      "Node.js / APIs",
+      "MySQL / Supabase",
+      "React Native",
+      "UI systems",
+      "Deployment"
+    ]
+  },
+  "about": {
+    "eyebrow": "03 / how I work",
+    "title": "Less noise.",
+    "accent": "More useful software.",
+    "description": "I care about the quiet details: fast interfaces, clear content, thoughtful states, and systems that remain easy to maintain after launch. Whether it is one deliverable or a complete digital product, the goal is the same—make it useful."
+  },
+  "contact": {
+    "eyebrow": "04 / say hello",
+    "title": "Have an idea?",
+    "accent": "Let’s make it real.",
+    "description": "Tell me what you are building, what is not working, or simply where you want to go.",
+    "email": "Email",
+    "whatsapp": "WhatsApp",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "name": "Name",
+    "namePlaceholder": "Your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "you@example.com",
+    "message": "Message",
+    "messagePlaceholder": "What are we building?",
+    "send": "Send message",
+    "sending": "Sending message…",
+    "invalid": "Please enter a valid name, email, and message.",
+    "sent": "Message sent successfully. I will get back to you soon.",
+    "failed": "Unable to send your message. Please try again."
+  },
+  "footer": {
+    "built": "Built with intent",
+    "back": "Back to top",
+    "rights": "All rights reserved"
+  },
+  "details": {
+    "back": "Back to work",
+    "overview": "Overview",
+    "gallery": "Gallery",
+    "engagement": "Engagement",
+    "like": "Like",
+    "comment": "Comment",
+    "send": "Send"
+  },
+  "memorial": {
+    "memory": "In loving memory",
+    "close": "Close",
+    "eyebrow": "A prayer for my father",
+    "title": "Please remember my father in your prayers",
+    "message": "Please pray for my father to receive mercy and forgiveness. May Allah accept your prayer. 🙏🕊️"
+  },
+  "chat": {
+    "choose": "Choose a topic to get started:",
+    "input": "Write your message…",
+    "continueGoogle": "Continue with Google",
+    "welcome": "Hi! I’m here to help you turn an idea into a clear digital product.",
+    "responses": [
+      "Great choice. I’ll help you define the idea, scope, features, and the right next step.",
+      "I can review the current experience, identify problems, and propose focused improvements.",
+      "I can help with websites, mobile apps, APIs, dashboards, UX/UI, and ongoing support.",
+      "Pricing depends on scope and complexity. Share your goals and deadline for a tailored estimate.",
+      "I work with modern web and mobile technologies including Next.js, React Native, Node.js, MySQL, and Supabase.",
+      "Tell me what is not working and I’ll help you find the fastest reliable path forward."
+    ],
+    "signInPrompt": "To discuss creating a new project or improving an existing one, please sign in first.",
+    "title": "Let's talk",
+    "online": "Usually replies soon",
+    "options": [
+      "Start a new project",
+      "Improve an existing project",
+      "Ask about services",
+      "Ask about pricing and timeline",
+      "Ask about technologies",
+      "Request support or maintenance"
+    ]
+  }
 }

@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import {
   FaArrowLeft,
   FaArrowUpRightFromSquare,
@@ -17,7 +17,8 @@ import {
   FaCircleCheck,
 } from "react-icons/fa6";
 import { myProjects } from "@/constants/api";
-import ProjectEngagement from "@/components/Portfolio/ProjectEngagement";
+import ProjectEngagement from "@/components/Portfolio/ProjectEngagementProfessional";
+import ProjectImageSlider from "@/components/Portfolio/ProjectImageSlider";
 
 const galleryLabels = [
   "Home experience",
@@ -54,20 +55,17 @@ const galleryLabels = [
 export default function ProjectDetails() {
   const q = useSearchParams();
   const p = myProjects.find((item) => String(item.id) === q.get("id")) || myProjects[0];
-  const [activeIndex, setActiveIndex] = useState(0);
-
   const gallery = useMemo(
     () => p.imgPaths.map((src, index) => ({ src, index, label: galleryLabels[index] || `Interface screen ${index + 1}`, type: index >= 13 ? "mobile" : "desktop" })),
     [p.imgPaths]
   );
-  const activeImage = gallery[activeIndex] || gallery[0];
   const platforms = p.platforms?.length ? p.platforms : [{ name: p.category?.[0] || "Digital product", detail: p.category?.slice(1).join(" · ") || "Custom solution" }];
 
   return (
     <main className="portfolio-shell details-page">
       <nav className="dev-nav details-nav">
         <Link className="brand" href="/en">
-          <img className="brand-logo" src="/images/mohamed-abu-logo.svg" alt="Mohamed Abu Developer" />
+          <Image className="brand-logo" src="/images/mohamed-abu-logo.svg" alt="Mohamed Abu Developer" width={156} height={40} priority />
         </Link>
         <Link className="back-link" href="/en#work"><FaArrowLeft /> Back to work</Link>
       </nav>
@@ -105,27 +103,7 @@ export default function ProjectDetails() {
             <div><span>Delivered</span><strong>{p.date}</strong></div>
           </div>
         </div>
-        <div className="case-study-visual">
-          <div className={`case-study-image ${activeImage.type === "mobile" ? "mobile-preview" : ""}`}>
-            <Image src={activeImage.src} alt={activeImage.label} fill sizes="(max-width: 900px) 100vw, 58vw" priority />
-            <div className="case-study-image-overlay"><span>LIVE CASE STUDY</span><strong>{String(activeImage.index + 1).padStart(2, "0")} / {String(gallery.length).padStart(2, "0")}</strong></div>
-          </div>
-          <div className="case-study-thumbnails" role="list" aria-label="Project image gallery">
-            {gallery.map((item) => (
-              <button
-                className={`case-study-thumbnail ${item.index === activeIndex ? "active" : ""}`}
-                key={item.src}
-                type="button"
-                onClick={() => setActiveIndex(item.index)}
-                aria-label={`Show ${item.label}`}
-                aria-current={item.index === activeIndex ? "true" : undefined}
-              >
-                <Image src={item.src} alt="" fill sizes="120px" />
-              </button>
-            ))}
-          </div>
-          <div className="visual-caption"><span>{activeImage.label}</span><span>4K showcase asset</span></div>
-        </div>
+        <ProjectImageSlider gallery={gallery} />
       </header>
 
       <section className="details-content">

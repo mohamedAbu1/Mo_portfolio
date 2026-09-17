@@ -1,3 +1,121 @@
 {
-
+  "nav": {
+    "home": "首页",
+    "work": "作品",
+    "stack": "技术栈",
+    "about": "关于我",
+    "contact": "联系",
+    "signIn": "登录",
+    "dashboard": "控制面板",
+    "language": "语言",
+    "theme": "切换主题"
+  },
+  "hero": {
+    "available": "接受精选项目",
+    "title": "我打造数字产品",
+    "titleAccent": "让想法真正产生价值。",
+    "description": "全栈开发者，专注于可靠的网站、移动应用和专业数字体验。",
+    "explore": "查看我的作品",
+    "conversation": "开始交流",
+    "years": "年开发经验",
+    "services": "核心服务",
+    "curiosity": "持续探索",
+    "role": "全栈开发者",
+    "location": "埃及卢克索",
+    "focus": "网页 · 移动端",
+    "status": "让想法上线"
+  },
+  "work": {
+    "eyebrow": "01 / 精选作品",
+    "title": "我交付的项目。",
+    "note": "案例研究 · 2026",
+    "summary": "专注于从发现到预订的流畅响应式旅游平台体验。",
+    "caseStudy": "阅读案例"
+  },
+  "stack": {
+    "eyebrow": "02 / 工具箱",
+    "title": "工具只是手段。",
+    "accent": "清晰才是专业。",
+    "items": [
+      "React / Next.js",
+      "Node.js / APIs",
+      "MySQL / Supabase",
+      "React Native",
+      "UI 系统",
+      "部署"
+    ]
+  },
+  "about": {
+    "eyebrow": "03 / 我的工作方式",
+    "title": "更少噪音。",
+    "accent": "更有用的软件。",
+    "description": "我关注那些安静的细节：快速界面、清晰内容、周到的状态，以及上线后依然易于维护的系统。"
+  },
+  "contact": {
+    "eyebrow": "04 / 联系我",
+    "title": "有一个想法？",
+    "accent": "让它成为现实。",
+    "description": "告诉我你正在构建什么、哪里遇到了问题，或你想走向何方。",
+    "email": "邮箱",
+    "whatsapp": "WhatsApp",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "name": "姓名",
+    "namePlaceholder": "你的姓名",
+    "emailLabel": "邮箱",
+    "emailPlaceholder": "you@example.com",
+    "message": "留言",
+    "messagePlaceholder": "我们要构建什么？",
+    "send": "发送消息",
+    "sending": "正在发送…",
+    "invalid": "请输入有效的姓名、邮箱和留言。",
+    "sent": "消息发送成功，我会尽快回复你。",
+    "failed": "消息发送失败，请重试。"
+  },
+  "footer": {
+    "built": "用心打造",
+    "back": "返回顶部",
+    "rights": "版权所有"
+  },
+  "details": {
+    "back": "返回作品",
+    "overview": "概览",
+    "gallery": "图库",
+    "engagement": "互动",
+    "like": "喜欢",
+    "comment": "评论",
+    "send": "发送"
+  },
+  "memorial": {
+    "memory": "永远怀念",
+    "close": "关闭",
+    "eyebrow": "为我的父亲祈祷",
+    "title": "请在祈祷中记念我的父亲",
+    "message": "请为我的父亲祈求慈悲与宽恕。愿真主接受您的祈祷。🙏🕊️"
+  },
+  "chat": {
+    "choose": "选择一个主题开始：",
+    "input": "写下你的消息…",
+    "continueGoogle": "使用 Google 继续",
+    "welcome": "你好！我可以帮助你把想法变成清晰而专业的数字产品。",
+    "responses": [
+      "很好。我会帮助你明确想法、范围、功能和下一步计划。",
+      "我可以评估现有体验，找出问题并提出有针对性的改进。",
+      "我可以提供网站、移动应用、API、后台、UX/UI和持续支持。",
+      "价格取决于项目范围。分享目标和期限，我会给出更合适的估算。",
+      "我使用 Next.js、React Native、Node.js、MySQL 和 Supabase 等现代技术。",
+      "告诉我哪里出了问题，我们一起找到可靠且快速的解决方案。"
+    ],
+    "signInPrompt": "如果要讨论新项目或改进现有项目，请先登录。",
+    "title": "聊聊吧",
+    "online": "通常会尽快回复",
+    "options": [
+      "开始新项目",
+      "改进现有项目",
+      "咨询服务",
+      "咨询价格和周期",
+      "咨询技术方案",
+      "申请支持或维护"
+    ]
+  }
 }

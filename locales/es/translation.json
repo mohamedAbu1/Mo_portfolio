@@ -1,3 +1,121 @@
 {
-
+  "nav": {
+    "home": "Inicio",
+    "work": "Trabajo",
+    "stack": "Tecnologías",
+    "about": "Sobre mí",
+    "contact": "Contacto",
+    "signIn": "Iniciar sesión",
+    "dashboard": "Panel",
+    "language": "Idioma",
+    "theme": "Cambiar tema"
+  },
+  "hero": {
+    "available": "Disponible para proyectos seleccionados",
+    "title": "Creo productos digitales",
+    "titleAccent": "que hacen el trabajo.",
+    "description": "Desarrollador full-stack que crea sitios web fiables, aplicaciones móviles y experiencias digitales profesionales.",
+    "explore": "Ver mi trabajo",
+    "conversation": "Iniciar conversación",
+    "years": "años creando",
+    "services": "servicios principales",
+    "curiosity": "curiosidad",
+    "role": "Desarrollador full-stack",
+    "location": "Luxor, Egipto",
+    "focus": "web · móvil",
+    "status": "dando vida a ideas"
+  },
+  "work": {
+    "eyebrow": "01 / trabajo seleccionado",
+    "title": "Proyectos publicados.",
+    "note": "Casos de estudio · 2026",
+    "summary": "Plataforma turística centrada en una experiencia fluida y adaptable, del descubrimiento a la reserva.",
+    "caseStudy": "Leer caso de estudio"
+  },
+  "stack": {
+    "eyebrow": "02 / herramientas",
+    "title": "Las herramientas son el medio.",
+    "accent": "La claridad es el oficio.",
+    "items": [
+      "React / Next.js",
+      "Node.js / APIs",
+      "MySQL / Supabase",
+      "React Native",
+      "Sistemas UI",
+      "Despliegue"
+    ]
+  },
+  "about": {
+    "eyebrow": "03 / cómo trabajo",
+    "title": "Menos ruido.",
+    "accent": "Software más útil.",
+    "description": "Cuido los detalles silenciosos: interfaces rápidas, contenido claro, estados pensados y sistemas fáciles de mantener después del lanzamiento."
+  },
+  "contact": {
+    "eyebrow": "04 / hablemos",
+    "title": "¿Tienes una idea?",
+    "accent": "Hagámosla realidad.",
+    "description": "Cuéntame qué estás construyendo, qué no funciona o hacia dónde quieres ir.",
+    "email": "Email",
+    "whatsapp": "WhatsApp",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "name": "Nombre",
+    "namePlaceholder": "Tu nombre",
+    "emailLabel": "Email",
+    "emailPlaceholder": "tu@ejemplo.com",
+    "message": "Mensaje",
+    "messagePlaceholder": "¿Qué vamos a construir?",
+    "send": "Enviar mensaje",
+    "sending": "Enviando mensaje…",
+    "invalid": "Introduce un nombre, email y mensaje válidos.",
+    "sent": "Mensaje enviado correctamente. Te responderé pronto.",
+    "failed": "No se pudo enviar el mensaje. Inténtalo de nuevo."
+  },
+  "footer": {
+    "built": "Creado con intención",
+    "back": "Volver arriba",
+    "rights": "Todos los derechos reservados"
+  },
+  "details": {
+    "back": "Volver al trabajo",
+    "overview": "Resumen",
+    "gallery": "Galería",
+    "engagement": "Interacción",
+    "like": "Me gusta",
+    "comment": "Comentario",
+    "send": "Enviar"
+  },
+  "memorial": {
+    "memory": "En su memoria",
+    "close": "Cerrar",
+    "eyebrow": "Una oración por mi padre",
+    "title": "Por favor, recuerden a mi padre en sus oraciones",
+    "message": "Por favor, recen para que mi padre reciba misericordia y perdón. Que Allah acepte sus oraciones. 🙏🕊️"
+  },
+  "chat": {
+    "choose": "Elige un tema para empezar:",
+    "input": "Escribe tu mensaje…",
+    "continueGoogle": "Continuar con Google",
+    "welcome": "¡Hola! Estoy aquí para convertir tu idea en un producto digital claro y profesional.",
+    "responses": [
+      "Perfecto. Te ayudaré a definir la idea, el alcance, las funciones y el siguiente paso.",
+      "Puedo revisar la experiencia actual, detectar problemas y proponer mejoras concretas.",
+      "Trabajo con webs, apps móviles, APIs, paneles, UX/UI y soporte continuo.",
+      "El precio depende del alcance. Comparte tus objetivos y fecha para una estimación personalizada.",
+      "Trabajo con Next.js, React Native, Node.js, MySQL y Supabase.",
+      "Cuéntame qué no funciona y buscaremos el camino más rápido y fiable."
+    ],
+    "signInPrompt": "Para hablar de un proyecto nuevo o mejorar uno existente, inicia sesión primero.",
+    "title": "Hablemos",
+    "online": "Normalmente respondo pronto",
+    "options": [
+      "Iniciar un proyecto",
+      "Mejorar un proyecto existente",
+      "Preguntar por servicios",
+      "Preguntar por precio y plazo",
+      "Preguntar por tecnologías",
+      "Solicitar soporte o mantenimiento"
+    ]
+  }
 }

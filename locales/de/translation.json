@@ -1,3 +1,121 @@
 {
-
+  "nav": {
+    "home": "Startseite",
+    "work": "Projekte",
+    "stack": "Technologien",
+    "about": "Über mich",
+    "contact": "Kontakt",
+    "signIn": "Anmelden",
+    "dashboard": "Dashboard",
+    "language": "Sprache",
+    "theme": "Theme wechseln"
+  },
+  "hero": {
+    "available": "Verfügbar für ausgewählte Projekte",
+    "title": "Ich entwickle digitale Produkte",
+    "titleAccent": "die wirklich etwas bewegen.",
+    "description": "Full-Stack-Entwickler für zuverlässige Websites, mobile Apps und professionelle digitale Erlebnisse.",
+    "explore": "Meine Projekte",
+    "conversation": "Gespräch starten",
+    "years": "Jahre Erfahrung",
+    "services": "Kernleistungen",
+    "curiosity": "Neugier",
+    "role": "Full-Stack-Entwickler",
+    "location": "Luxor, Ägypten",
+    "focus": "Web · Mobile",
+    "status": "Ideen werden Realität"
+  },
+  "work": {
+    "eyebrow": "01 / ausgewählte Projekte",
+    "title": "Was ich geliefert habe.",
+    "note": "Fallstudien · 2026",
+    "summary": "Eine Tourismusplattform mit einer reibungslosen, responsiven Erfahrung von der Entdeckung bis zur Buchung.",
+    "caseStudy": "Fallstudie lesen"
+  },
+  "stack": {
+    "eyebrow": "02 / Werkzeugkasten",
+    "title": "Tools sind Mittel.",
+    "accent": "Klarheit ist das Handwerk.",
+    "items": [
+      "React / Next.js",
+      "Node.js / APIs",
+      "MySQL / Supabase",
+      "React Native",
+      "UI-Systeme",
+      "Deployment"
+    ]
+  },
+  "about": {
+    "eyebrow": "03 / meine Arbeitsweise",
+    "title": "Weniger Lärm.",
+    "accent": "Nützlichere Software.",
+    "description": "Ich achte auf die leisen Details: schnelle Interfaces, klare Inhalte, durchdachte Zustände und Systeme, die nach dem Launch leicht wartbar bleiben."
+  },
+  "contact": {
+    "eyebrow": "04 / Kontakt",
+    "title": "Eine Idee?",
+    "accent": "Machen wir sie real.",
+    "description": "Erzählen Sie mir, was Sie bauen, was nicht funktioniert oder wohin Sie möchten.",
+    "email": "E-Mail",
+    "whatsapp": "WhatsApp",
+    "linkedin": "LinkedIn",
+    "github": "GitHub",
+    "name": "Name",
+    "namePlaceholder": "Ihr Name",
+    "emailLabel": "E-Mail",
+    "emailPlaceholder": "sie@beispiel.de",
+    "message": "Nachricht",
+    "messagePlaceholder": "Was bauen wir?",
+    "send": "Nachricht senden",
+    "sending": "Nachricht wird gesendet…",
+    "invalid": "Bitte geben Sie einen gültigen Namen, eine E-Mail und eine Nachricht ein.",
+    "sent": "Nachricht erfolgreich gesendet. Ich melde mich bald.",
+    "failed": "Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+  },
+  "footer": {
+    "built": "Mit Bedacht gebaut",
+    "back": "Nach oben",
+    "rights": "Alle Rechte vorbehalten"
+  },
+  "details": {
+    "back": "Zurück zu den Projekten",
+    "overview": "Überblick",
+    "gallery": "Galerie",
+    "engagement": "Interaktion",
+    "like": "Gefällt mir",
+    "comment": "Kommentar",
+    "send": "Senden"
+  },
+  "memorial": {
+    "memory": "In liebevoller Erinnerung",
+    "close": "Schließen",
+    "eyebrow": "Ein Gebet für meinen Vater",
+    "title": "Bitte denkt in euren Gebeten an meinen Vater",
+    "message": "Bitte betet dafür, dass mein Vater Barmherzigkeit und Vergebung erhält. Möge Allah euer Gebet annehmen. 🙏🕊️"
+  },
+  "chat": {
+    "choose": "Wähle ein Thema:",
+    "input": "Nachricht schreiben…",
+    "continueGoogle": "Mit Google fortfahren",
+    "welcome": "Hallo! Ich helfe dir, aus einer Idee ein klares und professionelles digitales Produkt zu machen.",
+    "responses": [
+      "Sehr gern. Ich helfe dir bei Idee, Umfang, Funktionen und dem nächsten Schritt.",
+      "Ich kann die aktuelle Erfahrung prüfen, Probleme erkennen und gezielte Verbesserungen vorschlagen.",
+      "Ich arbeite an Websites, mobilen Apps, APIs, Dashboards, UX/UI und laufendem Support.",
+      "Der Preis hängt vom Umfang ab. Teile Ziele und Termin für eine passende Schätzung.",
+      "Ich arbeite mit Next.js, React Native, Node.js, MySQL und Supabase.",
+      "Beschreibe, was nicht funktioniert, und wir finden den zuverlässigsten Weg."
+    ],
+    "signInPrompt": "Um ein neues Projekt zu besprechen oder ein bestehendes zu verbessern, melde dich bitte zuerst an.",
+    "title": "Sprechen wir",
+    "online": "Antwort meist schnell",
+    "options": [
+      "Neues Projekt starten",
+      "Bestehendes Projekt verbessern",
+      "Nach Services fragen",
+      "Nach Preis und Zeit fragen",
+      "Nach Technologien fragen",
+      "Support oder Wartung anfragen"
+    ]
+  }
 }
