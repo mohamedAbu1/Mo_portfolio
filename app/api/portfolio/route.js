@@ -11,7 +11,7 @@ export async function GET() {
   try {
     const rows = await query(`
       SELECT e.id AS engagement_id, e.title AS engagement_title, e.description AS engagement_description, e.created_at,
-        d.id AS deliverable_id, d.title, d.public_title, d.public_description,
+        d.id AS deliverable_id, d.title, d.public_title, d.public_description, d.cover_image_url,
         d.live_url, d.source_url, d.android_url, d.ios_url, d.status, s.name AS service_name
       FROM engagements e
       INNER JOIN deliverables d ON d.engagement_id = e.id
@@ -29,6 +29,7 @@ export async function GET() {
         projectKey: slugify(row.engagement_title),
       });
       const project = projects.get(row.engagement_id);
+      if (row.cover_image_url && !project.imgPaths.includes(row.cover_image_url)) project.imgPaths.push(row.cover_image_url);
       const title = row.public_title || row.title;
       if (!project.liveUrl && row.live_url) project.liveUrl = row.live_url;
       if (!project.githubUrl && row.source_url) project.githubUrl = row.source_url;
