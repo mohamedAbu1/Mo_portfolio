@@ -21,8 +21,9 @@ export async function middleware(request) {
   }
 
   if (!SUPPORTED_LOCALES.includes(locale)) {
-    const browserLocale = request.headers.get("accept-language")?.split(",")[0]?.split("-")[0] || "en";
-    url.pathname = `/${SUPPORTED_LOCALES.includes(browserLocale) ? browserLocale : "en"}${url.pathname}`;
+    // English is the official/default site language. Users can still switch
+    // explicitly to another supported locale from the language menu.
+    url.pathname = `/en${url.pathname}`;
     return NextResponse.redirect(url);
   }
   return NextResponse.next();
