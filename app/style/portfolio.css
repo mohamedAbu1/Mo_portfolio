@@ -85,3 +85,5 @@ body[data-season="mothersDay"] .portfolio-shell{--bg:#211615;--panel:#342321;--p
 @media(max-width:600px){.scope-summary-heading{display:grid;gap:8px}.scope-summary-heading h2{text-align:left}.scope-platforms{grid-template-columns:1fr}.project-scope-summary{padding:16px}}
 
 
+
+.dashboard-link,.logout-link{display:inline-flex;align-items:center;justify-content:center;color:var(--accent);text-decoration:none;font:700 .72rem monospace;border:1px solid var(--accent);border-radius:5px;padding:8px 10px;background:transparent;cursor:pointer;white-space:nowrap}.dashboard-link:hover,.logout-link:hover{background:var(--accent);color:#07110d}.logout-link{border-color:var(--line);color:var(--muted)}.logout-link:hover{border-color:var(--accent)}@media(max-width:800px){.dashboard-link,.logout-link{padding:7px 8px;font-size:.66rem}}
