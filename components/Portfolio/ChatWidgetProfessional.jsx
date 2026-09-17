@@ -16,6 +16,7 @@ export default function ChatWidgetProfessional() {
   const [loading, setLoading] = useState(false);
   const options = t("chat.options", { returnObjects: true });
   const responses = t("chat.responses", { returnObjects: true });
+  if (session?.user?.role === "admin") return null;
 
   useEffect(() => {
     if (!open) return undefined;
