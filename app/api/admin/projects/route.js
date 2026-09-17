@@ -23,9 +23,15 @@ async function saveDeliverable(engagementId, item, existingId = null) {
     const result = await query("INSERT INTO deliverables(engagement_id,service_id,title,description,status,visibility,public_title,public_description,cover_image_url,video_url,live_url,source_url,android_url,ios_url,price,currency,is_sold) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)", [engagementId, service[0].id, ...values]);
     deliverableId = result.insertId;
   }
+  if (existingId && Array.isArray(item.removedImageUrls) && item.removedImageUrls.length) {
+    await query("DELETE FROM deliverable_files WHERE deliverable_id=? AND file_url IN (?)", [deliverableId, item.removedImageUrls]);
+  }
+  if (existingId && item.removeCover && !item.coverImageUrl) {
+    await query("UPDATE deliverables SET cover_image_url=NULL WHERE id=? AND engagement_id=?", [deliverableId, engagementId]);
+  }
   const currentFiles = await query("SELECT file_url FROM deliverable_files WHERE deliverable_id=?", [deliverableId]);
   const knownFiles = new Set(currentFiles.map((file) => file.file_url));
-  const imageUrls = String(item.imageUrls || "").split(/\r?\n/).map((url) => url.trim()).filter(Boolean);
+  const imageUrls = String(item.imageUrls || "").split(/\r?\n/).map((url) => url.trim()).filter(Boolean).filter((url) => !item.removedImageUrls?.includes(url));
   for (const url of imageUrls) {
     if (knownFiles.has(url)) continue;
     const count = await query("SELECT COUNT(*) AS total FROM deliverable_files WHERE deliverable_id=?", [deliverableId]);
