@@ -30,7 +30,7 @@ html[dir="rtl"] .dev-nav, html[dir="rtl"] .section-heading, html[dir="rtl"] .abo
 html[dir="rtl"] .hero-copy h1, html[dir="rtl"] .section-heading h2, html[dir="rtl"] .about-strip h2, html[dir="rtl"] .contact-section h2 { letter-spacing: -0.04em; }
 html[dir="rtl"] .eyebrow { flex-direction: row-reverse; }
 
-.memorial-prayer { position: fixed; z-index: 80; left: 1.25rem; right: auto; top: 6.25rem; width: min(360px, calc(100vw - 2rem)); overflow: hidden; border: 1px solid rgba(255,255,255,.16); border-radius: 24px; background: linear-gradient(145deg, rgba(25,31,40,.98), rgba(11,15,21,.98)); color: #f5f7fa; box-shadow: 0 24px 70px rgba(0,0,0,.42), 0 0 0 1px rgba(143,240,194,.08); animation: memorial-in .55s cubic-bezier(.2,.8,.2,1); }
+.memorial-prayer { position: fixed; z-index: 100; left: 50%; right: auto; top: max(1rem, env(safe-area-inset-top)); width: min(360px, calc(100vw - 2rem)); overflow: hidden; border: 1px solid rgba(255,255,255,.16); border-radius: 24px; background: linear-gradient(145deg, rgba(25,31,40,.98), rgba(11,15,21,.98)); color: #f5f7fa; box-shadow: 0 24px 70px rgba(0,0,0,.42), 0 0 0 1px rgba(143,240,194,.08); transform: translateX(-50%); animation: memorial-in .55s cubic-bezier(.2,.8,.2,1); }
 .memorial-close { position: absolute; z-index: 2; top: .7rem; inset-inline-end: .7rem; display: grid; place-items: center; width: 32px; height: 32px; border: 1px solid rgba(255,255,255,.2); border-radius: 50%; background: rgba(0,0,0,.35); color: #fff; cursor: pointer; }
 .memorial-photo { position: relative; height: 210px; background: #202832; }
 .memorial-photo img { object-fit: cover; object-position: center 28%; filter: saturate(.78) contrast(1.04); }
@@ -39,8 +39,8 @@ html[dir="rtl"] .eyebrow { flex-direction: row-reverse; }
 .memorial-content h2 { margin: .7rem 0 .55rem; font-size: 1.25rem; line-height: 1.35; }
 .memorial-content p { margin: 0; color: #c7d0da; font-size: .94rem; line-height: 1.8; }
 .memorial-signature { margin-top: 1rem; color: #e7c980; font-size: .72rem; }
-@keyframes memorial-in { from { opacity: 0; transform: translateY(20px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
-@media (max-width: 640px) { .memorial-prayer { left: 1rem; right: 1rem; top: 5.75rem; bottom: auto; width: auto; } .memorial-photo { height: 190px; } }
+@keyframes memorial-in { from { opacity: 0; transform: translateX(-50%) translateY(-18px) scale(.97); } to { opacity: 1; transform: translateX(-50%) translateY(0) scale(1); } }
+@media (max-width: 640px) { .memorial-prayer { left: 50%; right: auto; top: max(.75rem, env(safe-area-inset-top)); width: calc(100vw - 1.5rem); } .memorial-photo { height: 190px; } }
 
 *,
 *:before,
