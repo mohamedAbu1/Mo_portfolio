@@ -35,6 +35,20 @@ export default function AdminChatPage() {
     loadConversations().catch(() => setNotice("Unable to load conversations."));
   }, [status, session]);
 
+  useEffect(() => {
+    if (status !== "authenticated" || session?.user?.role !== "admin") return undefined;
+    const refresh = async () => {
+      await loadConversations();
+      if (selected?.id) {
+        const response = await fetch(`/api/admin/chat?conversationId=${selected.id}`, { cache: "no-store" });
+        const payload = await response.json();
+        if (response.ok) setMessages(payload.data || []);
+      }
+    };
+    const timer = window.setInterval(refresh, 4000);
+    return () => window.clearInterval(timer);
+  }, [status, session, selected?.id]);
+
   async function sendReply(event) {
     event.preventDefault();
     if (!selected || !text.trim() || loading) return;

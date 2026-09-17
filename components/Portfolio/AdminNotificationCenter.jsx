@@ -3,12 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FaBell, FaComments, FaHeart, FaMessage, FaXmark } from "react-icons/fa6";
+import { notifyBrowser, requestBrowserNotifications } from "@/lib/browserNotifications";
 
 export default function AdminNotificationCenter({ stats }) {
   const [open, setOpen] = useState(null);
   const [data, setData] = useState({ messages: [], comments: [], likes: [] });
   const [loading, setLoading] = useState(false);
   const rootRef = useRef(null);
+  const previousCounts = useRef({ messages: 0, activity: 0 });
 
   useEffect(() => {
     const close = (event) => { if (rootRef.current && !rootRef.current.contains(event.target)) setOpen(null); };
@@ -24,13 +26,26 @@ export default function AdminNotificationCenter({ stats }) {
         fetch("/api/admin/comments").then((r) => r.json()),
         fetch("/api/admin/likes").then((r) => r.json()),
       ]);
-      setData({ messages: messages.data || [], comments: (comments.data || []).filter((item) => item.status === "pending"), likes: likes.data || [] });
+      const next = { messages: messages.data || [], comments: (comments.data || []).filter((item) => item.status === "pending"), likes: likes.data || [] };
+      const nextMessages = next.messages.reduce((total, item) => total + Number(item.unread_count || 0), 0);
+      const nextActivity = next.comments.length + next.likes.length;
+      if (previousCounts.current.messages && nextMessages > previousCounts.current.messages) notifyBrowser("New client message", { body: "A client sent a new message in your inbox.", tag: "admin-chat" });
+      if (previousCounts.current.activity && nextActivity > previousCounts.current.activity) notifyBrowser("New portfolio activity", { body: "A new comment or like needs your attention.", tag: "admin-activity" });
+      previousCounts.current = { messages: nextMessages, activity: nextActivity };
+      setData(next);
     } finally { setLoading(false); }
   }
 
+  useEffect(() => {
+    requestBrowserNotifications().catch(() => {});
+    load();
+    const timer = window.setInterval(load, 5000);
+    return () => window.clearInterval(timer);
+  }, []);
+
   function toggle(type) { setOpen((current) => current === type ? null : type); if (open !== type) load(); }
-  const messagesCount = Number(stats?.messages || 0);
-  const activityCount = Number(stats?.comments || 0) + Number(stats?.likes || 0);
+  const messagesCount = data.messages.reduce((total, item) => total + Number(item.unread_count || 0), 0) || Number(stats?.messages || 0);
+  const activityCount = data.comments.length + data.likes.length || Number(stats?.comments || 0) + Number(stats?.likes || 0);
 
   return <div className="admin-notification-center" ref={rootRef}>
     <div className="admin-notification-actions">
