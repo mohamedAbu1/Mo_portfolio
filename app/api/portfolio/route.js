@@ -7,8 +7,10 @@ function slugify(value) {
   return String(value || "project").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-export async function GET() {
+export async function GET(req) {
   try {
+    const configuredOrigin = process.env.NEXT_PUBLIC_SITE_URL || new URL(req.url).origin;
+    const publicUrl = (value) => value && value.startsWith("/") ? `${configuredOrigin.replace(/\/$/, "")}${value}` : value;
     const rows = await query(`
       SELECT e.id AS engagement_id, e.title AS engagement_title, e.description AS engagement_description, e.created_at,
         d.id AS deliverable_id, d.title, d.public_title, d.public_description, d.cover_image_url,
@@ -57,9 +59,13 @@ export async function GET() {
       project.connectedDeliverables.forEach((item) => { item.technologies = project.technologies.map((technology) => technology.name); });
     }
 
-    return NextResponse.json({ data: [...projects.values()] }, { status: 200 });
+    const data = [...projects.values()].map((project) => ({ ...project, imgPaths: project.imgPaths.map(publicUrl), connectedDeliverables: project.connectedDeliverables.map((item) => ({ ...item, imgPaths: item.imgPaths.map(publicUrl) })) }));
+    return NextResponse.json({ data }, { status: 200 });
   } catch (error) {
     console.error("Portfolio query failed:", error);
     return NextResponse.json({ error: "Unable to load portfolio" }, { status: 500 });
   }
 }
+
+
+
