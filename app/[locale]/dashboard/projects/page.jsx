@@ -12,6 +12,14 @@ const services = [
   { code: "cv", name: "CV / Resume" },
   { code: "cover_letter", name: "Cover Letter" },
 ];
+const technologyOptions = [
+  "HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Vue.js", "Nuxt.js", "Angular", "Svelte", "Astro",
+  "Node.js", "Express.js", "NestJS", "Python", "Django", "Flask", "PHP", "Laravel", "Ruby on Rails", "Java", "Spring Boot",
+  "React Native", "Expo Go", "Flutter", "Kotlin", "Swift", "Android", "iOS",
+  "Tailwind CSS", "Bootstrap", "Sass", "shadcn/ui", "Material UI", "Framer Motion",
+  "MySQL", "PostgreSQL", "MongoDB", "SQLite", "Redis", "Firebase", "Supabase", "Prisma",
+  "Docker", "Git", "GitHub", "Vercel", "AWS", "Figma", "REST API", "GraphQL"
+];
 const blank = () => ({ id: null, serviceCode: "website", title: "", status: "planned", visibility: "private", description: "", publicTitle: "", publicDescription: "", technologies: "", price: "", currency: "USD", isSold: false, coverImageUrl: "", imageUrls: [], videoUrl: "", liveUrl: "", sourceUrl: "", androidUrl: "", iosUrl: "", coverFile: null, galleryFiles: [], videoFile: null });
 const emptyForm = () => ({ title: "", clientName: "", clientEmail: "", description: "", status: "planned", deliverables: [blank()] });
 
@@ -22,7 +30,7 @@ function Fields({ item, index, update, fileUrl }) {
   const doc = item.serviceCode === "cv" || item.serviceCode === "cover_letter";
   return <div className="deliverable-fields">
     <label>Status<select value={item.status} onChange={(e) => update(index, "status", e.target.value)}><option value="planned">Planned</option><option value="in_progress">In progress</option><option value="delivered">Delivered</option><option value="archived">Archived</option></select></label>
-    {!doc && <label>Technologies<input value={item.technologies} onChange={(e) => update(index, "technologies", e.target.value)} placeholder="React, Next.js, MySQL" /></label>}
+    {!doc && <fieldset className="technology-picker"><legend>Technologies</legend><div className="technology-options">{technologyOptions.map((technology) => { const selected = String(item.technologies || "").split(",").map((value) => value.trim()).filter(Boolean).includes(technology); return <label className={`technology-option${selected ? " selected" : ""}`} key={technology}><input type="checkbox" checked={selected} onChange={(e) => { const current = String(item.technologies || "").split(",").map((value) => value.trim()).filter(Boolean); const next = e.target.checked ? [...current, technology] : current.filter((value) => value !== technology); update(index, "technologies", next.join(", ")); }} /><span>{technology}</span></label>; })}</div><small className="technology-hint">Select all technologies used in this service.</small></fieldset>}
     <label>Price<input type="number" min="0" step="0.01" value={item.price} onChange={(e) => update(index, "price", e.target.value)} placeholder="0.00" /></label>
     <label>Currency<select value={item.currency} onChange={(e) => update(index, "currency", e.target.value)}><option>USD</option><option>EUR</option><option>EGP</option></select></label>
     <label className="sold-toggle"><input type="checkbox" checked={item.isSold} onChange={(e) => update(index, "isSold", e.target.checked)} /> Sold / delivered</label>
