@@ -1,16 +1,12 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+import { getSupabaseServerClient } from "@/lib/supabaseServer";
 
 
 // 📌 DELETE: حذف ريفيو
 export async function DELETE(req, { params }) {
   try {
     const { id } = params;
+    const supabase = getSupabaseServerClient({ admin: true });
 
     const { error } = await supabase.from("reviews").delete().eq("id", id);
 

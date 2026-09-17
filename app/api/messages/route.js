@@ -1,14 +1,11 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
+import { getSupabaseServerClient } from "@/lib/supabaseServer";
 
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+function getSupabase() { return getSupabaseServerClient({ admin: true }); }
 
 // ✅ جلب كل الرسائل
 export async function GET() {
-  const { data, error } = await supabase
+  const { data, error } = await getSupabase()
     .from("messages")
     .select("*")
     .order("created_at", { ascending: false });
@@ -22,6 +19,7 @@ export async function GET() {
 
 // ✅ إضافة رسالة جديدة
 export async function POST(req) {
+  const supabase = getSupabase();
   const body = await req.json();
   const { content, sender_type, user_name, user_image, user_id, reply_to, status } = body;
 
@@ -51,6 +49,7 @@ export async function POST(req) {
 // ✅ تعديل حالة أو محتوى الرسالة
 export async function PUT(req) {
   try {
+    const supabase = getSupabase();
     const body = await req.json();
     const { id, content, status } = body;
 
@@ -87,6 +86,7 @@ export async function PUT(req) {
 
 // ✅ حذف رسالة
 export async function DELETE(req) {
+  const supabase = getSupabase();
   const { searchParams } = new URL(req.url);
   const id = searchParams.get("id");
 

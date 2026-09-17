@@ -1,23 +1,15 @@
-import { createClient } from "@supabase/supabase-js";
 import { NextResponse } from "next/server";
+import { getSupabaseServerClient } from "@/lib/supabaseServer";
 
-// ✅ القيم مباشرة من ملف env
-const supabaseUrl = "https://iyvdseypdpcejejyyuwz.supabase.co";
-const supabaseAnonKey = "sb_publishable_b8AicgEWkwIPJZa0tCy4EQ_ec8m1Ut8";
-const supabaseServiceRoleKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Iml5dmRzZXlwZHBjZWplanl5dXd6Iiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTc4MjEyNjA2NiwiZXhwIjoyMDk3NzAyMDY2fQ.Wckodxc-6twKmPw0sqCr3QLPGVTp_dn1t_5UFhgxvoA";
-
-// Frontend client (للقراءة فقط)
-export const supabase = createClient(supabaseUrl, supabaseAnonKey);
-
-// Backend client (للكتابة/تعديل البيانات)
-export const supabaseAdmin = createClient(supabaseUrl, supabaseServiceRoleKey);
+const getPublic = () => getSupabaseServerClient();
+const getAdmin = () => getSupabaseServerClient({ admin: true });
 
 // 📌 POST: إضافة ريفيو جديد
 export async function POST(req) {
   try {
     const body = await req.json();
 
-    const { data, error } = await supabaseAdmin
+    const { data, error } = await getAdmin()
       .from("reviews")
       .insert([
         {
@@ -45,7 +37,7 @@ export async function POST(req) {
 // 📌 GET: جلب كل الريفيوهات
 export async function GET() {
   try {
-    const { data, error } = await supabase.from("reviews").select("*");
+    const { data, error } = await getPublic().from("reviews").select("*");
     if (error) {
       return NextResponse.json({ error: error.message }, { status: 400 });
     }

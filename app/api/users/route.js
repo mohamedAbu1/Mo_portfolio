@@ -1,12 +1,8 @@
-import { createClient } from "@supabase/supabase-js";
-
-const supabaseAdmin = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL,
-  process.env.SUPABASE_SERVICE_ROLE_KEY
-);
+import { getSupabaseServerClient } from "@/lib/supabaseServer";
 
 export async function GET(_req) {
   try {
+    const supabaseAdmin = getSupabaseServerClient({ admin: true });
     const { data, error } = await supabaseAdmin.auth.admin.listUsers();
 
     if (error) {
