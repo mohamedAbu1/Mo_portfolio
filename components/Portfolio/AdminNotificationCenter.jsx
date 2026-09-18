@@ -11,6 +11,8 @@ export default function AdminNotificationCenter({ stats }) {
   const [loading, setLoading] = useState(false);
   const rootRef = useRef(null);
   const previousCounts = useRef({ messages: 0, activity: 0 });
+  const [activitySeenAt, setActivitySeenAt] = useState(null);
+  const activitySeenKey = "admin-activity-seen-at";
 
   useEffect(() => {
     const close = (event) => { if (rootRef.current && !rootRef.current.contains(event.target)) setOpen(null); };
@@ -26,7 +28,8 @@ export default function AdminNotificationCenter({ stats }) {
         fetch("/api/admin/comments").then((r) => r.json()),
         fetch("/api/admin/likes").then((r) => r.json()),
       ]);
-      const next = { messages: messages.data || [], comments: (comments.data || []).filter((item) => item.status === "pending"), likes: likes.data || [] };
+      const seenAt = activitySeenAt || window.localStorage.getItem(activitySeenKey);
+      const next = { messages: messages.data || [], comments: (comments.data || []).filter((item) => item.status === "pending"), likes: (likes.data || []).filter((item) => !seenAt || new Date(item.created_at) > new Date(seenAt)) };
       const nextMessages = next.messages.reduce((total, item) => total + Number(item.unread_count || 0), 0);
       const nextActivity = next.comments.length + next.likes.length;
       if (previousCounts.current.messages && nextMessages > previousCounts.current.messages) notifyBrowser("New client message", { body: "A client sent a new message in your inbox.", tag: "admin-chat" });
@@ -37,15 +40,28 @@ export default function AdminNotificationCenter({ stats }) {
   }
 
   useEffect(() => {
+    setActivitySeenAt(window.localStorage.getItem(activitySeenKey));
     requestBrowserNotifications().catch(() => {});
     load();
     const timer = window.setInterval(load, 5000);
     return () => window.clearInterval(timer);
   }, []);
 
-  function toggle(type) { setOpen((current) => current === type ? null : type); if (open !== type) load(); }
+  function markActivitySeen() {
+    const seenAt = new Date().toISOString();
+    window.localStorage.setItem(activitySeenKey, seenAt);
+    setActivitySeenAt(seenAt);
+    setData((current) => ({ ...current, likes: [] }));
+  }
+
+  function toggle(type) {
+    const opening = open !== type;
+    if (opening && type === "activity") markActivitySeen();
+    setOpen((current) => current === type ? null : type);
+    if (opening) load();
+  }
   const messagesCount = data.messages.reduce((total, item) => total + Number(item.unread_count || 0), 0) || Number(stats?.messages || 0);
-  const activityCount = data.comments.length + data.likes.length || Number(stats?.comments || 0) + Number(stats?.likes || 0);
+  const activityCount = data.comments.length + data.likes.length;
 
   return <div className="admin-notification-center" ref={rootRef}>
     <div className="admin-notification-actions">
