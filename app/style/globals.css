@@ -213,11 +213,6 @@ html[dir="rtl"] .eyebrow { flex-direction: row-reverse; }
   color: #fff;
   font-size: 14px;
 }
-.tippy-box[data-theme~='Supabase'] {
-  background-color: #3FCF8E;
-  color: #fff;
-  font-size: 14px;
-}
 .tippy-box[data-theme~='Hostinger'] {
   background-color: #673DE6;
   color: #fff;

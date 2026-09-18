@@ -1,21 +1,11 @@
 import { NextResponse } from "next/server";
-import { getSupabaseServerClient } from "@/lib/supabaseServer";
+import { query } from "@/lib/mysql";
 
-
-// 📌 DELETE: حذف ريفيو
-export async function DELETE(req, { params }) {
+export async function DELETE(_req, { params }) {
   try {
-    const { id } = params;
-    const supabase = getSupabaseServerClient({ admin: true });
-
-    const { error } = await supabase.from("reviews").delete().eq("id", id);
-
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 400 });
-    }
-
+    await query("DELETE FROM reviews WHERE id = ?", [params.id]);
     return NextResponse.json({ message: "Review deleted" }, { status: 200 });
-  } catch (err) {
-    return NextResponse.json({ error: err.message }, { status: 500 });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

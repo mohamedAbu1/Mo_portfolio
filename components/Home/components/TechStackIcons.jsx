@@ -14,7 +14,7 @@ import {
   FaTripadvisor,
 } from "react-icons/fa";
 import { SiMui, SiTailwindcss, SiNextdotjs, SiExpo } from "react-icons/si";
-import { siSupabase, siHostinger, siVercel } from "simple-icons";
+import { siHostinger, siVercel } from "simple-icons";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
@@ -55,7 +55,6 @@ export default function TechStackIcons() {
     { name: "Node_js", icon: FaNodeJs, color: "#68A063" },
     { name: "Figma", icon: FaFigma, color: "#F24E1E" },
     { name: "Tripadvisor", icon: FaTripadvisor, color: "#34E0A1" },
-    { name: "Supabase", svg: siSupabase, color: "#3FCF8E" },
     { name: "Hostinger", svg: siHostinger, color: "#673DE6" },
     { name: "Vercel", svg: siVercel, color: "#000000" },
   ];

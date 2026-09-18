@@ -16,7 +16,7 @@ export default function MessageSidebar({ isOpen, onClose }) {
   const { user } = useAuth();
   const { messages, sendMessage, fetchMessages } = useMessages();
 
-  const isAdmin = user?.user_metadata?.role === "admin";
+  const isAdmin = user?.role === "admin";
 
   useEffect(() => {
     if (user?.id) {
@@ -37,9 +37,9 @@ export default function MessageSidebar({ isOpen, onClose }) {
           setUsersList(
             (json.users || []).map((u) => ({
               user_id: u.id,
-              user_name: u.user_metadata?.name,
-              user_role: u.user_metadata?.role,
-              user_image: u.user_metadata?.avatar_url || "/default-avatar.png",
+              user_name: u.name,
+              user_role: u.role,
+              user_image: u.image || "/default-avatar.png",
             })),
           );
         }

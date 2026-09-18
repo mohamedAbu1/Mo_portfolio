@@ -35,7 +35,7 @@ export default function MessageList({ messages,user }) {
         >
           Hello,{" "}
           <span style={{ fontWeight: "bold",textTransform: "capitalize" }}>
-            {user?.user_metadata?.name || "User"}
+            {user?.name || "User"}
           </span>
           ! You have no messages yet. Start a conversation by sending a message!
         </motion.p>

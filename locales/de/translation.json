@@ -39,7 +39,7 @@
     "items": [
       "React / Next.js",
       "Node.js / APIs",
-      "MySQL / Supabase",
+      "MySQL / APIs",
       "React Native",
       "UI-Systeme",
       "Deployment"
@@ -103,7 +103,7 @@
       "Ich kann die aktuelle Erfahrung prüfen, Probleme erkennen und gezielte Verbesserungen vorschlagen.",
       "Ich arbeite an Websites, mobilen Apps, APIs, Dashboards, UX/UI und laufendem Support.",
       "Der Preis hängt vom Umfang ab. Teile Ziele und Termin für eine passende Schätzung.",
-      "Ich arbeite mit Next.js, React Native, Node.js, MySQL und Supabase.",
+      "Ich arbeite mit Next.js, React Native, Node.js, MySQL und APIs.",
       "Beschreibe, was nicht funktioniert, und wir finden den zuverlässigsten Weg."
     ],
     "signInPrompt": "Um ein neues Projekt zu besprechen oder ein bestehendes zu verbessern, melde dich bitte zuerst an.",

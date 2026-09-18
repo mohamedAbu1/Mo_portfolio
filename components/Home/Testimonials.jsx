@@ -89,7 +89,7 @@ const Testimonials = ({ projectId }) => {
 
       {/* ✅ شرط تسجيل الدخول */}
       {/* ✅ شرط تسجيل الدخول مع استثناء الأدمن */}
-      {user?.user_metadata?.role !== "admin" && (
+      {user?.role !== "admin" && (
         <>
           {isLoggedIn ? (
             <ReviewForm user={user} />

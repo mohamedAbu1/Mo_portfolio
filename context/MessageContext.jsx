@@ -2,7 +2,6 @@
 "use client";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
-import { supabase } from "@/lib/supabaseClient";
 
 const MessageContext = createContext();
 
@@ -36,17 +35,14 @@ export function MessageProvider({ children }) {
       user_id,
       user_name:
         sender_type === "admin"
-          ? user?.user_metadata?.name || "Admin"
-          : user?.user_metadata?.name || "Unknown User",
+          ? user?.name || "Admin"
+          : user?.name || "Unknown User",
       user_image:
-        user?.user_metadata?.picture ||
-        user?.user_metadata?.avatar_url ||
-        user?.user_metadata?.avatar ||
-        "/default-avatar.png",
+        user?.image || "/default-avatar.png",
       content,
       sender_type,
       status,
-      admin_id: sender_type === "admin" ? user?.id : null, // ✅ ربط رسالة الأدمن
+      admin_id: sender_type === "admin" ? user?.id : null,
     };
 
     const tempMessage = {
@@ -167,49 +163,11 @@ const editMessage = async (messageId, newContent) => {
   // ✅ يجلب الرسائل عند تحميل المستخدم
   useEffect(() => {
     if (user?.id) {
-      const isAdmin = user?.user_metadata?.role === "admin";
+      const isAdmin = user?.role === "admin";
       fetchMessages(user.id, isAdmin);
     }
   }, [user?.id]);
 
-  // ✅ Realtime Subscriptions
-  useEffect(() => {
-    const channel = supabase
-      .channel("messages-channel")
-      .on(
-        "postgres_changes",
-        { event: "INSERT", schema: "public", table: "messages" },
-        (payload) => {
-          setMessages((prev) => {
-            if (prev.find((msg) => msg.id === payload.new.id)) return prev;
-            return [...prev, payload.new];
-          });
-        }
-      )
-      .on(
-        "postgres_changes",
-        { event: "UPDATE", schema: "public", table: "messages" },
-        (payload) => {
-          setMessages((prev) =>
-            prev.map((msg) => (msg.id === payload.new.id ? payload.new : msg))
-          );
-        }
-      )
-      .on(
-        "postgres_changes",
-        { event: "DELETE", schema: "public", table: "messages" },
-        (payload) => {
-          setMessages((prev) =>
-            prev.filter((msg) => msg.id !== payload.old.id)
-          );
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
-  }, []);
 
   return (
     <MessageContext.Provider

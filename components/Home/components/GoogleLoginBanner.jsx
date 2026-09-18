@@ -3,11 +3,11 @@
 import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import { FaGoogle } from "react-icons/fa";
-import { useAuth } from "@/context/AuthContext"; // ✅ استدعاء الـ AuthContext
+import { useAuth } from "@/context/AuthContext";
 
 export default function GoogleLoginBanner() {
   const [showButton, setShowButton] = useState(false);
-  const { isLoggedIn, loginWithGoogle } = useAuth(); // ✅ استخدام الدوال من AuthContext
+  const { isLoggedIn, loginWithGoogle } = useAuth();
 
   useEffect(() => {
     // كل مرة تتغير حالة تسجيل الدخول → يعيد تشغيل التايمر
@@ -41,7 +41,7 @@ export default function GoogleLoginBanner() {
       <Button
         variant="contained"
         color="primary"
-        onClick={loginWithGoogle} // ✅ استدعاء تسجيل الدخول من Supabase
+        onClick={loginWithGoogle}
         sx={{
           gap: "0.5rem",
           backgroundColor: "#4285F4",

@@ -22,7 +22,7 @@ const ReviewCard = ({ item }) => {
 
   // ✅ الشرط: الأدمن أو صاحب التعليق نفسه
   const canDelete =
-    user?.user_metadata?.role === "admin" || user?.id === item.user_id;
+    user?.role === "admin" || user?.id === item.user_id;
 
   return (
     <motion.div

@@ -39,7 +39,7 @@
     "items": [
       "React / Next.js",
       "Node.js / APIs",
-      "MySQL / Supabase",
+      "MySQL / APIs",
       "React Native",
       "UI 系统",
       "部署"
@@ -103,7 +103,7 @@
       "我可以评估现有体验，找出问题并提出有针对性的改进。",
       "我可以提供网站、移动应用、API、后台、UX/UI和持续支持。",
       "价格取决于项目范围。分享目标和期限，我会给出更合适的估算。",
-      "我使用 Next.js、React Native、Node.js、MySQL 和 Supabase 等现代技术。",
+      "我使用 Next.js、React Native、Node.js、MySQL 和 APIs 等现代技术。",
       "告诉我哪里出了问题，我们一起找到可靠且快速的解决方案。"
     ],
     "signInPrompt": "如果要讨论新项目或改进现有项目，请先登录。",

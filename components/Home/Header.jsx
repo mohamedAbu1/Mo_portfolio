@@ -117,7 +117,7 @@ const HeaderComponent = ({ setIsOpen }) => {
             }}
           >
             <Avatar
-              src={user?.user_metadata?.image}
+              src={user?.image}
               alt="User Avatar"
               sx={{ width: 35, height: 35 }}
             />
@@ -129,7 +129,7 @@ const HeaderComponent = ({ setIsOpen }) => {
                 textTransform: "capitalize",
               }}
             >
-              {user?.user_metadata?.name}
+              {user?.name}
             </Typography>
             <Button
               onClick={logout}

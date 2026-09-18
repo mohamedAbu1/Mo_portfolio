@@ -11,8 +11,8 @@ const ReviewForm = ({user}) => {
   const { theme } = useTheme();
 console.log(user)
   const [newReview, setNewReview] = useState({
-    name: user?.user_metadata?.name || "",
-    avatar_url: user?.user_metadata?.image || "",
+    name: user?.name || "",
+    avatar_url: user?.image || "",
     content: "",
     rating: 5,
     user_id: user?.id,
@@ -24,8 +24,8 @@ console.log(user)
     e.preventDefault();
     addReview(newReview);
     setNewReview({
-      name: user?.user_metadata?.name || "",
-      avatar_url: user?.user_metadata?.image|| "/avatar/3d-rendered-photo-woman-wearing-glasses-smiles-camera_1103059-4400.webp",
+      name: user?.name || "",
+      avatar_url: user?.image|| "/avatar/3d-rendered-photo-woman-wearing-glasses-smiles-camera_1103059-4400.webp",
       content: "",
       rating: 5,
       user_id: user?.id,

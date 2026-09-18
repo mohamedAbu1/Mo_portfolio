@@ -3,9 +3,6 @@ const nextConfig = {
   reactStrictMode: true,
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "dxpbyrcbklqrjlytmkum.supabase.co" },
-      { protocol: "https", hostname: "bsrlydzntfpuyxcqwjpl.supabase.co" },
-      { protocol: "https", hostname: "iyvdseypdpcejejyyuwz.supabase.co" },
       { protocol: "https", hostname: "mohamedabudeveloper.com" },
       { protocol: "http", hostname: "localhost", port: "3000" },
     ],

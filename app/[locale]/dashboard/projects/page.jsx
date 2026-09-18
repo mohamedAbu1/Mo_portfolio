@@ -17,7 +17,7 @@ const technologyOptions = [
   "Node.js", "Express.js", "NestJS", "Python", "Django", "Flask", "PHP", "Laravel", "Ruby on Rails", "Java", "Spring Boot",
   "React Native", "Expo Go", "Flutter", "Kotlin", "Swift", "Android", "iOS",
   "Tailwind CSS", "Bootstrap", "Sass", "shadcn/ui", "Material UI", "Framer Motion",
-  "MySQL", "PostgreSQL", "MongoDB", "SQLite", "Redis", "Firebase", "Supabase", "Prisma",
+  "MySQL", "PostgreSQL", "MongoDB", "SQLite", "Redis", "Firebase", "Prisma",
   "Docker", "Git", "GitHub", "Vercel", "AWS", "Figma", "REST API", "GraphQL"
 ];
 const blank = () => ({ id: null, serviceCode: "website", title: "", status: "planned", visibility: "private", description: "", publicTitle: "", publicDescription: "", technologies: "", price: "", currency: "USD", isSold: false, coverImageUrl: "", imageUrls: [], removedImageUrls: [], removeCover: false, videoUrl: "", liveUrl: "", sourceUrl: "", androidUrl: "", iosUrl: "", coverFile: null, galleryFiles: [], videoFile: null });

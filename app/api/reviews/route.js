@@ -1,48 +1,26 @@
 import { NextResponse } from "next/server";
-import { getSupabaseServerClient } from "@/lib/supabaseServer";
+import { query } from "@/lib/mysql";
 
-const getPublic = () => getSupabaseServerClient();
-const getAdmin = () => getSupabaseServerClient({ admin: true });
-
-// 📌 POST: إضافة ريفيو جديد
 export async function POST(req) {
   try {
     const body = await req.json();
-
-    const { data, error } = await getAdmin()
-      .from("reviews")
-      .insert([
-        {
-          name: body.name,
-          comment: body.content,
-          rating: body.rating,
-          avatar_url: body.avatar_url,
-          user_id: body.user_id || null,
-          created_at: new Date().toISOString(),
-        },
-      ])
-      .select();
-
-    if (error) {
-      console.error("Supabase error:", error);
-      return NextResponse.json({ error: error.message }, { status: 400 });
-    }
-
-    return NextResponse.json(data[0], { status: 201 });
-  } catch (err) {
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    const name = String(body.name || "").trim();
+    const content = String(body.content || body.comment || "").trim();
+    const rating = Math.min(5, Math.max(1, Number(body.rating) || 5));
+    if (!name || !content) return NextResponse.json({ error: "Name and review are required" }, { status: 400 });
+    const result = await query("INSERT INTO reviews (name, content, rating, avatar_url, user_id, created_at) VALUES (?, ?, ?, ?, ?, NOW())", [name, content, rating, body.avatar_url || null, body.user_id || null]);
+    const rows = await query("SELECT * FROM reviews WHERE id = ?", [result.insertId]);
+    return NextResponse.json(rows[0], { status: 201 });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }
 
-// 📌 GET: جلب كل الريفيوهات
 export async function GET() {
   try {
-    const { data, error } = await getPublic().from("reviews").select("*");
-    if (error) {
-      return NextResponse.json({ error: error.message }, { status: 400 });
-    }
-    return NextResponse.json(data, { status: 200 });
-  } catch (err) {
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    const reviews = await query("SELECT * FROM reviews ORDER BY created_at DESC");
+    return NextResponse.json(reviews, { status: 200 });
+  } catch (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 });
   }
 }

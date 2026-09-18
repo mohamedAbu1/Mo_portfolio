@@ -1,26 +1,10 @@
-import { getSupabaseServerClient } from "@/lib/supabaseServer";
+import { query } from "@/lib/mysql";
 
-export async function GET(_req) {
+export async function GET() {
   try {
-    const supabaseAdmin = getSupabaseServerClient({ admin: true });
-    const { data, error } = await supabaseAdmin.auth.admin.listUsers();
-
-    if (error) {
-      return new Response(
-        JSON.stringify({ error: error.message }),
-        { status: 400 }
-      );
-    }
-
-    return new Response(
-      JSON.stringify({ users: data?.users || [] }),
-      { status: 200 }
-    );
-  } catch (err) {
-    return new Response(
-      JSON.stringify({ error: err.message }),
-      { status: 500 }
-    );
+    const users = await query("SELECT id, full_name AS name, email, avatar_url AS image, role, created_at FROM profiles ORDER BY created_at DESC");
+    return Response.json({ users }, { status: 200 });
+  } catch (error) {
+    return Response.json({ error: error.message }, { status: 500 });
   }
 }
-
