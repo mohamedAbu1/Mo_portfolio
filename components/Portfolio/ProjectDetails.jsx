@@ -94,7 +94,7 @@ export default function ProjectDetails() {
       <CodeAtmosphere />
       <nav className="dev-nav details-nav">
         <Link className="brand" href={`/${locale}`}>
-          <Image className="brand-logo" src="/images/mohamed-abu-logo.svg" alt="Mohamed Abu Developer" width={156} height={40} priority />
+          <Image className="brand-logo" src="/images/mohamed-abu-logo.png" alt="Mohamed Abu Developer" width={156} height={40} priority />
         </Link>
           <Link className="back-link" href={`/${locale}#work`}><FaArrowLeft /> {t("caseStudy.back", { defaultValue: "Back to work" })}</Link>
       </nav>

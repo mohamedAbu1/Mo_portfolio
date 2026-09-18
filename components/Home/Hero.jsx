@@ -47,7 +47,7 @@ const Hero = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1.1 }}
             transition={{ damping: 6, type: "spring", stiffness: 100 }}
-            src="/images/logo.webp"
+            src="/images/mohamed-abu-logo.png"
             alt="Mohamed Abu Logo"
             style={{
               width: "80px",

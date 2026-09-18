@@ -62,7 +62,7 @@ const FooterComponent = () => {
         {/* اللوجو */}
         <motion.div variants={itemVariants} style={{ marginBottom: "1rem" }}>
           <Image
-            src="/images/logo.webp"
+            src="/images/mohamed-abu-logo.png"
             alt="Mohamed Abu Logo"
             width={60}
             height={60}
