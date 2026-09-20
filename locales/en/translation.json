@@ -8,7 +8,8 @@
     "signIn": "Sign in",
     "dashboard": "Dashboard",
     "language": "Language",
-    "theme": "Toggle theme"
+    "theme": "Toggle theme",
+    "services": "Services"
   },
   "hero": {
     "available": "Available for selected projects",
@@ -129,6 +130,141 @@
     ]
   },
   "caseStudy": {
-    "back": "Back to work", "eyebrow": "CASE STUDY", "status": "Delivered · Sold", "lede": "A digital product designed around your users, business goals, and the platforms they use every day.", "included": "What is included?", "customProduct": "Custom digital product", "quote": "Request a quote", "live": "Visit live project", "source": "View source", "projectType": "Project type", "scope": "Scope", "deliverables": "connected deliverables", "delivered": "Delivered", "build": "The build", "buildTitle": "Designed to make Egypt feel closer.", "buildIntro": "Basttet Travel is a responsive travel experience built around exploration, trust, and thoughtful planning.", "buildResult": "The result is a connected product with a public travel platform, rich trip details, authentication, contact touchpoints, and an operations workspace.", "metadata": "Project metadata", "category": "Category", "delivery": "Delivery", "platforms": "Platforms", "timeline": "Timeline", "completed": "Completed in", "visibility": "Client visibility", "privateClient": "Private client · public deliverable", "technology": "Technology stack", "privacy": "Client identity and private business details are intentionally excluded from this public case study.", "connected": "connected deliverables", "connectedTitle": "One product, multiple touchpoints.", "connectedCopy": "This project is presented as separate deliverables so you can quickly understand what you need: website, mobile application, dashboard, or a complete connected product.", "openBuild": "Open build", "nextBuild": "NEXT BUILD", "similarChallenge": "Have a similar challenge?", "conversation": "Start a conversation", "project": { "title": "Basttet Travel — Egypt Travel Platform", "summary": "A complete travel product: a public website, an Android application, and an operations dashboard connected to the same backend.", "solutionType": "Website + Android application", "category": ["Website", "Travel platform", "Full-stack"], "features": ["Curated Egypt trips and filtering", "Responsive desktop and mobile experience", "Trip detail galleries and planning flow", "Authentication and account states", "Operations dashboard and messaging", "Public contact and booking journey"], "platforms": [{"name":"Website","detail":"Responsive full-stack web platform"},{"name":"Android application","detail":"React Native application for mobile users"},{"name":"Admin dashboard","detail":"Content, projects, messages, and operations management"}], "deliverable": {"title":"Basttet Travel — Android Application","service":"Android App","status":"Delivered · Sold"} }
+    "back": "Back to work",
+    "eyebrow": "CASE STUDY",
+    "status": "Delivered · Sold",
+    "lede": "A digital product designed around your users, business goals, and the platforms they use every day.",
+    "included": "What is included?",
+    "customProduct": "Custom digital product",
+    "quote": "Request a quote",
+    "live": "Visit live project",
+    "source": "View source",
+    "projectType": "Project type",
+    "scope": "Scope",
+    "deliverables": "connected deliverables",
+    "delivered": "Delivered",
+    "build": "The build",
+    "buildTitle": "Designed to make Egypt feel closer.",
+    "buildIntro": "Basttet Travel is a responsive travel experience built around exploration, trust, and thoughtful planning.",
+    "buildResult": "The result is a connected product with a public travel platform, rich trip details, authentication, contact touchpoints, and an operations workspace.",
+    "metadata": "Project metadata",
+    "category": "Category",
+    "delivery": "Delivery",
+    "platforms": "Platforms",
+    "timeline": "Timeline",
+    "completed": "Completed in",
+    "visibility": "Client visibility",
+    "privateClient": "Private client · public deliverable",
+    "technology": "Technology stack",
+    "privacy": "Client identity and private business details are intentionally excluded from this public case study.",
+    "connected": "connected deliverables",
+    "connectedTitle": "One product, multiple touchpoints.",
+    "connectedCopy": "This project is presented as separate deliverables so you can quickly understand what you need: website, mobile application, dashboard, or a complete connected product.",
+    "openBuild": "Open build",
+    "nextBuild": "NEXT BUILD",
+    "similarChallenge": "Have a similar challenge?",
+    "conversation": "Start a conversation",
+    "project": {
+      "title": "Basttet Travel — Egypt Travel Platform",
+      "summary": "A complete travel product: a public website, an Android application, and an operations dashboard connected to the same backend.",
+      "solutionType": "Website + Android application",
+      "category": [
+        "Website",
+        "Travel platform",
+        "Full-stack"
+      ],
+      "features": [
+        "Curated Egypt trips and filtering",
+        "Responsive desktop and mobile experience",
+        "Trip detail galleries and planning flow",
+        "Authentication and account states",
+        "Operations dashboard and messaging",
+        "Public contact and booking journey"
+      ],
+      "platforms": [
+        {
+          "name": "Website",
+          "detail": "Responsive full-stack web platform"
+        },
+        {
+          "name": "Android application",
+          "detail": "React Native application for mobile users"
+        },
+        {
+          "name": "Admin dashboard",
+          "detail": "Content, projects, messages, and operations management"
+        }
+      ],
+      "deliverable": {
+        "title": "Basttet Travel — Android Application",
+        "service": "Android App",
+        "status": "Delivered · Sold"
+      }
+    }
+  },
+  "services": {
+    "eyebrow": "02 / services",
+    "title": "Useful software, built around the problem.",
+    "note": "From first brief to reliable launch",
+    "cta": "Discuss a project",
+    "items": [
+      {
+        "title": "Web products",
+        "description": "Responsive websites, platforms, and dashboards that make complex work feel simple."
+      },
+      {
+        "title": "Mobile experiences",
+        "description": "Focused mobile applications that keep the important parts close to your users."
+      },
+      {
+        "title": "APIs and systems",
+        "description": "Clear backend foundations, integrations, and data flows that stay maintainable."
+      },
+      {
+        "title": "Product refinement",
+        "description": "Practical improvements to performance, UX, content, and the details users notice."
+      }
+    ]
+  },
+  "process": {
+    "eyebrow": "03 / process",
+    "title": "A clear path from idea to launch.",
+    "note": "Simple, collaborative, accountable",
+    "steps": [
+      {
+        "title": "Understand",
+        "description": "Align on the problem, audience, scope, and what success means."
+      },
+      {
+        "title": "Shape",
+        "description": "Turn the brief into a focused plan, structure, and technical direction."
+      },
+      {
+        "title": "Build",
+        "description": "Develop in visible iterations with thoughtful states and useful feedback."
+      },
+      {
+        "title": "Launch",
+        "description": "Test, deploy, hand over, and keep improving what matters."
+      }
+    ]
+  },
+  "proof": {
+    "eyebrow": "Built in public",
+    "title": "Proof over promises.",
+    "items": [
+      {
+        "value": "03+",
+        "label": "years building"
+      },
+      {
+        "value": "02",
+        "label": "live travel products"
+      },
+      {
+        "value": "01",
+        "label": "connected mobile app"
+      }
+    ]
   }
 }
