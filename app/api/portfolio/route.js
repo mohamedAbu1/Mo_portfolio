@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { query } from "@/lib/mysql";
+import { myProjects } from "@/constants/api";
 
 export const dynamic = "force-dynamic";
 
@@ -14,7 +15,7 @@ export async function GET(req) {
     const rows = await query(`
       SELECT e.id AS engagement_id, e.title AS engagement_title, e.description AS engagement_description, e.created_at,
         d.id AS deliverable_id, d.title, d.public_title, d.public_description, d.cover_image_url,
-        d.live_url, d.source_url, d.android_url, d.ios_url, d.status, s.name AS service_name
+        d.live_url, d.source_url, d.android_url, d.ios_url, d.status, d.price, d.currency, d.is_sold, s.name AS service_name
       FROM engagements e
       INNER JOIN deliverables d ON d.engagement_id = e.id
       INNER JOIN services s ON s.id = d.service_id
@@ -24,10 +25,12 @@ export async function GET(req) {
 
     const projects = new Map();
     for (const row of rows) {
+      const fallback = myProjects.find((item) => item.liveUrl && item.liveUrl === row.live_url);
       if (!projects.has(row.engagement_id)) projects.set(row.engagement_id, {
-        id: String(row.engagement_id), projectTitle: row.engagement_title, projectSummary: row.engagement_description,
+        id: String(row.engagement_id), projectTitle: row.engagement_title, projectSummary: fallback?.projectSummary || row.engagement_description,
         date: row.created_at ? new Date(row.created_at).getFullYear().toString() : "", category: [], solutionType: "",
         platforms: [], technologies: [], features: [], connectedDeliverables: [], imgPaths: [], liveUrl: "", githubUrl: "", appUrl: "",
+        price: fallback?.price ?? row.price, currency: fallback?.currency || row.currency || "USD", isSold: fallback?.isSold ?? Boolean(row.is_sold), availability: fallback?.availability || (row.is_sold ? "Sold" : "Available for sale"),
         projectKey: slugify(row.engagement_title),
       });
       const project = projects.get(row.engagement_id);
