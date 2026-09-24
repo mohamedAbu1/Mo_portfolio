@@ -5,6 +5,7 @@ const SUPPORTED_LOCALES = ["en", "ar", "es", "fr", "de", "it", "zh"];
 
 export async function middleware(request) {
   const url = request.nextUrl.clone();
+  if (url.pathname === "/robots.txt" || url.pathname === "/sitemap.xml") return NextResponse.next();
   const segments = url.pathname.split("/").filter(Boolean);
   const isAsset = ["/_next", "/favicon.ico", "/api", "/assets", "/images", "/avatar", "/uploads"].some((path) => url.pathname.startsWith(path));
   if (isAsset) return NextResponse.next();

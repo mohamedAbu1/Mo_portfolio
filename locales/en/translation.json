@@ -9,7 +9,8 @@
     "dashboard": "Dashboard",
     "language": "Language",
     "theme": "Toggle theme",
-    "services": "Services"
+    "services": "Services",
+    "skipToContent": "Skip to content"
   },
   "hero": {
     "available": "Available for selected projects",
@@ -41,7 +42,16 @@
     "title": "Things I’ve shipped.",
     "note": "Case studies · 2026",
     "summary": "Tourism platform focused on a smooth, responsive experience from discovery to booking.",
-    "caseStudy": "Read case study"
+    "caseStudy": "Read case study",
+    "filterLabel": "Filter by type",
+    "allTypes": "All project types",
+    "vertical": "Vertical",
+    "horizontal": "Horizontal",
+    "layoutLabel": "Project card layout",
+    "paginationLabel": "Project pages",
+    "previous": "Previous",
+    "next": "Next",
+    "pageOf": "Page {{page}} of {{total}}"
   },
   "stack": {
     "eyebrow": "02 / toolkit",
@@ -200,7 +210,12 @@
         "service": "Android App",
         "status": "Delivered · Sold"
       }
-    }
+    },
+    "loading": "Loading project…",
+    "notFoundEyebrow": "PROJECT NOT FOUND",
+    "notFoundTitle": "This project could not be found.",
+    "notFoundDescription": "The link may be outdated or the project may have been removed.",
+    "separateGallery": "SEPARATE GALLERY"
   },
   "services": {
     "eyebrow": "02 / services",

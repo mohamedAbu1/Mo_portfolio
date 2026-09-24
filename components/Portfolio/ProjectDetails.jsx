@@ -59,12 +59,34 @@ export default function ProjectDetails() {
   const { locale = "en" } = useParams();
   const { t } = useTranslation();
   const [projects, setProjects] = useState(myProjects);
+  const [projectsLoading, setProjectsLoading] = useState(true);
   useEffect(() => {
     fetch("/api/portfolio").then((response) => response.ok ? response.json() : null).then((payload) => {
       if (payload?.data?.length) setProjects([...payload.data, ...myProjects.filter((fallback) => !payload.data.some((item) => String(item.id) === String(fallback.id)))]);
-    }).catch(() => {});
+    }).catch(() => {}).finally(() => setProjectsLoading(false));
   }, []);
-  const p = projects.find((item) => String(item.id) === q.get("id")) || projects[0];
+  const p = projects.find((item) => String(item.id) === q.get("id"));
+  const gallery = useMemo(
+    () => (p?.imgPaths || []).map((src, index) => ({ src, index, label: galleryLabels[index] || `Interface screen ${index + 1}`, type: index >= 13 ? "mobile" : "desktop" })),
+    [p?.imgPaths]
+  );
+  const deliverableGalleries = useMemo(
+    () => (p?.connectedDeliverables || []).map((item, deliverableIndex) => ({
+      ...item,
+      gallery: (item.imgPaths || []).map((src, index) => ({ src, index, label: `${item.service} — ${galleryLabels[index] || `Interface screen ${index + 1}`}` })),
+      deliverableIndex,
+    })).filter((item) => item.gallery.length > 0),
+    [p?.connectedDeliverables]
+  );
+
+  if (projectsLoading) {
+    return <main className="portfolio-shell details-page"><div className="details-state" role="status">{t("caseStudy.loading", { defaultValue: "Loading project…" })}</div></main>;
+  }
+
+  if (!p) {
+    return <main className="portfolio-shell details-page"><div className="details-state details-state-error"><p className="eyebrow">404 / {t("caseStudy.notFoundEyebrow", { defaultValue: "PROJECT NOT FOUND" })}</p><h1>{t("caseStudy.notFoundTitle", { defaultValue: "This project could not be found." })}</h1><p>{t("caseStudy.notFoundDescription", { defaultValue: "The link may be outdated or the project may have been removed." })}</p><Link className="button primary" href={`/${locale}#work`}>{t("caseStudy.back", { defaultValue: "Back to work" })}</Link></div></main>;
+  }
+
   const translated = p.id === 1 ? t("caseStudy.project", { returnObjects: true, defaultValue: {} }) : {};
   const project = translated && typeof translated === "object" && !Array.isArray(translated) ? translated : {};
   const projectTitle = project.title || p.projectTitle;
@@ -74,21 +96,8 @@ export default function ProjectDetails() {
   const features = Array.isArray(project.features) ? project.features : p.features;
   const localizedPlatforms = Array.isArray(project.platforms) ? project.platforms : p.platforms;
   const isResumeCollection = /resume|cv/i.test(`${projectTitle} ${categories?.join(" ") || ""}`);
-  const gallery = useMemo(
-    () => p.imgPaths.map((src, index) => ({ src, index, label: galleryLabels[index] || `Interface screen ${index + 1}`, type: index >= 13 ? "mobile" : "desktop" })),
-    [p.imgPaths]
-  );
-  const deliverableGalleries = useMemo(
-    () => (p.connectedDeliverables || []).map((item, deliverableIndex) => ({
-      ...item,
-      gallery: (item.imgPaths || []).map((src, index) => ({ src, index, label: `${item.service} — ${galleryLabels[index] || `Interface screen ${index + 1}`}` })),
-      deliverableIndex,
-    })).filter((item) => item.gallery.length > 0),
-    [p.connectedDeliverables]
-  );
   const heroGallery = deliverableGalleries[0]?.gallery || gallery;
   const platforms = localizedPlatforms?.length ? localizedPlatforms : [{ name: categories?.[0] || "Digital product", detail: categories?.slice(1).join(" · ") || "Custom solution" }];
-
   return (
     <main className="portfolio-shell details-page">
       <CodeAtmosphere />
@@ -166,7 +175,11 @@ export default function ProjectDetails() {
         </aside>
       </section>
 
-      {deliverableGalleries.slice(1).map((item) => <section className="deliverable-gallery-section" key={item.id || item.service}><div className="gallery-heading"><div><p className="eyebrow">{item.service} / SEPARATE GALLERY</p><h3>{item.title}</h3></div></div><ProjectImageSlider gallery={item.gallery} /></section>)}`r`n`r`n      {p.connectedDeliverables?.length > 0 && <section className="connected-deliverables"><div><p className="eyebrow">03 / {t("caseStudy.connected", { defaultValue: "connected deliverables" })}</p><h3>{t("caseStudy.connectedTitle", { defaultValue: "One product, multiple touchpoints." })}</h3><p className="connected-copy">{t("caseStudy.connectedCopy", { defaultValue: "This project is presented as separate deliverables so you can quickly understand what you need: website, mobile application, dashboard, or a complete connected product." })}</p></div><div className="connected-list">{p.connectedDeliverables.map((item) => <article key={item.title}><div><span className="connected-service">{item.service}</span><h4>{item.title}</h4><div className="details-tech-list">{item.technologies.map((technology) => <span key={technology}>{technology}</span>)}</div></div><div className="connected-side"><span>{item.status}</span><Link className="quote-link" href={`/${locale}#contact`}>{t("caseStudy.quote", { defaultValue: "Request a quote" })} <FaArrowUpRightFromSquare /></Link><a href={item.url} target="_blank" rel="noreferrer">{t("caseStudy.openBuild", { defaultValue: "Open build" })} <FaArrowUpRightFromSquare /></a></div></article>)}</div></section>}\n\n      <ProjectEngagement projectKey={String(p.id)} />
+      {deliverableGalleries.slice(1).map((item) => <section className="deliverable-gallery-section" key={item.id || item.service}><div className="gallery-heading"><div><p className="eyebrow">{item.service} / {t("caseStudy.separateGallery", { defaultValue: "SEPARATE GALLERY" })}</p><h3>{item.title}</h3></div></div><ProjectImageSlider gallery={item.gallery} /></section>)}
+
+      {p.connectedDeliverables?.length > 0 && <section className="connected-deliverables"><div><p className="eyebrow">03 / {t("caseStudy.connected", { defaultValue: "connected deliverables" })}</p><h3>{t("caseStudy.connectedTitle", { defaultValue: "One product, multiple touchpoints." })}</h3><p className="connected-copy">{t("caseStudy.connectedCopy", { defaultValue: "This project is presented as separate deliverables so you can quickly understand what you need: website, mobile application, dashboard, or a complete connected product." })}</p></div><div className="connected-list">{p.connectedDeliverables.map((item) => <article key={item.title}><div><span className="connected-service">{item.service}</span><h4>{item.title}</h4><div className="details-tech-list">{item.technologies.map((technology) => <span key={technology}>{technology}</span>)}</div></div><div className="connected-side"><span>{item.status}</span><Link className="quote-link" href={`/${locale}#contact`}>{t("caseStudy.quote", { defaultValue: "Request a quote" })} <FaArrowUpRightFromSquare /></Link><a href={item.url} target="_blank" rel="noreferrer">{t("caseStudy.openBuild", { defaultValue: "Open build" })} <FaArrowUpRightFromSquare /></a></div></article>)}</div></section>}
+
+      <ProjectEngagement projectKey={String(p.id)} />
       <section className="details-cta"><p className="eyebrow">{t("caseStudy.nextBuild", { defaultValue: "NEXT BUILD" })}</p><h2>{t("caseStudy.similarChallenge", { defaultValue: "Have a similar challenge?" })}</h2><Link className="button primary" href={`/${locale}#contact`}>{t("caseStudy.conversation", { defaultValue: "Start a conversation" })} <FaArrowUpRightFromSquare /></Link></section>
     </main>
   );

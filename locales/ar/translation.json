@@ -9,7 +9,8 @@
     "dashboard": "لوحة التحكم",
     "language": "اللغة",
     "theme": "تغيير المظهر",
-    "services": "الخدمات"
+    "services": "الخدمات",
+    "skipToContent": "تخطي إلى المحتوى"
   },
   "hero": {
     "available": "متاح لمشاريع مختارة",
@@ -41,7 +42,16 @@
     "title": "أشياء أطلقتها.",
     "note": "دراسات حالة · 2026",
     "summary": "منصة سياحية تركز على تجربة سلسة ومتجاوبة من الاكتشاف إلى الحجز.",
-    "caseStudy": "اقرأ دراسة الحالة"
+    "caseStudy": "اقرأ دراسة الحالة",
+    "filterLabel": "التصفية حسب النوع",
+    "allTypes": "كل أنواع المشاريع",
+    "vertical": "رأسي",
+    "horizontal": "أفقي",
+    "layoutLabel": "طريقة عرض المشاريع",
+    "paginationLabel": "صفحات المشاريع",
+    "previous": "السابق",
+    "next": "التالي",
+    "pageOf": "صفحة {{page}} من {{total}}"
   },
   "stack": {
     "eyebrow": "02 / صندوق الأدوات",
@@ -208,7 +218,12 @@
         "service": "تطبيق أندرويد",
         "status": "تم التسليم · مكتمل"
       }
-    }
+    },
+    "loading": "جارٍ تحميل المشروع…",
+    "notFoundEyebrow": "المشروع غير موجود",
+    "notFoundTitle": "تعذر العثور على هذا المشروع.",
+    "notFoundDescription": "قد يكون الرابط قديمًا أو تمت إزالة المشروع.",
+    "separateGallery": "معرض منفصل"
   },
   "services": {
     "eyebrow": "02 / الخدمات",
