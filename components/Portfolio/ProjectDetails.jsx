@@ -87,7 +87,7 @@ export default function ProjectDetails() {
     return <main className="portfolio-shell details-page"><div className="details-state details-state-error"><p className="eyebrow">404 / {t("caseStudy.notFoundEyebrow", { defaultValue: "PROJECT NOT FOUND" })}</p><h1>{t("caseStudy.notFoundTitle", { defaultValue: "This project could not be found." })}</h1><p>{t("caseStudy.notFoundDescription", { defaultValue: "The link may be outdated or the project may have been removed." })}</p><Link className="button primary" href={`/${locale}#work`}>{t("caseStudy.back", { defaultValue: "Back to work" })}</Link></div></main>;
   }
 
-  const translated = p.id === 1 ? t("caseStudy.project", { returnObjects: true, defaultValue: {} }) : {};
+  const translated = t(`caseStudy.projects.${p.id}`, { returnObjects: true, defaultValue: p.id === 1 ? t("caseStudy.project", { returnObjects: true, defaultValue: {} }) : {} });
   const project = translated && typeof translated === "object" && !Array.isArray(translated) ? translated : {};
   const projectTitle = project.title || p.projectTitle;
   const projectSummary = project.summary || p.projectSummary;
@@ -96,7 +96,7 @@ export default function ProjectDetails() {
   const features = Array.isArray(project.features) ? project.features : p.features;
   const localizedPlatforms = Array.isArray(project.platforms) ? project.platforms : p.platforms;
   const isResumeCollection = /resume|cv/i.test(`${projectTitle} ${categories?.join(" ") || ""}`);
-  const heroGallery = deliverableGalleries[0]?.gallery || gallery;
+  const heroGallery = gallery;
   const platforms = localizedPlatforms?.length ? localizedPlatforms : [{ name: categories?.[0] || "Digital product", detail: categories?.slice(1).join(" · ") || "Custom solution" }];
   return (
     <main className="portfolio-shell details-page">
@@ -112,7 +112,7 @@ export default function ProjectDetails() {
         <div className="case-study-copy">
           <div className="case-study-kicker">
             <p className="eyebrow">{t("caseStudy.eyebrow", { defaultValue: "CASE STUDY" })} / {String(p.id).padStart(2, "0")}</p>
-            <span className="status-pill"><FaCircleCheck /> {t("caseStudy.status", { defaultValue: "Delivered · Sold" })}</span>
+            <span className="status-pill"><FaCircleCheck /> {p.isSold ? t("caseStudy.status", { defaultValue: "Delivered · Sold" }) : (p.availability || "Available for sale")}</span>
           </div>
           <h1>{projectTitle}</h1>
           <p className="case-study-lede">{projectSummary || t("caseStudy.lede", { defaultValue: "A digital product designed around your users, business goals, and the platforms they use every day." })}</p>
@@ -133,12 +133,12 @@ export default function ProjectDetails() {
           <div className="details-actions">
             <Link className="button primary" href={`/${locale}#contact`}><FaArrowUpRightFromSquare /> {t("caseStudy.quote", { defaultValue: "Request a quote" })}</Link>
             {!isResumeCollection && <a className="button ghost" href={p.liveUrl} target="_blank" rel="noreferrer"><FaGlobe /> {t("caseStudy.live", { defaultValue: "Visit live project" })} <FaArrowUpRightFromSquare /></a>}
-            {!isResumeCollection && <a className="button ghost" href={p.githubUrl} target="_blank" rel="noreferrer"><FaGithub /> {t("caseStudy.source", { defaultValue: "View source" })}</a>}
+            {!isResumeCollection && p.githubUrl && <a className="button ghost" href={p.githubUrl} target="_blank" rel="noreferrer"><FaGithub /> {t("caseStudy.source", { defaultValue: "View source" })}</a>}{p.appUrl && <a className="button ghost" href={p.appUrl} target="_blank" rel="noreferrer"><FaGlobe /> {t("caseStudy.app", { defaultValue: "Open app build" })} <FaArrowUpRightFromSquare /></a>}
           </div>
           <div className="case-study-stats">
             <div><span>{t("caseStudy.projectType", { defaultValue: "Project type" })}</span><strong>{solutionType || t("caseStudy.customProduct", { defaultValue: "Custom digital product" })}</strong></div>
             <div><span>{t("caseStudy.scope", { defaultValue: "Scope" })}</span><strong>{platforms.length} {t("caseStudy.deliverables", { defaultValue: "connected deliverables" })}</strong></div>
-            <div><span>{t("caseStudy.delivered", { defaultValue: "Delivered" })}</span><strong>{p.date}</strong></div>
+            <div><span>{p.isSold ? t("caseStudy.delivered", { defaultValue: "Delivered" }) : "Price"}</span><strong>{p.isSold ? p.date : (p.price != null ? `${p.currency === "USD" ? "$" : `${p.currency} `}${Number(p.price).toLocaleString()}` : p.date)}</strong></div>
           </div>
         </div>
         <ProjectImageSlider gallery={heroGallery} />
@@ -147,9 +147,9 @@ export default function ProjectDetails() {
       <section className="details-content">
         <article className="details-main">
           <div className="section-marker"><span>01</span><p className="eyebrow">{t("caseStudy.build", { defaultValue: "The build" })}</p></div>
-          <h2>{t("caseStudy.buildTitle", { defaultValue: "Designed to make Egypt feel closer." })}</h2>
-          <p className="details-intro">{t("caseStudy.buildIntro", { defaultValue: "Basttet Travel is a responsive travel experience built around exploration, trust, and thoughtful planning. The interface combines editorial storytelling with practical trip discovery so visitors can move naturally from inspiration to action." })}</p>
-          <p className="details-intro">{t("caseStudy.buildResult", { defaultValue: "The result is a connected product: a public-facing travel platform, rich trip detail views, authentication flows, contact touchpoints, and an operations workspace for managing the experience." })}</p>
+          <h2>{project.buildTitle || p.caseStudy?.buildTitle || t("caseStudy.buildTitle", { defaultValue: "A focused digital product, built around a clear goal." })}</h2>
+          <p className="details-intro">{project.buildIntro || p.caseStudy?.buildIntro || t("caseStudy.buildIntro", { defaultValue: "This project was shaped around its users, business goals, and the details that make the experience useful." })}</p>
+          <p className="details-intro">{project.buildResult || p.caseStudy?.buildResult || t("caseStudy.buildResult", { defaultValue: "The result is a reliable digital experience with a clear path from discovery to action." })}</p>
 
           <div className="details-highlights">
             {features.map((feature) => <div className="highlight-item" key={feature}><FaCheck /><span>{feature}</span></div>)}
@@ -175,7 +175,7 @@ export default function ProjectDetails() {
         </aside>
       </section>
 
-      {deliverableGalleries.slice(1).map((item) => <section className="deliverable-gallery-section" key={item.id || item.service}><div className="gallery-heading"><div><p className="eyebrow">{item.service} / {t("caseStudy.separateGallery", { defaultValue: "SEPARATE GALLERY" })}</p><h3>{item.title}</h3></div></div><ProjectImageSlider gallery={item.gallery} /></section>)}
+      {deliverableGalleries.map((item) => <section className="deliverable-gallery-section" key={item.id || item.service}><div className="gallery-heading"><div><p className="eyebrow">{item.service} / {t("caseStudy.separateGallery", { defaultValue: "SEPARATE GALLERY" })}</p><h3>{item.title}</h3></div></div><ProjectImageSlider gallery={item.gallery} /></section>)}
 
       {p.connectedDeliverables?.length > 0 && <section className="connected-deliverables"><div><p className="eyebrow">03 / {t("caseStudy.connected", { defaultValue: "connected deliverables" })}</p><h3>{t("caseStudy.connectedTitle", { defaultValue: "One product, multiple touchpoints." })}</h3><p className="connected-copy">{t("caseStudy.connectedCopy", { defaultValue: "This project is presented as separate deliverables so you can quickly understand what you need: website, mobile application, dashboard, or a complete connected product." })}</p></div><div className="connected-list">{p.connectedDeliverables.map((item) => <article key={item.title}><div><span className="connected-service">{item.service}</span><h4>{item.title}</h4><div className="details-tech-list">{item.technologies.map((technology) => <span key={technology}>{technology}</span>)}</div></div><div className="connected-side"><span>{item.status}</span><Link className="quote-link" href={`/${locale}#contact`}>{t("caseStudy.quote", { defaultValue: "Request a quote" })} <FaArrowUpRightFromSquare /></Link><a href={item.url} target="_blank" rel="noreferrer">{t("caseStudy.openBuild", { defaultValue: "Open build" })} <FaArrowUpRightFromSquare /></a></div></article>)}</div></section>}
 

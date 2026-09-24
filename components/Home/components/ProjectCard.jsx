@@ -192,9 +192,11 @@ const ProjectCard = ({ item }) => {
               alignItems="center"
               gap={1}
               mb={2}
+              justifyContent="space-between"
               sx={{ color: item.isSold ? theme.buttonPrimaryBg : theme.subText }}
             >
-              {item.isSold ? "Sold" : "Available"}
+              <span>{item.isSold ? "Sold" : (item.availability || "Available")}</span>
+              {!item.isSold && item.price != null && <strong>{item.currency === "USD" ? "$" : `${item.currency} `}{Number(item.price).toLocaleString()}</strong>}
             </Box>
           </motion.div>
 
