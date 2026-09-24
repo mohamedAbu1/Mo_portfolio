@@ -94,7 +94,7 @@ export const myProjects = [
     connectedDeliverables: []
   },
   {
-    id: 4,
+    id: 6,
     projectTitle: "Al-Aroum — Travel & Stays Platform",
     liveUrl: "https://al-apartments.vercel.app/",
     date: "2026",
