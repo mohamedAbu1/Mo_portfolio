@@ -54,6 +54,21 @@ const galleryLabels = [
   "Android contact — light theme",
 ];
 
+function hydratePublicProjects(data) {
+  return data.map((item) => {
+    const fallback = myProjects.find((project) => project.liveUrl && project.liveUrl === item.liveUrl);
+    return fallback ? {
+      ...fallback,
+      ...item,
+      projectSummary: fallback.projectSummary || item.projectSummary,
+      price: item.price ?? fallback.price,
+      currency: item.currency || fallback.currency,
+      isSold: item.isSold ?? fallback.isSold,
+      availability: item.availability || fallback.availability,
+    } : item;
+  });
+}
+
 export default function ProjectDetails() {
   const q = useSearchParams();
   const { locale = "en" } = useParams();
@@ -62,7 +77,10 @@ export default function ProjectDetails() {
   const [projectsLoading, setProjectsLoading] = useState(true);
   useEffect(() => {
     fetch("/api/portfolio").then((response) => response.ok ? response.json() : null).then((payload) => {
-      if (payload?.data?.length) setProjects([...payload.data, ...myProjects.filter((fallback) => !payload.data.some((item) => String(item.id) === String(fallback.id)))]);
+      if (payload?.data?.length) {
+        const hydrated = hydratePublicProjects(payload.data);
+        setProjects([...hydrated, ...myProjects.filter((fallback) => !hydrated.some((item) => String(item.id) === String(fallback.id) || item.liveUrl === fallback.liveUrl))]);
+      }
     }).catch(() => {}).finally(() => setProjectsLoading(false));
   }, []);
   const p = projects.find((item) => String(item.id) === q.get("id"));

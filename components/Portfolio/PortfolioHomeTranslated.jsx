@@ -16,6 +16,21 @@ import { ServicesSection, ProcessSection, ProofStrip } from "@/components/Portfo
 
 const links = { github: "https://github.com/mohamedAbu1", linkedin: "https://www.linkedin.com/in/mohamed-ahmed-a993b729b/", whatsapp: "https://wa.me/201018539889", email: "mailto:mohamedmed33mil@mohamedabudeveloper.com", facebook: "https://www.facebook.com/mohamed.abu.102566", instagram: "https://www.instagram.com/webd66995/", tiktok: "https://www.tiktok.com/@user997682949" };
 
+function hydratePublicProjects(data) {
+  return data.map((item) => {
+    const fallback = myProjects.find((project) => project.liveUrl && project.liveUrl === item.liveUrl);
+    return fallback ? {
+      ...fallback,
+      ...item,
+      projectSummary: fallback.projectSummary || item.projectSummary,
+      price: item.price ?? fallback.price,
+      currency: item.currency || fallback.currency,
+      isSold: item.isSold ?? fallback.isSold,
+      availability: item.availability || fallback.availability,
+    } : item;
+  });
+}
+
 export default function PortfolioHomeTranslated() {
   const { themeName, toggleThemeFun } = useTheme();
   const { data: session } = useSession();
@@ -51,7 +66,10 @@ export default function PortfolioHomeTranslated() {
 
   useEffect(() => {
     fetch("/api/portfolio").then((response) => response.ok ? response.json() : null).then((payload) => {
-      if (payload?.data?.length) setProjects([...payload.data, ...myProjects.filter((fallback) => !payload.data.some((item) => String(item.id) === String(fallback.id)))]);
+      if (payload?.data?.length) {
+        const hydrated = hydratePublicProjects(payload.data);
+        setProjects([...hydrated, ...myProjects.filter((fallback) => !hydrated.some((item) => String(item.id) === String(fallback.id) || item.liveUrl === fallback.liveUrl))]);
+      }
     }).catch(() => {});
   }, []);
 
