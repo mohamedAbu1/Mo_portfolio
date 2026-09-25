@@ -29,8 +29,20 @@ export default function PortfolioHomeTranslated() {
   const [workLayout, setWorkLayout] = useState("horizontal");
   const [projectType, setProjectType] = useState("all");
   const [workPage, setWorkPage] = useState(1);
-  const projectTypes = useMemo(() => [...new Set(projects.flatMap((project) => project.category || []).filter(Boolean))].sort(), [projects]);
-  const visibleProjects = useMemo(() => projectType === "all" ? projects : projects.filter((project) => (project.category || []).includes(projectType)), [projects, projectType]);
+  const localizedProjects = useMemo(() => projects.map((project) => {
+    const rawKey = project.projectKey || String(project.engagementId || "");
+    const translationKey = rawKey.includes("basttet-travel") ? "project" : rawKey.includes("one-time-life-travel") ? "2" : rawKey.includes("ux-ui-resume") ? "3" : rawKey;
+    const translated = t(`caseStudy.projects.${translationKey}`, { returnObjects: true, defaultValue: {} });
+    const content = translated && typeof translated === "object" && !Array.isArray(translated) ? translated : {};
+    return {
+      ...project,
+      projectTitle: content.title || project.projectTitle,
+      projectSummary: content.summary || project.projectSummary,
+      category: Array.isArray(content.category) ? content.category : project.category,
+    };
+  }), [projects, t]);
+  const projectTypes = useMemo(() => [...new Set(localizedProjects.flatMap((project) => project.category || []).filter(Boolean))].sort(), [localizedProjects]);
+  const visibleProjects = useMemo(() => projectType === "all" ? localizedProjects : localizedProjects.filter((project) => (project.category || []).includes(projectType)), [localizedProjects, projectType]);
   const projectsPerPage = 4;
   const totalWorkPages = Math.max(1, Math.ceil(visibleProjects.length / projectsPerPage));
   const paginatedProjects = useMemo(() => visibleProjects.slice((workPage - 1) * projectsPerPage, workPage * projectsPerPage), [visibleProjects, workPage, projectsPerPage]);
