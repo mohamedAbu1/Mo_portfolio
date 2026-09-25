@@ -234,10 +234,10 @@ html[dir="rtl"] .eyebrow { flex-direction: row; letter-spacing: .02em; }
 html[dir="rtl"] .hero-actions, html[dir="rtl"] .contact-links, html[dir="rtl"] .details-actions { justify-content: flex-start; }
 html[dir="rtl"] .hero-grid, html[dir="rtl"] .case-study-header, html[dir="rtl"] .details-content { direction: rtl; }
 html[dir="rtl"] .terminal-card { direction: ltr; text-align: left; }
-html[dir="rtl"] .terminal-card pre { color: #334155; }
-html[dir="rtl"] .terminal-card i { color: #7c3aed; }
-html[dir="rtl"] .terminal-card em { color: #15803d; }
-html[dir="rtl"] .terminal-card b { color: #047857; }
+html[dir="rtl"] .portfolio-shell.light .terminal-card pre { color: #334155; }
+html[dir="rtl"] .portfolio-shell.light .terminal-card i { color: #7c3aed; }
+html[dir="rtl"] .portfolio-shell.light .terminal-card em { color: #15803d; }
+html[dir="rtl"] .portfolio-shell.light .terminal-card b { color: #047857; }
 html[dir="rtl"] .terminal-title { margin-left: 0; margin-right: 10px; }
 html[dir="rtl"] .contact-form, html[dir="rtl"] .chat-window, html[dir="rtl"] .memorial-prayer { text-align: right; }
 html[dir="rtl"] .contact-form input, html[dir="rtl"] .contact-form textarea, html[dir="rtl"] .chat-form input { direction: rtl; text-align: right; }
