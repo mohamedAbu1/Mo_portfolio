@@ -234,6 +234,17 @@
     "notFoundDescription": "The link may be outdated or the project may have been removed.",
     "separateGallery": "SEPARATE GALLERY",
     "projects": {
+      "montu-travel-luxury-egypt-travel-platform": {
+        "title": "Montu Travel — Luxury Egypt Travel Platform",
+        "summary": "A luxury Egypt travel platform for discovering curated journeys, ancient heritage, and memorable experiences through a refined responsive interface.",
+        "solutionType": "Website + Android application",
+        "category": ["Website", "Android application", "Luxury travel"],
+        "features": ["Curated Egyptian journeys and destination discovery", "Luxury heritage-focused visual storytelling", "Responsive light and dark themes", "Authentication and account flows", "Contact and personalized itinerary touchpoints", "Android companion experience included"],
+        "platforms": [{ "name": "Website", "detail": "Responsive luxury Egypt travel platform" }, { "name": "Android application", "detail": "Mobile companion for browsing journeys and planning travel" }],
+        "buildTitle": "A luxury way to discover Egypt.",
+        "buildIntro": "Montu Travel combines ancient Egyptian heritage, curated journeys, and a refined visual system to make travel discovery feel personal and memorable.",
+        "buildResult": "The result is a responsive website and Android-ready travel package with light and dark themes, authentication, destination storytelling, and clear contact touchpoints."
+      },
       "waset-travel-egypt-travel-platform": {
         "title": "Waset Travel — Egypt Travel Platform",
         "summary": "A complete Egypt travel platform that turns destination discovery into a clear, memorable journey through curated trips, destination storytelling, personalized planning, and responsive web and mobile experiences.",
@@ -320,7 +331,7 @@
       "autoPlay": "AUTO PLAY · 5S"
     },
     "gallery": {
-      "home": "Home experience", "homeAlternate": "Home experience — alternate", "about": "About page", "contact": "Contact page", "signUp": "Sign up flow", "login": "Login flow", "tripDetail": "Trip detail page", "tripPlanning": "Trip planning section", "tripsHorizontal": "Trips catalog — horizontal", "tripsGrid": "Trips catalog — grid", "admin": "Admin workspace", "notifications": "Notifications", "messages": "Messages", "homeMobile": "Home experience — mobile", "adminMobile": "Admin workspace — mobile", "tripDetailMobile": "Trip detail — mobile", "contactMobile": "Contact page — mobile", "aboutMobile": "About page — mobile", "androidHomeDark": "Android home — dark theme", "androidHomeLight": "Android home — light theme", "androidCategories": "Android categories", "androidTripDetails": "Android trip details", "androidLoginDark": "Android login — dark theme", "androidLoginLight": "Android login — light theme", "androidRegistration": "Android registration", "androidAboutDark": "Android about — dark theme", "androidAboutLight": "Android about — light theme", "androidContactDark": "Android contact — dark theme", "androidContactLight": "Android contact — light theme", "resumeConcept": "Resume concept {{number}}", "interfaceScreen": "Interface screen {{number}}"
+      "home": "Home experience", "homeAlternate": "Home experience — alternate", "about": "About page", "contact": "Contact page", "signUp": "Sign up flow", "signUpDark": "Sign up — dark theme", "signUpLight": "Sign up — light theme", "login": "Login flow", "loginLight": "Login — light theme", "loginDark": "Login — dark theme", "tripDetail": "Trip detail page", "tripPlanning": "Trip planning section", "tripsHorizontal": "Trips catalog — horizontal", "tripsGrid": "Trips catalog — grid", "admin": "Admin workspace", "notifications": "Notifications", "messages": "Messages", "homeMobile": "Home experience — mobile", "adminMobile": "Admin workspace — mobile", "tripDetailMobile": "Trip detail — mobile", "contactMobile": "Contact page — mobile", "aboutMobile": "About page — mobile", "aboutDark": "About page — dark theme", "aboutLight": "About page — light theme", "contactDark": "Contact page — dark theme", "contactLight": "Contact page — light theme", "androidHomeDark": "Android home — dark theme", "androidHomeLight": "Android home — light theme", "androidCategories": "Android categories", "androidTripDetails": "Android trip details", "androidLoginDark": "Android login — dark theme", "androidLoginLight": "Android login — light theme", "androidRegistration": "Android registration", "androidAboutDark": "Android about — dark theme", "androidAboutLight": "Android about — light theme", "androidContactDark": "Android contact — dark theme", "androidContactLight": "Android contact — light theme", "resumeConcept": "Resume concept {{number}}", "interfaceScreen": "Interface screen {{number}}"
     }
   },
   "services": {

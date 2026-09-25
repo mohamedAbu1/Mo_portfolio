@@ -31,6 +31,9 @@ const galleryLabelKeys = [
 
 function galleryLabelKey(project, index) {
   if (project?.projectKey?.includes("ux-ui-resume")) return "resumeConcept";
+  if (project?.projectKey?.includes("montu-travel")) {
+    return ["home", "homeAlternate", "signUpDark", "signUpLight", "loginLight", "loginDark", "aboutDark", "aboutLight", "contactDark", "contactLight"][index] || "interfaceScreen";
+  }
   return galleryLabelKeys[index] || "interfaceScreen";
 }
 
@@ -48,7 +51,7 @@ export default function ProjectDetails() {
   const p = projects.find((item) => String(item.id) === q.get("id"));
   const gallery = useMemo(
     () => (p?.imgPaths || []).map((src, index) => ({ src, index, label: t(`caseStudy.gallery.${galleryLabelKey(p, index)}`, { number: index + 1, defaultValue: t("caseStudy.gallery.interfaceScreen", { number: index + 1 }) }), type: index >= 13 ? "mobile" : "desktop" })),
-    [p?.imgPaths, p?.projectKey, t]
+    [p, t]
   );
 
   if (projectsLoading) {
