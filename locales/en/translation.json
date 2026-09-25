@@ -234,6 +234,17 @@
     "notFoundDescription": "The link may be outdated or the project may have been removed.",
     "separateGallery": "SEPARATE GALLERY",
     "projects": {
+      "basttet-travel-egypt-travel-platform": {
+        "title": "Basttet Travel — Egypt Travel Platform",
+        "summary": "A complete travel product with a public website, Android application, and operations dashboard connected to the same backend.",
+        "solutionType": "Website + Android application",
+        "category": ["Website", "Travel platform", "Full-stack"],
+        "features": ["Curated Egypt trips and filtering", "Responsive desktop and mobile experience", "Trip detail galleries and planning flow", "Authentication and account states", "Operations dashboard and messaging", "Public contact and booking journey"],
+        "platforms": [{ "name": "Website", "detail": "Responsive full-stack web platform" }, { "name": "Android application", "detail": "React Native application for mobile users" }, { "name": "Admin dashboard", "detail": "Content, projects, messages, and operations management" }],
+        "buildTitle": "Designed to make every Egypt journey feel clearer.",
+        "buildIntro": "Basttet Travel brings curated Egyptian trips, rich destination details, and practical planning into one connected travel experience.",
+        "buildResult": "The result is a full-stack travel product with a public discovery website, Android companion, authentication, booking touchpoints, messaging, and an operations dashboard."
+      },
       "montu-travel-luxury-egypt-travel-platform": {
         "title": "Montu Travel — Luxury Egypt Travel Platform",
         "summary": "A luxury Egypt travel platform for discovering curated journeys, ancient heritage, and memorable experiences through a refined responsive interface.",

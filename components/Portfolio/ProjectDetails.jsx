@@ -63,7 +63,7 @@ export default function ProjectDetails() {
   }
 
   const translationKey = p.projectKey || String(p.engagementId || "");
-  const legacyTranslationKey = translationKey.includes("basttet-travel") ? "project" : translationKey.includes("one-time-life-travel") ? "2" : translationKey.includes("ux-ui-resume") ? "3" : translationKey;
+  const legacyTranslationKey = translationKey.includes("one-time-life-travel") ? "2" : translationKey.includes("ux-ui-resume") ? "3" : translationKey;
   const translated = t(`caseStudy.projects.${legacyTranslationKey}`, { returnObjects: true, defaultValue: {} });
   const project = translated && typeof translated === "object" && !Array.isArray(translated) ? translated : {};
   const projectTitle = project.title || p.projectTitle;
