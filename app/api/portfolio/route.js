@@ -1,6 +1,5 @@
 import { NextResponse } from "next/server";
 import { query } from "@/lib/mysql";
-import { myProjects } from "@/constants/api";
 
 export const dynamic = "force-dynamic";
 
@@ -11,7 +10,12 @@ function slugify(value) {
 export async function GET(req) {
   try {
     const configuredOrigin = process.env.NEXT_PUBLIC_SITE_URL && !/0\\.0\\.0\\.0|localhost/i.test(process.env.NEXT_PUBLIC_SITE_URL) ? process.env.NEXT_PUBLIC_SITE_URL : "https://mohamedabudeveloper.com";
-    const publicUrl = (value) => value && value.startsWith("/") ? `${configuredOrigin.replace(/\/$/, "")}${value}` : value;
+    const publicUrl = (value) => {
+      if (!value) return value;
+      if (/^https?:\/\//i.test(value)) return value;
+      const path = value.startsWith("/") ? value : `/${value}`;
+      return `${configuredOrigin.replace(/\/$/, "")}${path}`;
+    };
     const rows = await query(`
       SELECT e.id AS engagement_id, e.title AS engagement_title, e.description AS engagement_description, e.created_at,
         d.id AS deliverable_id, d.title, d.public_title, d.public_description, d.cover_image_url,
@@ -25,12 +29,11 @@ export async function GET(req) {
 
     const projects = new Map();
     for (const row of rows) {
-      const fallback = myProjects.find((item) => item.liveUrl && item.liveUrl === row.live_url);
       if (!projects.has(row.engagement_id)) projects.set(row.engagement_id, {
-        id: `db-${row.engagement_id}`, engagementId: row.engagement_id, projectTitle: row.engagement_title, projectSummary: fallback?.projectSummary || row.public_description || row.engagement_description,
+        id: `db-${row.engagement_id}`, engagementId: row.engagement_id, projectTitle: row.public_title || row.engagement_title, projectSummary: row.public_description || row.engagement_description,
         date: row.created_at ? new Date(row.created_at).getFullYear().toString() : "", category: [], solutionType: "",
         platforms: [], technologies: [], features: [], connectedDeliverables: [], imgPaths: [], liveUrl: "", githubUrl: "", appUrl: "",
-        price: fallback?.price ?? row.price, currency: fallback?.currency || row.currency || "USD", isSold: fallback?.isSold ?? Boolean(row.is_sold), availability: fallback?.availability || (row.is_sold ? "Sold" : "Available for sale"),
+        price: row.price, currency: row.currency || "USD", isSold: Boolean(row.is_sold), availability: row.is_sold ? "Sold" : "Available for sale",
         projectKey: slugify(row.engagement_title),
       });
       const project = projects.get(row.engagement_id);

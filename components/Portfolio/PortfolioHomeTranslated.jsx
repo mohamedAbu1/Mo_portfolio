@@ -6,7 +6,6 @@ import { useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { signOut, useSession } from "next-auth/react";
 import { useTheme } from "@/context/ThemeContext";
-import { myProjects } from "@/constants/api";
 import { FaArrowUpRightFromSquare, FaGithub, FaLinkedin, FaWhatsapp, FaEnvelope, FaFacebook, FaInstagram, FaTiktok, FaCode, FaCircleCheck } from "react-icons/fa6";
 import ChatWidget from "@/components/Portfolio/ChatWidgetProfessional";
 import SeasonalShowcase from "@/components/Portfolio/SeasonalShowcase";
@@ -15,21 +14,6 @@ import CodeAtmosphere from "@/components/Portfolio/CodeAtmosphere";
 import { ServicesSection, ProcessSection, ProofStrip } from "@/components/Portfolio/ValueSections";
 
 const links = { github: "https://github.com/mohamedAbu1", linkedin: "https://www.linkedin.com/in/mohamed-ahmed-a993b729b/", whatsapp: "https://wa.me/201018539889", email: "mailto:mohamedmed33mil@mohamedabudeveloper.com", facebook: "https://www.facebook.com/mohamed.abu.102566", instagram: "https://www.instagram.com/webd66995/", tiktok: "https://www.tiktok.com/@user997682949" };
-
-function hydratePublicProjects(data) {
-  return data.map((item) => {
-    const fallback = myProjects.find((project) => project.liveUrl && project.liveUrl === item.liveUrl);
-    return fallback ? {
-      ...fallback,
-      ...item,
-      projectSummary: fallback.projectSummary || item.projectSummary,
-      price: item.price ?? fallback.price,
-      currency: item.currency || fallback.currency,
-      isSold: item.isSold ?? fallback.isSold,
-      availability: item.availability || fallback.availability,
-    } : item;
-  });
-}
 
 export default function PortfolioHomeTranslated() {
   const { themeName, toggleThemeFun } = useTheme();
@@ -41,7 +25,7 @@ export default function PortfolioHomeTranslated() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
   const [devBannerVisible, setDevBannerVisible] = useState(false);
-  const [projects, setProjects] = useState(myProjects);
+  const [projects, setProjects] = useState([]);
   const [workLayout, setWorkLayout] = useState("horizontal");
   const [projectType, setProjectType] = useState("all");
   const [workPage, setWorkPage] = useState(1);
@@ -66,10 +50,7 @@ export default function PortfolioHomeTranslated() {
 
   useEffect(() => {
     fetch("/api/portfolio").then((response) => response.ok ? response.json() : null).then((payload) => {
-      if (payload?.data?.length) {
-        const hydrated = hydratePublicProjects(payload.data);
-        setProjects([...hydrated, ...myProjects.filter((fallback) => !hydrated.some((item) => String(item.id) === String(fallback.id) || item.liveUrl === fallback.liveUrl))]);
-      }
+      if (payload?.data) setProjects(payload.data);
     }).catch(() => {});
   }, []);
 
