@@ -51,3 +51,11 @@ CREATE TABLE IF NOT EXISTS messages (
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, FOREIGN KEY(conversation_id) REFERENCES conversations(id) ON DELETE CASCADE,
   FOREIGN KEY(sender_id) REFERENCES profiles(id) ON DELETE CASCADE, INDEX idx_messages_conversation_created(conversation_id, created_at)
 ) ENGINE=InnoDB;
+CREATE TABLE IF NOT EXISTS comment_replies (
+  id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY, comment_id BIGINT UNSIGNED NOT NULL,
+  user_key VARCHAR(255) NOT NULL, author_name VARCHAR(120) NOT NULL, author_image VARCHAR(500),
+  content TEXT NOT NULL, status ENUM('pending','approved','rejected') NOT NULL DEFAULT 'approved',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  FOREIGN KEY(comment_id) REFERENCES comments(id) ON DELETE CASCADE,
+  INDEX idx_comment_replies_comment_status_created(comment_id, status, created_at)
+) ENGINE=InnoDB;

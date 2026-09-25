@@ -19,7 +19,7 @@ export async function GET(req) {
       FROM engagements e
       INNER JOIN deliverables d ON d.engagement_id = e.id
       INNER JOIN services s ON s.id = d.service_id
-      WHERE d.visibility = 'public' AND (d.status IN ('in_progress', 'delivered') OR d.is_sold = TRUE)
+      WHERE d.visibility = 'public' AND d.status <> 'archived'
       ORDER BY e.created_at DESC, d.created_at ASC
     `);
 
@@ -27,7 +27,7 @@ export async function GET(req) {
     for (const row of rows) {
       const fallback = myProjects.find((item) => item.liveUrl && item.liveUrl === row.live_url);
       if (!projects.has(row.engagement_id)) projects.set(row.engagement_id, {
-        id: String(row.engagement_id), projectTitle: row.engagement_title, projectSummary: fallback?.projectSummary || row.engagement_description,
+        id: `db-${row.engagement_id}`, engagementId: row.engagement_id, projectTitle: row.engagement_title, projectSummary: fallback?.projectSummary || row.public_description || row.engagement_description,
         date: row.created_at ? new Date(row.created_at).getFullYear().toString() : "", category: [], solutionType: "",
         platforms: [], technologies: [], features: [], connectedDeliverables: [], imgPaths: [], liveUrl: "", githubUrl: "", appUrl: "",
         price: fallback?.price ?? row.price, currency: fallback?.currency || row.currency || "USD", isSold: fallback?.isSold ?? Boolean(row.is_sold), availability: fallback?.availability || (row.is_sold ? "Sold" : "Available for sale"),
@@ -41,11 +41,11 @@ export async function GET(req) {
       if (!project.appUrl && row.android_url) project.appUrl = row.android_url;
       if (!project.category.includes(row.service_name)) project.category.push(row.service_name);
       project.platforms.push({ name: row.service_name, detail: row.public_description || row.title });
-      project.connectedDeliverables.push({ id: row.deliverable_id, title, service: row.service_name, status: row.status === "delivered" ? "Delivered · Sold" : "In progress", url: row.live_url || row.source_url || row.android_url || row.ios_url || "", technologies: [], imgPaths: [] });
+      project.connectedDeliverables.push({ id: row.deliverable_id, title, service: row.service_name, status: row.status === "delivered" ? "Delivered · Sold" : "In progress", url: row.live_url || row.source_url || row.android_url || row.ios_url || "", technologies: [], imgPaths: row.cover_image_url ? [row.cover_image_url] : [] });
     }
 
     for (const project of projects.values()) {
-      const deliverables = await query("SELECT id FROM deliverables WHERE engagement_id=? AND visibility='public' AND (status IN ('in_progress','delivered') OR is_sold=TRUE)", [project.id]);
+      const deliverables = await query("SELECT id FROM deliverables WHERE engagement_id=? AND visibility='public' AND status <> 'archived'", [project.engagementId]);
       const technologyNames = new Set();
       for (const deliverable of deliverables) {
         const [technologyRows, files] = await Promise.all([
@@ -54,7 +54,7 @@ export async function GET(req) {
         ]);
         technologyRows.forEach((item) => technologyNames.add(item.name));
         const connected = project.connectedDeliverables.find((item) => String(item.id) === String(deliverable.id));
-        if (connected) connected.imgPaths = files.map((file) => file.file_url);
+        if (connected) connected.imgPaths = [...new Set([...connected.imgPaths, ...files.map((file) => file.file_url)])];
         files.forEach((file) => { if (!project.imgPaths.includes(file.file_url)) project.imgPaths.push(file.file_url); });
       }
       project.technologies = [...technologyNames].map((name) => ({ name }));

@@ -215,7 +215,66 @@
     "notFoundEyebrow": "PROJECT NOT FOUND",
     "notFoundTitle": "This project could not be found.",
     "notFoundDescription": "The link may be outdated or the project may have been removed.",
-    "separateGallery": "SEPARATE GALLERY"
+    "separateGallery": "SEPARATE GALLERY",
+    "projects": {
+      "2": {
+        "title": "One Time Life Travel — Luxury Egypt Travel Platform",
+        "summary": "A refined travel platform that turns Egyptian destinations into memorable stories through editorial design, intelligent discovery, and a seamless mobile journey.",
+        "solutionType": "Website + Android application",
+        "category": [
+          "Website",
+          "Android application",
+          "Luxury travel"
+        ],
+        "features": [
+          "Editorial destination storytelling",
+          "Responsive website with seasonal visual themes",
+          "Trip discovery, filtering, and journey planning",
+          "Android companion application",
+          "Authentication and travel support touchpoints",
+          "Operations workspace for the travel business"
+        ],
+        "platforms": [
+          {
+            "name": "Website",
+            "detail": "Immersive full-stack travel platform"
+          },
+          {
+            "name": "Android application",
+            "detail": "Expo and React Native travel companion"
+          }
+        ],
+        "buildTitle": "A considered travel experience for Egypt.",
+        "buildIntro": "One Time Life Travel combines editorial storytelling with practical trip discovery, helping travelers move from inspiration to planning with confidence.",
+        "buildResult": "The result is a connected website and Android companion with seasonal visual direction, travel discovery, authentication, and support touchpoints."
+      },
+      "3": {
+        "title": "UX/UI Resume Collection",
+        "summary": "A curated collection of seven resume layouts exploring hierarchy, typography, and visual systems for different professional roles.",
+        "solutionType": "Single design collection",
+        "category": [
+          "UX/UI Design",
+          "Resume design",
+          "Visual systems"
+        ],
+        "features": [
+          "Seven role-specific resume layouts",
+          "Consistent visual design system",
+          "Clear information hierarchy",
+          "Professional typography and spacing"
+        ],
+        "platforms": [
+          {
+            "name": "Design gallery",
+            "detail": "Seven resume concepts in one collection"
+          }
+        ],
+        "buildTitle": "A visual system for presenting professional stories.",
+        "buildIntro": "This collection explores how layout, typography, and hierarchy can adapt to different roles while keeping the information easy to scan.",
+        "buildResult": "The result is a focused set of resume directions that balances personality with clarity and gives each professional profile a distinct visual voice."
+      }
+    },
+    "app": "Open app build"
   },
   "services": {
     "eyebrow": "02 / services",
