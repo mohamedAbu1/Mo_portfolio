@@ -9,12 +9,10 @@ function slugify(value) {
 
 export async function GET(req) {
   try {
-    const configuredOrigin = process.env.NEXT_PUBLIC_SITE_URL && !/0\\.0\\.0\\.0|localhost/i.test(process.env.NEXT_PUBLIC_SITE_URL) ? process.env.NEXT_PUBLIC_SITE_URL : "https://mohamedabudeveloper.com";
     const publicUrl = (value) => {
       if (!value) return value;
       if (/^https?:\/\//i.test(value)) return value;
-      const path = value.startsWith("/") ? value : `/${value}`;
-      return `${configuredOrigin.replace(/\/$/, "")}${path}`;
+      return value.startsWith("/") ? value : `/${value}`;
     };
     const rows = await query(`
       SELECT e.id AS engagement_id, e.title AS engagement_title, e.description AS engagement_description, e.created_at,
