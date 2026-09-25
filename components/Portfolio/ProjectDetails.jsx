@@ -29,6 +29,11 @@ const galleryLabelKeys = [
   "androidAboutLight", "androidContactDark", "androidContactLight",
 ];
 
+function galleryLabelKey(project, index) {
+  if (project?.projectKey?.includes("ux-ui-resume")) return "resumeConcept";
+  return galleryLabelKeys[index] || "interfaceScreen";
+}
+
 export default function ProjectDetails() {
   const q = useSearchParams();
   const { locale = "en" } = useParams();
@@ -42,8 +47,8 @@ export default function ProjectDetails() {
   }, []);
   const p = projects.find((item) => String(item.id) === q.get("id"));
   const gallery = useMemo(
-    () => (p?.imgPaths || []).map((src, index) => ({ src, index, label: t(`caseStudy.gallery.${galleryLabelKeys[index]}`, { defaultValue: t("caseStudy.gallery.interfaceScreen", { number: index + 1 }) }), type: index >= 13 ? "mobile" : "desktop" })),
-    [p?.imgPaths, t]
+    () => (p?.imgPaths || []).map((src, index) => ({ src, index, label: t(`caseStudy.gallery.${galleryLabelKey(p, index)}`, { number: index + 1, defaultValue: t("caseStudy.gallery.interfaceScreen", { number: index + 1 }) }), type: index >= 13 ? "mobile" : "desktop" })),
+    [p?.imgPaths, p?.projectKey, t]
   );
 
   if (projectsLoading) {

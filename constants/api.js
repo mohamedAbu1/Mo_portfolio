@@ -79,7 +79,7 @@ export const myProjects = [
     category: ["UX/UI Design", "Resume design", "Visual systems"],
     solutionType: "Single design collection",
     projectSummary: "A curated collection of seven resume layouts exploring hierarchy, typography, and visual systems for different professional roles.",
-    platforms: [{ name: "Design gallery", detail: "Ten resume concepts in one collection" }],
+    platforms: [{ name: "Design gallery", detail: "Seven resume concepts in one collection" }],
     imgPaths: [
       "/uploads/projects/uxui-resume-collection/Modern-Resume-768x1080.jpg",
       "/uploads/projects/uxui-resume-collection/Best-Resume-Template-Free-Download-MS-Word-.jpg",

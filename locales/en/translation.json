@@ -234,6 +234,17 @@
     "notFoundDescription": "The link may be outdated or the project may have been removed.",
     "separateGallery": "SEPARATE GALLERY",
     "projects": {
+      "waset-travel-egypt-travel-platform": {
+        "title": "Waset Travel — Egypt Travel Platform",
+        "summary": "A complete Egypt travel platform that turns destination discovery into a clear, memorable journey through curated trips, destination storytelling, personalized planning, and responsive web and mobile experiences.",
+        "solutionType": "Website",
+        "category": ["Website", "Travel platform", "Full-stack"],
+        "features": ["Curated Egyptian trips and destination discovery", "Personalized planning with search and filtering", "Responsive desktop and mobile experiences", "Booking, messaging, and contact touchpoints", "Operations dashboard for trips, users, and bookings"],
+        "platforms": [{ "name": "Website", "detail": "Responsive Egypt travel platform" }],
+        "buildTitle": "A clearer way to discover Egypt.",
+        "buildIntro": "Waset Travel brings destinations, curated journeys, and practical planning together in one responsive travel experience.",
+        "buildResult": "The result is a connected travel platform with discovery, filtering, booking touchpoints, messaging, and an operations workspace."
+      },
       "2": {
         "title": "One Time Life Travel — Luxury Egypt Travel Platform",
         "summary": "A refined travel platform that turns Egyptian destinations into memorable stories through editorial design, intelligent discovery, and a seamless mobile journey.",
@@ -309,7 +320,7 @@
       "autoPlay": "AUTO PLAY · 5S"
     },
     "gallery": {
-      "home": "Home experience", "homeAlternate": "Home experience — alternate", "about": "About page", "contact": "Contact page", "signUp": "Sign up flow", "login": "Login flow", "tripDetail": "Trip detail page", "tripPlanning": "Trip planning section", "tripsHorizontal": "Trips catalog — horizontal", "tripsGrid": "Trips catalog — grid", "admin": "Admin workspace", "notifications": "Notifications", "messages": "Messages", "homeMobile": "Home experience — mobile", "adminMobile": "Admin workspace — mobile", "tripDetailMobile": "Trip detail — mobile", "contactMobile": "Contact page — mobile", "aboutMobile": "About page — mobile", "androidHomeDark": "Android home — dark theme", "androidHomeLight": "Android home — light theme", "androidCategories": "Android categories", "androidTripDetails": "Android trip details", "androidLoginDark": "Android login — dark theme", "androidLoginLight": "Android login — light theme", "androidRegistration": "Android registration", "androidAboutDark": "Android about — dark theme", "androidAboutLight": "Android about — light theme", "androidContactDark": "Android contact — dark theme", "androidContactLight": "Android contact — light theme", "interfaceScreen": "Interface screen {{number}}"
+      "home": "Home experience", "homeAlternate": "Home experience — alternate", "about": "About page", "contact": "Contact page", "signUp": "Sign up flow", "login": "Login flow", "tripDetail": "Trip detail page", "tripPlanning": "Trip planning section", "tripsHorizontal": "Trips catalog — horizontal", "tripsGrid": "Trips catalog — grid", "admin": "Admin workspace", "notifications": "Notifications", "messages": "Messages", "homeMobile": "Home experience — mobile", "adminMobile": "Admin workspace — mobile", "tripDetailMobile": "Trip detail — mobile", "contactMobile": "Contact page — mobile", "aboutMobile": "About page — mobile", "androidHomeDark": "Android home — dark theme", "androidHomeLight": "Android home — light theme", "androidCategories": "Android categories", "androidTripDetails": "Android trip details", "androidLoginDark": "Android login — dark theme", "androidLoginLight": "Android login — light theme", "androidRegistration": "Android registration", "androidAboutDark": "Android about — dark theme", "androidAboutLight": "Android about — light theme", "androidContactDark": "Android contact — dark theme", "androidContactLight": "Android contact — light theme", "resumeConcept": "Resume concept {{number}}", "interfaceScreen": "Interface screen {{number}}"
     }
   },
   "services": {
