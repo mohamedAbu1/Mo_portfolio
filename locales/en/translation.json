@@ -234,6 +234,17 @@
     "notFoundDescription": "The link may be outdated or the project may have been removed.",
     "separateGallery": "SEPARATE GALLERY",
     "projects": {
+      "malek-market-grocery-e-commerce-platform": {
+        "title": "Malek Market — Grocery E-commerce Platform",
+        "summary": "An Arabic-first grocery marketplace for discovering fresh products, browsing categories, building a cart, and arranging local delivery through a responsive experience.",
+        "solutionType": "E-commerce website",
+        "category": ["Website", "E-commerce", "Grocery delivery"],
+        "features": ["Arabic RTL shopping experience", "Fresh food categories and product discovery", "Responsive light and dark themes", "Cart and quick-add shopping interactions", "Local delivery context and location selection", "Account login and personalized shopping flow"],
+        "platforms": [{ "name": "Website", "detail": "Responsive Arabic grocery marketplace" }],
+        "buildTitle": "A simpler way to shop for fresh food.",
+        "buildIntro": "Malek Market turns everyday grocery shopping into a clear, friendly experience built around categories, product discovery, and local delivery.",
+        "buildResult": "The result is a responsive Arabic-first marketplace with RTL navigation, themed storefronts, category browsing, quick cart actions, delivery context, and account access."
+      },
       "basttet-travel-egypt-travel-platform": {
         "title": "Basttet Travel — Egypt Travel Platform",
         "summary": "A complete travel product with a public website, Android application, and operations dashboard connected to the same backend.",
@@ -342,7 +353,7 @@
       "autoPlay": "AUTO PLAY · 5S"
     },
     "gallery": {
-      "home": "Home experience", "homeAlternate": "Home experience — alternate", "about": "About page", "contact": "Contact page", "signUp": "Sign up flow", "signUpDark": "Sign up — dark theme", "signUpLight": "Sign up — light theme", "login": "Login flow", "loginLight": "Login — light theme", "loginDark": "Login — dark theme", "tripDetail": "Trip detail page", "tripPlanning": "Trip planning section", "tripsHorizontal": "Trips catalog — horizontal", "tripsGrid": "Trips catalog — grid", "admin": "Admin workspace", "notifications": "Notifications", "messages": "Messages", "homeMobile": "Home experience — mobile", "adminMobile": "Admin workspace — mobile", "tripDetailMobile": "Trip detail — mobile", "contactMobile": "Contact page — mobile", "aboutMobile": "About page — mobile", "aboutDark": "About page — dark theme", "aboutLight": "About page — light theme", "contactDark": "Contact page — dark theme", "contactLight": "Contact page — light theme", "androidHomeDark": "Android home — dark theme", "androidHomeLight": "Android home — light theme", "androidCategories": "Android categories", "androidTripDetails": "Android trip details", "androidLoginDark": "Android login — dark theme", "androidLoginLight": "Android login — light theme", "androidRegistration": "Android registration", "androidAboutDark": "Android about — dark theme", "androidAboutLight": "Android about — light theme", "androidContactDark": "Android contact — dark theme", "androidContactLight": "Android contact — light theme", "resumeConcept": "Resume concept {{number}}", "interfaceScreen": "Interface screen {{number}}"
+      "home": "Home experience", "homeAlternate": "Home experience — alternate", "about": "About page", "contact": "Contact page", "signUp": "Sign up flow", "signUpDark": "Sign up — dark theme", "signUpLight": "Sign up — light theme", "login": "Login flow", "loginLight": "Login — light theme", "loginDark": "Login — dark theme", "tripDetail": "Trip detail page", "tripPlanning": "Trip planning section", "tripsHorizontal": "Trips catalog — horizontal", "tripsGrid": "Trips catalog — grid", "admin": "Admin workspace", "notifications": "Notifications", "messages": "Messages", "homeMobile": "Home experience — mobile", "adminMobile": "Admin workspace — mobile", "tripDetailMobile": "Trip detail — mobile", "contactMobile": "Contact page — mobile", "aboutMobile": "About page — mobile", "aboutDark": "About page — dark theme", "aboutLight": "About page — light theme", "contactDark": "Contact page — dark theme", "contactLight": "Contact page — light theme", "marketHomeDark": "Storefront — dark theme", "marketHomeLight": "Storefront — light theme", "marketVegetables": "Vegetables category", "marketDairy": "Dairy category", "marketDrinks": "Drinks category", "marketLogin": "Account login", "androidHomeDark": "Android home — dark theme", "androidHomeLight": "Android home — light theme", "androidCategories": "Android categories", "androidTripDetails": "Android trip details", "androidLoginDark": "Android login — dark theme", "androidLoginLight": "Android login — light theme", "androidRegistration": "Android registration", "androidAboutDark": "Android about — dark theme", "androidAboutLight": "Android about — light theme", "androidContactDark": "Android contact — dark theme", "androidContactLight": "Android contact — light theme", "resumeConcept": "Resume concept {{number}}", "interfaceScreen": "Interface screen {{number}}"
     }
   },
   "services": {

@@ -34,6 +34,9 @@ function galleryLabelKey(project, index) {
   if (project?.projectKey?.includes("montu-travel")) {
     return ["home", "homeAlternate", "signUpDark", "signUpLight", "loginLight", "loginDark", "aboutDark", "aboutLight", "contactDark", "contactLight"][index] || "interfaceScreen";
   }
+  if (project?.projectKey?.includes("malek-market")) {
+    return ["marketHomeDark", "marketHomeLight", "marketVegetables", "marketDairy", "marketDrinks", "marketLogin"][index] || "interfaceScreen";
+  }
   return galleryLabelKeys[index] || "interfaceScreen";
 }
 

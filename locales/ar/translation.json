@@ -245,6 +245,17 @@
     "notFoundDescription": "قد يكون الرابط قديمًا أو تمت إزالة المشروع.",
     "separateGallery": "معرض منفصل",
     "projects": {
+      "malek-market-grocery-e-commerce-platform": {
+        "title": "Malek Market — متجر البقالة الإلكتروني",
+        "summary": "متجر إلكتروني عربي لاكتشاف المنتجات الطازجة وتصفح الأقسام وبناء السلة وترتيب التوصيل المحلي من خلال تجربة متجاوبة.",
+        "solutionType": "موقع تجارة إلكترونية",
+        "category": ["موقع إلكتروني", "تجارة إلكترونية", "توصيل بقالة"],
+        "features": ["تجربة تسوق عربية باتجاه RTL", "أقسام للأغذية الطازجة واكتشاف المنتجات", "ثيمات متجاوبة فاتحة وداكنة", "تفاعلات السلة والإضافة السريعة", "اختيار الموقع وسياق التوصيل المحلي", "تسجيل الدخول وتجربة تسوق شخصية"],
+        "platforms": [{ "name": "الموقع الإلكتروني", "detail": "متجر بقالة عربي متجاوب" }],
+        "buildTitle": "طريقة أبسط للتسوق من أجل طعام طازج.",
+        "buildIntro": "يحوّل Malek Market التسوق اليومي من البقالة إلى تجربة واضحة وودية تعتمد على الأقسام واكتشاف المنتجات والتوصيل المحلي.",
+        "buildResult": "النتيجة متجر عربي متجاوب بواجهة RTL، وثيمات فاتحة وداكنة، وتصفح للأقسام، وإضافة سريعة للسلة، وسياق للتوصيل، وتسجيل دخول."
+      },
       "basttet-travel-egypt-travel-platform": {
         "title": "بستت ترافل — منصة السفر في مصر",
         "summary": "منتج سفر متكامل يضم موقعاً عاماً وتطبيق أندرويد ولوحة تشغيل مرتبطة بنفس النظام الخلفي.",
@@ -406,7 +417,7 @@
     "autoPlay": "عرض تلقائي · 5 ثوانٍ"
   },
   "gallery": {
-    "home": "واجهة الصفحة الرئيسية", "homeAlternate": "واجهة الصفحة الرئيسية — بديلة", "about": "صفحة من نحن", "contact": "صفحة التواصل", "signUp": "مسار إنشاء الحساب", "signUpDark": "إنشاء الحساب — الوضع الداكن", "signUpLight": "إنشاء الحساب — الوضع الفاتح", "login": "مسار تسجيل الدخول", "loginLight": "تسجيل الدخول — الوضع الفاتح", "loginDark": "تسجيل الدخول — الوضع الداكن", "tripDetail": "صفحة تفاصيل الرحلة", "tripPlanning": "قسم تخطيط الرحلة", "tripsHorizontal": "كتالوج الرحلات — أفقي", "tripsGrid": "كتالوج الرحلات — شبكي", "admin": "مساحة الإدارة", "notifications": "الإشعارات", "messages": "الرسائل", "homeMobile": "واجهة الصفحة الرئيسية — هاتف", "adminMobile": "مساحة الإدارة — هاتف", "tripDetailMobile": "تفاصيل الرحلة — هاتف", "contactMobile": "صفحة التواصل — هاتف", "aboutMobile": "صفحة من نحن — هاتف", "aboutDark": "صفحة من نحن — الوضع الداكن", "aboutLight": "صفحة من نحن — الوضع الفاتح", "contactDark": "صفحة التواصل — الوضع الداكن", "contactLight": "صفحة التواصل — الوضع الفاتح", "androidHomeDark": "واجهة أندرويد — الوضع الداكن", "androidHomeLight": "واجهة أندرويد — الوضع الفاتح", "androidCategories": "تصنيفات أندرويد", "androidTripDetails": "تفاصيل الرحلة لأندرويد", "androidLoginDark": "تسجيل دخول أندرويد — داكن", "androidLoginLight": "تسجيل دخول أندرويد — فاتح", "androidRegistration": "تسجيل أندرويد", "androidAboutDark": "من نحن لأندرويد — داكن", "androidAboutLight": "من نحن لأندرويد — فاتح", "androidContactDark": "التواصل لأندرويد — داكن", "androidContactLight": "التواصل لأندرويد — فاتح", "resumeConcept": "تصميم سيرة ذاتية {{number}}", "interfaceScreen": "واجهة رقم {{number}}"
+    "home": "واجهة الصفحة الرئيسية", "homeAlternate": "واجهة الصفحة الرئيسية — بديلة", "about": "صفحة من نحن", "contact": "صفحة التواصل", "signUp": "مسار إنشاء الحساب", "signUpDark": "إنشاء الحساب — الوضع الداكن", "signUpLight": "إنشاء الحساب — الوضع الفاتح", "login": "مسار تسجيل الدخول", "loginLight": "تسجيل الدخول — الوضع الفاتح", "loginDark": "تسجيل الدخول — الوضع الداكن", "tripDetail": "صفحة تفاصيل الرحلة", "tripPlanning": "قسم تخطيط الرحلة", "tripsHorizontal": "كتالوج الرحلات — أفقي", "tripsGrid": "كتالوج الرحلات — شبكي", "admin": "مساحة الإدارة", "notifications": "الإشعارات", "messages": "الرسائل", "homeMobile": "واجهة الصفحة الرئيسية — هاتف", "adminMobile": "مساحة الإدارة — هاتف", "tripDetailMobile": "تفاصيل الرحلة — هاتف", "contactMobile": "صفحة التواصل — هاتف", "aboutMobile": "صفحة من نحن — هاتف", "aboutDark": "صفحة من نحن — الوضع الداكن", "aboutLight": "صفحة من نحن — الوضع الفاتح", "contactDark": "صفحة التواصل — الوضع الداكن", "contactLight": "صفحة التواصل — الوضع الفاتح", "marketHomeDark": "واجهة المتجر — الوضع الداكن", "marketHomeLight": "واجهة المتجر — الوضع الفاتح", "marketVegetables": "قسم الخضروات", "marketDairy": "قسم الألبان", "marketDrinks": "قسم المشروبات", "marketLogin": "تسجيل دخول الحساب", "androidHomeDark": "واجهة أندرويد — الوضع الداكن", "androidHomeLight": "واجهة أندرويد — الوضع الفاتح", "androidCategories": "تصنيفات أندرويد", "androidTripDetails": "تفاصيل الرحلة لأندرويد", "androidLoginDark": "تسجيل دخول أندرويد — داكن", "androidLoginLight": "تسجيل دخول أندرويد — فاتح", "androidRegistration": "تسجيل أندرويد", "androidAboutDark": "من نحن لأندرويد — داكن", "androidAboutLight": "من نحن لأندرويد — فاتح", "androidContactDark": "التواصل لأندرويد — داكن", "androidContactLight": "التواصل لأندرويد — فاتح", "resumeConcept": "تصميم سيرة ذاتية {{number}}", "interfaceScreen": "واجهة رقم {{number}}"
   }
   },
   "services": {
