@@ -86,6 +86,7 @@
     "comment": "Comentario",
     "send": "Enviar"
   },
+  "engagement": {"comments":"comentarios aprobados","eyebrow":"NOTAS DE LA COMUNIDAD","title":"Opiniones sobre este proyecto.","loginPrompt":"Inicia sesión para dejar un comentario.","placeholder":"Comparte un comentario útil…","adminNote":"Los administradores pueden responder y dar me gusta, pero no crear comentarios.","empty":"Aún no hay comentarios aprobados.","delete":"Eliminar","deleteConfirm":"¿Eliminar este comentario permanentemente?","replyPlaceholder":"Escribe una respuesta oficial…","reply":"Responder"},
   "memorial": {
     "memory": "En su memoria",
     "close": "Cerrar",

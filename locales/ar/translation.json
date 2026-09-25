@@ -107,6 +107,19 @@
     "comment": "تعليق",
     "send": "إرسال"
   },
+  "engagement": {
+    "comments": "تعليقات معتمدة",
+    "eyebrow": "ملاحظات المجتمع",
+    "title": "آراء حول هذا المشروع",
+    "loginPrompt": "سجّل الدخول لترك تعليق والمشاركة في الحوار.",
+    "placeholder": "شارك تعليقاً مفيداً…",
+    "adminNote": "يمكن لحسابات الإدارة الرد على التعليقات والإعجاب بها، لكن لا يمكنها إنشاء تعليقات.",
+    "empty": "لا توجد تعليقات معتمدة حتى الآن.",
+    "delete": "حذف",
+    "deleteConfirm": "هل تريد حذف هذا التعليق نهائياً؟",
+    "replyPlaceholder": "اكتب رداً رسمياً…",
+    "reply": "رد"
+  },
   "memorial": {
     "memory": "في ذكرى طيبة",
     "close": "إغلاق",
@@ -151,6 +164,10 @@
     "back": "العودة إلى الأعمال",
     "eyebrow": "دراسة حالة",
     "status": "تم التسليم · مكتمل",
+    "deliveredStatus": "تم التسليم · مكتمل",
+    "inProgress": "قيد التنفيذ",
+    "available": "متاح للبيع",
+    "price": "السعر",
     "lede": "منتج رقمي صُمم حول احتياجات المستخدمين وأهداف العمل والمنصات التي يستخدمونها يومياً.",
     "included": "ماذا يتضمن المشروع؟",
     "customProduct": "منتج رقمي مخصص",
@@ -282,7 +299,26 @@
         "buildResult": "النتيجة مجموعة مركزة من الاتجاهات البصرية التي توازن بين الشخصية والوضوح وتمنح كل ملف مهني صوتًا بصريًا مميزًا."
       }
     },
-    "app": "فتح نسخة التطبيق"
+  "app": "فتح نسخة التطبيق",
+  "availability": { "available": "متاح للبيع", "sold": "تم البيع" },
+  "services": { "website": "موقع إلكتروني", "android_app": "تطبيق أندرويد", "ios_app": "تطبيق iOS", "cv": "سيرة ذاتية", "cover_letter": "خطاب تعريفي" },
+  "fallback": { "digitalProduct": "منتج رقمي", "customSolution": "حل مخصص" },
+  "slider": {
+    "live": "دراسة حالة مباشرة",
+    "previous": "الصورة السابقة للمشروع",
+    "next": "الصورة التالية للمشروع",
+    "pause": "إيقاف العرض التلقائي",
+    "resume": "استئناف العرض التلقائي",
+    "gallery": "معرض صور المشروع",
+    "images": "صور المشروع",
+    "show": "عرض {{label}}",
+    "showImage": "عرض الصورة {{number}}",
+    "paused": "متوقف مؤقتاً",
+    "autoPlay": "عرض تلقائي · 5 ثوانٍ"
+  },
+  "gallery": {
+    "home": "واجهة الصفحة الرئيسية", "homeAlternate": "واجهة الصفحة الرئيسية — بديلة", "about": "صفحة من نحن", "contact": "صفحة التواصل", "signUp": "مسار إنشاء الحساب", "login": "مسار تسجيل الدخول", "tripDetail": "صفحة تفاصيل الرحلة", "tripPlanning": "قسم تخطيط الرحلة", "tripsHorizontal": "كتالوج الرحلات — أفقي", "tripsGrid": "كتالوج الرحلات — شبكي", "admin": "مساحة الإدارة", "notifications": "الإشعارات", "messages": "الرسائل", "homeMobile": "واجهة الصفحة الرئيسية — هاتف", "adminMobile": "مساحة الإدارة — هاتف", "tripDetailMobile": "تفاصيل الرحلة — هاتف", "contactMobile": "صفحة التواصل — هاتف", "aboutMobile": "صفحة من نحن — هاتف", "androidHomeDark": "واجهة أندرويد — الوضع الداكن", "androidHomeLight": "واجهة أندرويد — الوضع الفاتح", "androidCategories": "تصنيفات أندرويد", "androidTripDetails": "تفاصيل الرحلة لأندرويد", "androidLoginDark": "تسجيل دخول أندرويد — داكن", "androidLoginLight": "تسجيل دخول أندرويد — فاتح", "androidRegistration": "تسجيل أندرويد", "androidAboutDark": "من نحن لأندرويد — داكن", "androidAboutLight": "من نحن لأندرويد — فاتح", "androidContactDark": "التواصل لأندرويد — داكن", "androidContactLight": "التواصل لأندرويد — فاتح", "interfaceScreen": "واجهة رقم {{number}}"
+  }
   },
   "services": {
     "eyebrow": "02 / الخدمات",

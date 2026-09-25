@@ -4,6 +4,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { randomUUID } from "node:crypto";
+import { mediaUrl } from "@/lib/media-storage";
 
 export const runtime = "nodejs";
 const imageTypes = new Set(["image/jpeg", "image/png", "image/webp", "image/avif"]);
@@ -21,9 +22,9 @@ export async function POST(req) {
   if (!file || typeof file.arrayBuffer !== "function" || !valid) return NextResponse.json({ error: "Unsupported file type" }, { status: 400 });
   if (file.size > (kind === "video" ? 50 : 8) * 1024 * 1024) return NextResponse.json({ error: "File is too large" }, { status: 413 });
   const ext = path.extname(file.name).toLowerCase() || (kind === "video" ? ".mp4" : ".webp");
-  const folder = path.join(process.cwd(), "public", "uploads", "projects");
+  const folder = path.join(process.env.UPLOADS_DIR || path.join(process.cwd(), "storage", "uploads"), "projects");
   await mkdir(folder, { recursive: true });
   const name = `${Date.now()}-${randomUUID()}${ext}`;
   await writeFile(path.join(folder, name), Buffer.from(await file.arrayBuffer()));
-  return NextResponse.json({ url: `/uploads/projects/${name}` }, { status: 201 });
+  return NextResponse.json({ url: mediaUrl(`/uploads/projects/${name}`) }, { status: 201 });
 }

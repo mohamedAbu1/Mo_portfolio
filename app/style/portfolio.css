@@ -72,6 +72,9 @@ body[data-season="mothersDay"] .portfolio-shell{--bg:#211615;--panel:#342321;--p
 .case-study-thumbnail:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 @media(max-width:900px){.details-page .case-study-header{grid-template-columns:1fr}.details-page .case-study-visual{order:-1}}
 @media(max-width:600px){.case-study-thumbnail{flex-basis:82px}.case-study-thumbnails{gap:8px}}
+/* Keep project titles readable without letting long names dominate the page. */
+.case-study-copy h1{font-size:clamp(2.8rem,4.8vw,5.25rem);line-height:.98;letter-spacing:-.065em;margin:28px 0 22px;max-width:720px}
+@media(max-width:600px){.case-study-copy h1{font-size:clamp(2.4rem,11vw,4.2rem);line-height:1;margin-top:22px}}
 /* Clear project scope and quote-first presentation */
 .project-scope-summary{margin:30px 0 6px;padding:20px;border:1px solid var(--line);border-radius:12px;background:linear-gradient(135deg,var(--panel),var(--panel2));box-shadow:0 18px 45px #0004}
 .scope-summary-heading{display:flex;align-items:baseline;justify-content:space-between;gap:18px;margin-bottom:18px}

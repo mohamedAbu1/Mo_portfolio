@@ -86,6 +86,7 @@
     "comment": "Commentaire",
     "send": "Envoyer"
   },
+  "engagement": {"comments":"commentaires approuvés","eyebrow":"NOTES DE LA COMMUNAUTÉ","title":"Vos impressions sur ce projet.","loginPrompt":"Connectez-vous pour laisser un commentaire.","placeholder":"Partagez un commentaire utile…","adminNote":"Les administrateurs peuvent répondre et aimer les commentaires, mais pas en créer.","empty":"Aucun commentaire approuvé pour le moment.","delete":"Supprimer","deleteConfirm":"Supprimer définitivement ce commentaire ?","replyPlaceholder":"Écrire une réponse officielle…","reply":"Répondre"},
   "memorial": {
     "memory": "En sa mémoire",
     "close": "Fermer",

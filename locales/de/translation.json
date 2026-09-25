@@ -86,6 +86,7 @@
     "comment": "Kommentar",
     "send": "Senden"
   },
+  "engagement": {"comments":"genehmigte Kommentare","eyebrow":"NOTIZEN DER COMMUNITY","title":"Gedanken zu diesem Projekt.","loginPrompt":"Melde dich an, um einen Kommentar zu hinterlassen.","placeholder":"Teile einen hilfreichen Kommentar…","adminNote":"Administratoren können antworten und liken, aber keine Kommentare erstellen.","empty":"Noch keine genehmigten Kommentare.","delete":"Löschen","deleteConfirm":"Diesen Kommentar dauerhaft löschen?","replyPlaceholder":"Offizielle Antwort schreiben…","reply":"Antworten"},
   "memorial": {
     "memory": "In liebevoller Erinnerung",
     "close": "Schließen",

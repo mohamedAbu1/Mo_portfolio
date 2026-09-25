@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { query } from "@/lib/mysql";
+import { mediaExists, mediaUrl } from "@/lib/media-storage";
 
 export const dynamic = "force-dynamic";
 
@@ -7,17 +8,12 @@ function slugify(value) {
   return String(value || "project").toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 }
 
-export async function GET(req) {
+export async function GET() {
   try {
-    const publicUrl = (value) => {
-      if (!value) return value;
-      if (/^https?:\/\//i.test(value)) return value;
-      return value.startsWith("/") ? value : `/${value}`;
-    };
     const rows = await query(`
       SELECT e.id AS engagement_id, e.title AS engagement_title, e.description AS engagement_description, e.created_at,
         d.id AS deliverable_id, d.title, d.public_title, d.public_description, d.cover_image_url,
-        d.live_url, d.source_url, d.android_url, d.ios_url, d.status, d.price, d.currency, d.is_sold, s.name AS service_name
+        d.live_url, d.source_url, d.android_url, d.ios_url, d.status, d.price, d.currency, d.is_sold, s.code AS service_code, s.name AS service_name
       FROM engagements e
       INNER JOIN deliverables d ON d.engagement_id = e.id
       INNER JOIN services s ON s.id = d.service_id
@@ -31,7 +27,7 @@ export async function GET(req) {
         id: `db-${row.engagement_id}`, engagementId: row.engagement_id, projectTitle: row.public_title || row.engagement_title, projectSummary: row.public_description || row.engagement_description,
         date: row.created_at ? new Date(row.created_at).getFullYear().toString() : "", category: [], solutionType: "",
         platforms: [], technologies: [], features: [], connectedDeliverables: [], imgPaths: [], liveUrl: "", githubUrl: "", appUrl: "",
-        price: row.price, currency: row.currency || "USD", isSold: Boolean(row.is_sold), availability: row.is_sold ? "Sold" : "Available for sale",
+        price: row.price, currency: row.currency || "USD", isSold: Boolean(row.is_sold), availabilityKey: row.is_sold ? "sold" : "available",
         projectKey: slugify(row.engagement_title),
       });
       const project = projects.get(row.engagement_id);
@@ -41,8 +37,8 @@ export async function GET(req) {
       if (!project.githubUrl && row.source_url) project.githubUrl = row.source_url;
       if (!project.appUrl && row.android_url) project.appUrl = row.android_url;
       if (!project.category.includes(row.service_name)) project.category.push(row.service_name);
-      project.platforms.push({ name: row.service_name, detail: row.public_description || row.title });
-      project.connectedDeliverables.push({ id: row.deliverable_id, title, service: row.service_name, status: row.status === "delivered" ? "Delivered · Sold" : "In progress", url: row.live_url || row.source_url || row.android_url || row.ios_url || "", technologies: [], imgPaths: row.cover_image_url ? [row.cover_image_url] : [] });
+      project.platforms.push({ name: row.service_name, code: row.service_code, detail: row.public_description || row.title });
+      project.connectedDeliverables.push({ id: row.deliverable_id, title, service: row.service_name, serviceCode: row.service_code, statusKey: row.status, url: row.live_url || row.source_url || row.android_url || row.ios_url || "", technologies: [], imgPaths: row.cover_image_url ? [row.cover_image_url] : [] });
     }
 
     for (const project of projects.values()) {
@@ -63,7 +59,11 @@ export async function GET(req) {
       project.connectedDeliverables.forEach((item) => { item.technologies = project.technologies.map((technology) => technology.name); });
     }
 
-    const data = [...projects.values()].map((project) => ({ ...project, imgPaths: project.imgPaths.map(publicUrl), connectedDeliverables: project.connectedDeliverables.map((item) => ({ ...item, imgPaths: item.imgPaths.map(publicUrl) })) }));
+    const data = await Promise.all([...projects.values()].map(async (project) => {
+      const availableImages = (await Promise.all(project.imgPaths.map(async (value) => ({ value, exists: await mediaExists(value) })))).filter((item) => item.exists).map((item) => mediaUrl(item.value));
+      const connectedDeliverables = await Promise.all(project.connectedDeliverables.map(async (item) => ({ ...item, imgPaths: (await Promise.all(item.imgPaths.map(async (value) => ({ value, exists: await mediaExists(value) })))).filter((image) => image.exists).map((image) => mediaUrl(image.value)) })));
+      return { ...project, imgPaths: availableImages, connectedDeliverables };
+    }));
     return NextResponse.json({ data }, { status: 200 });
   } catch (error) {
     console.error("Portfolio query failed:", error);

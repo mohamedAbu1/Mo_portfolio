@@ -21,36 +21,12 @@ import ProjectEngagement from "@/components/Portfolio/ProjectEngagementProfessio
 import ProjectImageSlider from "@/components/Portfolio/ProjectImageSlider";
 import CodeAtmosphere from "@/components/Portfolio/CodeAtmosphere";
 
-const galleryLabels = [
-  "Home experience",
-  "Home experience — alternate",
-  "About page",
-  "Contact page",
-  "Sign up flow",
-  "Login flow",
-  "Trip detail page",
-  "Trip planning section",
-  "Trips catalog — horizontal",
-  "Trips catalog — grid",
-  "Admin workspace",
-  "Notifications",
-  "Messages",
-  "Home experience — mobile",
-  "Admin workspace — mobile",
-  "Trip detail — mobile",
-  "Contact page — mobile",
-"About page — mobile",
-  "Android home — dark theme",
-  "Android home — light theme",
-  "Android categories",
-  "Android trip details",
-  "Android login — dark theme",
-  "Android login — light theme",
-  "Android registration",
-  "Android about — dark theme",
-  "Android about — light theme",
-  "Android contact — dark theme",
-  "Android contact — light theme",
+const galleryLabelKeys = [
+  "home", "homeAlternate", "about", "contact", "signUp", "login", "tripDetail", "tripPlanning",
+  "tripsHorizontal", "tripsGrid", "admin", "notifications", "messages", "homeMobile", "adminMobile",
+  "tripDetailMobile", "contactMobile", "aboutMobile", "androidHomeDark", "androidHomeLight", "androidCategories",
+  "androidTripDetails", "androidLoginDark", "androidLoginLight", "androidRegistration", "androidAboutDark",
+  "androidAboutLight", "androidContactDark", "androidContactLight",
 ];
 
 export default function ProjectDetails() {
@@ -66,16 +42,8 @@ export default function ProjectDetails() {
   }, []);
   const p = projects.find((item) => String(item.id) === q.get("id"));
   const gallery = useMemo(
-    () => (p?.imgPaths || []).map((src, index) => ({ src, index, label: galleryLabels[index] || `Interface screen ${index + 1}`, type: index >= 13 ? "mobile" : "desktop" })),
-    [p?.imgPaths]
-  );
-  const deliverableGalleries = useMemo(
-    () => (p?.connectedDeliverables || []).map((item, deliverableIndex) => ({
-      ...item,
-      gallery: (item.imgPaths || []).map((src, index) => ({ src, index, label: `${item.service} — ${galleryLabels[index] || `Interface screen ${index + 1}`}` })),
-      deliverableIndex,
-    })).filter((item) => item.gallery.length > 0),
-    [p?.connectedDeliverables]
+    () => (p?.imgPaths || []).map((src, index) => ({ src, index, label: t(`caseStudy.gallery.${galleryLabelKeys[index]}`, { defaultValue: t("caseStudy.gallery.interfaceScreen", { number: index + 1 }) }), type: index >= 13 ? "mobile" : "desktop" })),
+    [p?.imgPaths, t]
   );
 
   if (projectsLoading) {
@@ -86,17 +54,25 @@ export default function ProjectDetails() {
     return <main className="portfolio-shell details-page"><div className="details-state details-state-error"><p className="eyebrow">404 / {t("caseStudy.notFoundEyebrow", { defaultValue: "PROJECT NOT FOUND" })}</p><h1>{t("caseStudy.notFoundTitle", { defaultValue: "This project could not be found." })}</h1><p>{t("caseStudy.notFoundDescription", { defaultValue: "The link may be outdated or the project may have been removed." })}</p><Link className="button primary" href={`/${locale}#work`}>{t("caseStudy.back", { defaultValue: "Back to work" })}</Link></div></main>;
   }
 
-  const translated = t(`caseStudy.projects.${p.id}`, { returnObjects: true, defaultValue: p.id === 1 ? t("caseStudy.project", { returnObjects: true, defaultValue: {} }) : {} });
+  const translationKey = p.projectKey || String(p.engagementId || "");
+  const legacyTranslationKey = translationKey.includes("basttet-travel") ? "project" : translationKey.includes("one-time-life-travel") ? "2" : translationKey.includes("ux-ui-resume") ? "3" : translationKey;
+  const translated = t(`caseStudy.projects.${legacyTranslationKey}`, { returnObjects: true, defaultValue: {} });
   const project = translated && typeof translated === "object" && !Array.isArray(translated) ? translated : {};
   const projectTitle = project.title || p.projectTitle;
   const projectSummary = project.summary || p.projectSummary;
-  const solutionType = project.solutionType || p.solutionType;
-  const categories = Array.isArray(project.category) ? project.category : p.category;
+  const rawPlatforms = Array.isArray(project.platforms) ? project.platforms : p.platforms;
+  const translatedPlatformName = (platform) => platform.code ? t(`caseStudy.services.${platform.code}`, { defaultValue: platform.name }) : platform.name;
+  const localizedDbPlatforms = rawPlatforms.map((platform) => ({ ...platform, name: translatedPlatformName(platform) }));
+  const solutionType = project.solutionType || localizedDbPlatforms.map((platform) => platform.name).join(" + ") || p.solutionType;
+  const categories = Array.isArray(project.category) ? project.category : p.category.map((category) => {
+    const match = p.platforms.find((platform) => platform.name === category);
+    return match ? translatedPlatformName(match) : category;
+  });
   const features = Array.isArray(project.features) ? project.features : p.features;
-  const localizedPlatforms = Array.isArray(project.platforms) ? project.platforms : p.platforms;
+  const localizedPlatforms = Array.isArray(project.platforms) ? project.platforms : localizedDbPlatforms;
   const isResumeCollection = /resume|cv/i.test(`${projectTitle} ${categories?.join(" ") || ""}`);
   const heroGallery = gallery;
-  const platforms = localizedPlatforms?.length ? localizedPlatforms : [{ name: categories?.[0] || "Digital product", detail: categories?.slice(1).join(" · ") || "Custom solution" }];
+  const platforms = localizedPlatforms?.length ? localizedPlatforms : [{ name: categories?.[0] || t("caseStudy.fallback.digitalProduct", { defaultValue: "Digital product" }), detail: categories?.slice(1).join(" · ") || t("caseStudy.fallback.customSolution", { defaultValue: "Custom solution" }) }];
   return (
     <main className="portfolio-shell details-page">
       <CodeAtmosphere />
@@ -111,7 +87,7 @@ export default function ProjectDetails() {
         <div className="case-study-copy">
           <div className="case-study-kicker">
             <p className="eyebrow">{t("caseStudy.eyebrow", { defaultValue: "CASE STUDY" })} / {String(p.id).padStart(2, "0")}</p>
-            <span className="status-pill"><FaCircleCheck /> {p.isSold ? t("caseStudy.status", { defaultValue: "Delivered · Sold" }) : (p.availability || "Available for sale")}</span>
+            <span className="status-pill"><FaCircleCheck /> {p.isSold ? t("caseStudy.status", { defaultValue: "Delivered · Sold" }) : t(`caseStudy.availability.${p.availabilityKey || "available"}`, { defaultValue: "Available for sale" })}</span>
           </div>
           <h1>{projectTitle}</h1>
           <p className="case-study-lede">{projectSummary || t("caseStudy.lede", { defaultValue: "A digital product designed around your users, business goals, and the platforms they use every day." })}</p>
@@ -137,7 +113,7 @@ export default function ProjectDetails() {
           <div className="case-study-stats">
             <div><span>{t("caseStudy.projectType", { defaultValue: "Project type" })}</span><strong>{solutionType || t("caseStudy.customProduct", { defaultValue: "Custom digital product" })}</strong></div>
             <div><span>{t("caseStudy.scope", { defaultValue: "Scope" })}</span><strong>{platforms.length} {t("caseStudy.deliverables", { defaultValue: "connected deliverables" })}</strong></div>
-            <div><span>{p.isSold ? t("caseStudy.delivered", { defaultValue: "Delivered" }) : "Price"}</span><strong>{p.isSold ? p.date : (p.price != null ? `${p.currency === "USD" ? "$" : `${p.currency} `}${Number(p.price).toLocaleString()}` : p.date)}</strong></div>
+            <div><span>{p.isSold ? t("caseStudy.delivered", { defaultValue: "Delivered" }) : t("caseStudy.price", { defaultValue: "Price" })}</span><strong>{p.isSold ? p.date : (p.price != null ? `${p.currency === "USD" ? "$" : `${p.currency} `}${Number(p.price).toLocaleString(locale)}` : p.date)}</strong></div>
           </div>
         </div>
         <ProjectImageSlider gallery={heroGallery} />
@@ -174,9 +150,7 @@ export default function ProjectDetails() {
         </aside>
       </section>
 
-      {deliverableGalleries.map((item) => <section className="deliverable-gallery-section" key={item.id || item.service}><div className="gallery-heading"><div><p className="eyebrow">{item.service} / {t("caseStudy.separateGallery", { defaultValue: "SEPARATE GALLERY" })}</p><h3>{item.title}</h3></div></div><ProjectImageSlider gallery={item.gallery} /></section>)}
-
-      {p.connectedDeliverables?.length > 0 && <section className="connected-deliverables"><div><p className="eyebrow">03 / {t("caseStudy.connected", { defaultValue: "connected deliverables" })}</p><h3>{t("caseStudy.connectedTitle", { defaultValue: "One product, multiple touchpoints." })}</h3><p className="connected-copy">{t("caseStudy.connectedCopy", { defaultValue: "This project is presented as separate deliverables so you can quickly understand what you need: website, mobile application, dashboard, or a complete connected product." })}</p></div><div className="connected-list">{p.connectedDeliverables.map((item) => <article key={item.title}><div><span className="connected-service">{item.service}</span><h4>{item.title}</h4><div className="details-tech-list">{item.technologies.map((technology) => <span key={technology}>{technology}</span>)}</div></div><div className="connected-side"><span>{item.status}</span><Link className="quote-link" href={`/${locale}#contact`}>{t("caseStudy.quote", { defaultValue: "Request a quote" })} <FaArrowUpRightFromSquare /></Link><a href={item.url} target="_blank" rel="noreferrer">{t("caseStudy.openBuild", { defaultValue: "Open build" })} <FaArrowUpRightFromSquare /></a></div></article>)}</div></section>}
+      {p.connectedDeliverables?.length > 0 && <section className="connected-deliverables"><div><p className="eyebrow">03 / {t("caseStudy.connected", { defaultValue: "connected deliverables" })}</p><h3>{t("caseStudy.connectedTitle", { defaultValue: "One product, multiple touchpoints." })}</h3><p className="connected-copy">{t("caseStudy.connectedCopy", { defaultValue: "This project is presented as separate deliverables so you can quickly understand what you need: website, mobile application, dashboard, or a complete connected product." })}</p></div><div className="connected-list">{p.connectedDeliverables.map((item) => <article key={item.title}><div><span className="connected-service">{t(`caseStudy.services.${item.serviceCode}`, { defaultValue: item.service })}</span><h4>{item.title}</h4><div className="details-tech-list">{item.technologies.map((technology) => <span key={technology}>{technology}</span>)}</div></div><div className="connected-side"><span>{item.statusKey === "delivered" ? t("caseStudy.deliveredStatus", { defaultValue: "Delivered · Sold" }) : t("caseStudy.inProgress", { defaultValue: "In progress" })}</span><Link className="quote-link" href={`/${locale}#contact`}>{t("caseStudy.quote", { defaultValue: "Request a quote" })} <FaArrowUpRightFromSquare /></Link><a href={item.url} target="_blank" rel="noreferrer">{t("caseStudy.openBuild", { defaultValue: "Open build" })} <FaArrowUpRightFromSquare /></a></div></article>)}</div></section>}
 
       <ProjectEngagement projectKey={String(p.id)} />
       <section className="details-cta"><p className="eyebrow">{t("caseStudy.nextBuild", { defaultValue: "NEXT BUILD" })}</p><h2>{t("caseStudy.similarChallenge", { defaultValue: "Have a similar challenge?" })}</h2><Link className="button primary" href={`/${locale}#contact`}>{t("caseStudy.conversation", { defaultValue: "Start a conversation" })} <FaArrowUpRightFromSquare /></Link></section>

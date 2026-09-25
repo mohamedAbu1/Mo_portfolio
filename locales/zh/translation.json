@@ -86,6 +86,7 @@
     "comment": "评论",
     "send": "发送"
   },
+  "engagement": {"comments":"已审核评论","eyebrow":"社区留言","title":"对这个项目的想法。","loginPrompt":"登录后即可发表评论。","placeholder":"分享有价值的评论…","adminNote":"管理员可以回复和点赞，但不能创建评论。","empty":"暂无已审核评论。","delete":"删除","deleteConfirm":"永久删除此评论？","replyPlaceholder":"写下官方回复…","reply":"回复"},
   "memorial": {
     "memory": "永远怀念",
     "close": "关闭",

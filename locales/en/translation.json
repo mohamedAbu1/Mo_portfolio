@@ -107,6 +107,19 @@
     "comment": "Comment",
     "send": "Send"
   },
+  "engagement": {
+    "comments": "approved comments",
+    "eyebrow": "COMMUNITY NOTES",
+    "title": "Thoughts on this build.",
+    "loginPrompt": "Sign in to leave a comment and join the conversation.",
+    "placeholder": "Share a thoughtful comment…",
+    "adminNote": "Admin accounts can reply to comments and like them, but cannot create comments.",
+    "empty": "No approved comments yet.",
+    "delete": "Delete",
+    "deleteConfirm": "Delete this comment permanently?",
+    "replyPlaceholder": "Write an official reply…",
+    "reply": "Reply"
+  },
   "memorial": {
     "memory": "In loving memory",
     "close": "Close",
@@ -143,6 +156,10 @@
     "back": "Back to work",
     "eyebrow": "CASE STUDY",
     "status": "Delivered · Sold",
+    "deliveredStatus": "Delivered · Sold",
+    "inProgress": "In progress",
+    "available": "Available for sale",
+    "price": "Price",
     "lede": "A digital product designed around your users, business goals, and the platforms they use every day.",
     "included": "What is included?",
     "customProduct": "Custom digital product",
@@ -274,7 +291,26 @@
         "buildResult": "The result is a focused set of resume directions that balances personality with clarity and gives each professional profile a distinct visual voice."
       }
     },
-    "app": "Open app build"
+    "app": "Open app build",
+    "availability": { "available": "Available for sale", "sold": "Sold" },
+    "services": { "website": "Website", "android_app": "Android application", "ios_app": "iOS application", "cv": "CV / Resume", "cover_letter": "Cover letter" },
+    "fallback": { "digitalProduct": "Digital product", "customSolution": "Custom solution" },
+    "slider": {
+      "live": "LIVE CASE STUDY",
+      "previous": "Previous project image",
+      "next": "Next project image",
+      "pause": "Pause slideshow",
+      "resume": "Resume slideshow",
+      "gallery": "Project image gallery",
+      "images": "Project images",
+      "show": "Show {{label}}",
+      "showImage": "Show image {{number}}",
+      "paused": "PAUSED",
+      "autoPlay": "AUTO PLAY · 5S"
+    },
+    "gallery": {
+      "home": "Home experience", "homeAlternate": "Home experience — alternate", "about": "About page", "contact": "Contact page", "signUp": "Sign up flow", "login": "Login flow", "tripDetail": "Trip detail page", "tripPlanning": "Trip planning section", "tripsHorizontal": "Trips catalog — horizontal", "tripsGrid": "Trips catalog — grid", "admin": "Admin workspace", "notifications": "Notifications", "messages": "Messages", "homeMobile": "Home experience — mobile", "adminMobile": "Admin workspace — mobile", "tripDetailMobile": "Trip detail — mobile", "contactMobile": "Contact page — mobile", "aboutMobile": "About page — mobile", "androidHomeDark": "Android home — dark theme", "androidHomeLight": "Android home — light theme", "androidCategories": "Android categories", "androidTripDetails": "Android trip details", "androidLoginDark": "Android login — dark theme", "androidLoginLight": "Android login — light theme", "androidRegistration": "Android registration", "androidAboutDark": "Android about — dark theme", "androidAboutLight": "Android about — light theme", "androidContactDark": "Android contact — dark theme", "androidContactLight": "Android contact — light theme", "interfaceScreen": "Interface screen {{number}}"
+    }
   },
   "services": {
     "eyebrow": "02 / services",
