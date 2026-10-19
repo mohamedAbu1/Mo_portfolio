@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useCallback, useContext, useState } from "react";
 
 // إنشاء الـ Context
 const ReviewContext = createContext();
@@ -34,7 +34,7 @@ export const ReviewProvider = ({ children }) => {
   };
 
   // 📌 جلب كل الريفيوهات
-  const fetchReviews = async () => {
+  const fetchReviews = useCallback(async () => {
     try {
       setLoading(true);
       const res = await fetch("/api/reviews");
@@ -49,7 +49,7 @@ export const ReviewProvider = ({ children }) => {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   
 

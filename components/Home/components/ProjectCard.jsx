@@ -7,7 +7,7 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
-import { FaStar, FaInfoCircle, FaExternalLinkAlt } from "react-icons/fa";
+import { FaExternalLinkAlt } from "react-icons/fa";
 import { useTheme } from "../../../context/ThemeContext";
 import Link from "next/link";
 
@@ -24,9 +24,6 @@ const ProjectCard = ({ item }) => {
     }, 14000);
     return () => clearInterval(interval);
   }, [item.imgPaths]);
-
-  const renderStars = (count) =>
-    Array.from({ length: count }, (_, i) => <FaStar key={i} color="gold" />);
 
   return (
     <motion.div

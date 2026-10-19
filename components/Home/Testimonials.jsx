@@ -21,7 +21,7 @@ const Testimonials = ({ projectId }) => {
 
   useEffect(() => {
     fetchReviews();
-  }, []);
+  }, [fetchReviews]);
 
   useEffect(() => {
     const interval = setInterval(() => {

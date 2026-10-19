@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { FaBell, FaComments, FaHeart, FaMessage, FaXmark } from "react-icons/fa6";
 import { notifyBrowser, requestBrowserNotifications } from "@/lib/browserNotifications";
@@ -20,7 +20,7 @@ export default function AdminNotificationCenter({ stats }) {
     return () => document.removeEventListener("mousedown", close);
   }, []);
 
-  async function load() {
+  const load = useCallback(async () => {
     setLoading(true);
     try {
       const [messages, comments, likes] = await Promise.all([
@@ -37,7 +37,7 @@ export default function AdminNotificationCenter({ stats }) {
       previousCounts.current = { messages: nextMessages, activity: nextActivity };
       setData(next);
     } finally { setLoading(false); }
-  }
+  }, [activitySeenAt]);
 
   useEffect(() => {
     setActivitySeenAt(window.localStorage.getItem(activitySeenKey));
@@ -45,7 +45,7 @@ export default function AdminNotificationCenter({ stats }) {
     load();
     const timer = window.setInterval(load, 5000);
     return () => window.clearInterval(timer);
-  }, []);
+  }, [load]);
 
   function markActivitySeen() {
     const seenAt = new Date().toISOString();

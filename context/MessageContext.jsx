@@ -1,6 +1,5 @@
-/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
-import React, { createContext, useContext, useEffect, useState } from "react";
+import React, { createContext, useCallback, useContext, useEffect, useState } from "react";
 import { useAuth } from "./AuthContext";
 
 const MessageContext = createContext();
@@ -11,7 +10,7 @@ export function MessageProvider({ children }) {
   const { user } = useAuth();
 
   // ✅ جلب رسائل المستخدم الحالي أو كل الرسائل للأدمن
-  const fetchMessages = async (userId, isAdmin = false) => {
+  const fetchMessages = useCallback(async (userId, isAdmin = false) => {
     setLoading(true);
     try {
       const res = await fetch(isAdmin ? "/api/messages" : `/api/messages?userId=${userId}`);
@@ -22,7 +21,7 @@ export function MessageProvider({ children }) {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
 
   // ✅ إرسال رسالة جديدة عبر الـ API
   const sendMessage = async ({
@@ -166,7 +165,7 @@ const editMessage = async (messageId, newContent) => {
       const isAdmin = user?.role === "admin";
       fetchMessages(user.id, isAdmin);
     }
-  }, [user?.id]);
+  }, [fetchMessages, user?.id, user?.role]);
 
 
   return (

@@ -22,7 +22,7 @@ export default function MessageSidebar({ isOpen, onClose }) {
     if (user?.id) {
       fetchMessages(user.id, isAdmin);
     }
-  }, [user?.id, isAdmin]);
+  }, [fetchMessages, user?.id, isAdmin]);
 
   useEffect(() => {
     const fetchUsers = async () => {

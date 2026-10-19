@@ -27,7 +27,9 @@ export async function middleware(request) {
     url.pathname = `/en${url.pathname}`;
     return NextResponse.redirect(url);
   }
-  return NextResponse.next();
+  const requestHeaders = new request.headers.constructor(request.headers);
+  requestHeaders.set("x-locale", locale);
+  return NextResponse.next({ request: { headers: requestHeaders } });
 }
 
 export const config = { matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"] };

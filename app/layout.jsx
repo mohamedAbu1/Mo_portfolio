@@ -1,5 +1,6 @@
 import "./style/globals.css";
 import Providers from "./providers";
+import { headers } from "next/headers";
 
 const siteUrl = "https://mohamedabudeveloper.com";
 
@@ -81,9 +82,13 @@ const structuredData = {
   ],
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const requestHeaders = await headers();
+  const locale = requestHeaders.get("x-locale") || "en";
+  const isRtl = locale === "ar";
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} dir={isRtl ? "rtl" : "ltr"} data-locale={locale} suppressHydrationWarning>
       <body>
         <Providers>{children}</Providers>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
