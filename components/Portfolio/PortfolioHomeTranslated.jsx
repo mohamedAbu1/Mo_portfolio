@@ -61,7 +61,7 @@ export default function PortfolioHomeTranslated() {
   }, []);
 
   useEffect(() => {
-    fetch("/api/portfolio").then((response) => response.ok ? response.json() : null).then((payload) => {
+    fetch("/api/portfolio", { cache: "no-store" }).then((response) => response.ok ? response.json() : null).then((payload) => {
       if (payload?.data) setProjects(payload.data);
     }).catch(() => {});
   }, []);

@@ -47,7 +47,7 @@ export default function ProjectDetails() {
   const [projects, setProjects] = useState([]);
   const [projectsLoading, setProjectsLoading] = useState(true);
   useEffect(() => {
-    fetch("/api/portfolio").then((response) => response.ok ? response.json() : null).then((payload) => {
+    fetch("/api/portfolio", { cache: "no-store" }).then((response) => response.ok ? response.json() : null).then((payload) => {
       if (payload?.data) setProjects(payload.data);
     }).catch(() => {}).finally(() => setProjectsLoading(false));
   }, []);
