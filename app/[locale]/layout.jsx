@@ -4,12 +4,12 @@ const siteUrl = "https://mohamedabudeveloper.com";
 const locales = ["en", "ar", "de", "es", "fr", "it", "zh"];
 const localeMetadata = {
   en: {
-    title: "Mohamed Abu | Full-Stack Developer",
-    description: "Mohamed Abu creates reliable websites, mobile apps, and professional digital experiences for people and businesses.",
+    title: "codeify | Full-Stack Developer",
+    description: "codeify creates reliable websites, mobile apps, and professional digital experiences for people and businesses.",
   },
   ar: {
-    title: "محمد أبو | مطور Full-Stack",
-    description: "محمد أبو مطور Full-Stack ينشئ مواقع وتطبيقات وتجارب رقمية احترافية للأفراد والشركات.",
+    title: "codeify | مطور Full-Stack",
+    description: "codeify ينشئ مواقع وتطبيقات وتجارب رقمية احترافية للأفراد والشركات.",
   },
 };
 

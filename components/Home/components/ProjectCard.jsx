@@ -96,7 +96,7 @@ const ProjectCard = ({ item }) => {
                 mb: 2,
               }}
             >
-              Developed by Mohamed Abu Developer
+              Developed by codeify
             </Typography>
           </motion.div>
 

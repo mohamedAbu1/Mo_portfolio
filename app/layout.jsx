@@ -7,15 +7,15 @@ const siteUrl = "https://mohamedabudeveloper.com";
 export const metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Mohamed Abu | Full-Stack Developer",
-    template: "%s | Mohamed Abu",
+    default: "codeify | Full-Stack Developer",
+    template: "%s | codeify",
   },
-  description: "Mohamed Abu is a full-stack developer creating reliable websites, mobile apps, and professional digital experiences for people and businesses.",
-  applicationName: "Mohamed Abu Developer",
-  keywords: ["Mohamed Abu", "full-stack developer", "web developer", "Next.js developer", "React developer", "mobile app developer", "Egypt developer"],
+  description: "codeify creates reliable websites, mobile apps, and professional digital experiences for people and businesses.",
+  applicationName: "codeify",
+  keywords: ["codeify", "full-stack developer", "web developer", "Next.js developer", "React developer", "mobile app developer", "Egypt developer"],
   authors: [{ name: "Mohamed Abu", url: siteUrl }],
-  creator: "Mohamed Abu",
-  publisher: "Mohamed Abu",
+  creator: "codeify",
+  publisher: "codeify",
   alternates: {
     canonical: "/en",
     languages: {
@@ -31,14 +31,14 @@ export const metadata = {
   openGraph: {
     type: "website",
     url: siteUrl,
-    siteName: "Mohamed Abu Developer",
-    title: "Mohamed Abu | Full-Stack Developer",
+    siteName: "codeify",
+    title: "codeify | Full-Stack Developer",
     description: "Websites, mobile apps, and professional digital experiences built with clarity and care.",
-    images: [{ url: "/images/mohamed-abu-logo.png", alt: "Mohamed Abu Developer logo" }],
+    images: [{ url: "/images/mohamed-abu-logo.png", alt: "codeify logo" }],
   },
   twitter: {
     card: "summary",
-    title: "Mohamed Abu | Full-Stack Developer",
+    title: "codeify | Full-Stack Developer",
     description: "Websites, mobile apps, and professional digital experiences built with clarity and care.",
     images: ["/images/mohamed-abu-logo.png"],
   },
@@ -73,9 +73,9 @@ const structuredData = {
     },
     {
       "@type": "WebSite",
-      name: "Mohamed Abu Developer",
+      name: "codeify",
       url: siteUrl,
-      description: "Portfolio of Mohamed Abu, a full-stack developer.",
+      description: "Portfolio of codeify, a full-stack digital studio.",
       author: { "@type": "Person", name: "Mohamed Abu" },
       inLanguage: ["en", "ar", "de", "es", "fr", "it", "zh"],
     },
