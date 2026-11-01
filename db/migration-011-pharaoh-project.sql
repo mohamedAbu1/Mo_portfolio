@@ -57,7 +57,7 @@ SELECT
   'public',
   'Pharaoh — Timeless Egyptian Heritage E-commerce',
   'A premium Egyptian heritage commerce experience with curated collections, product storytelling, a handcrafted-in-Egypt brand narrative, and a Cairo flagship store visit journey.',
-  '/uploads/projects/pharaoh/01-home.png',
+  'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/pharaoh/01-home.png',
   'https://pharaoh-psi.vercel.app/',
   NULL,
   'USD',
@@ -81,7 +81,7 @@ SET service_id = @website_service_id,
     visibility = 'public',
     public_title = 'Pharaoh — Timeless Egyptian Heritage E-commerce',
     public_description = 'A premium Egyptian heritage commerce experience with curated collections, product storytelling, a handcrafted-in-Egypt brand narrative, and a Cairo flagship store visit journey.',
-    cover_image_url = '/uploads/projects/pharaoh/01-home.png',
+    cover_image_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/pharaoh/01-home.png',
     live_url = 'https://pharaoh-psi.vercel.app/',
     price = NULL,
     currency = 'USD',
@@ -89,29 +89,29 @@ SET service_id = @website_service_id,
 WHERE id = @pharaoh_deliverable_id;
 
 INSERT INTO deliverable_files (deliverable_id, file_type, file_url, is_public, alt_text, sort_order)
-SELECT @pharaoh_deliverable_id, 'image', '/uploads/projects/pharaoh/01-home.png', TRUE,
+SELECT @pharaoh_deliverable_id, 'image', 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/pharaoh/01-home.png', TRUE,
   'Pharaoh homepage hero with the pyramids, Nile, and handcrafted Egyptian heritage collection', 0
-WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @pharaoh_deliverable_id AND file_url = '/uploads/projects/pharaoh/01-home.png');
+WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @pharaoh_deliverable_id AND file_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/pharaoh/01-home.png');
 
 INSERT INTO deliverable_files (deliverable_id, file_type, file_url, is_public, alt_text, sort_order)
-SELECT @pharaoh_deliverable_id, 'image', '/uploads/projects/pharaoh/02-shop.png', TRUE,
+SELECT @pharaoh_deliverable_id, 'image', 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/pharaoh/02-shop.png', TRUE,
   'Pharaoh shop collection with sculptures, jewelry, papyrus art, and spices', 1
-WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @pharaoh_deliverable_id AND file_url = '/uploads/projects/pharaoh/02-shop.png');
+WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @pharaoh_deliverable_id AND file_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/pharaoh/02-shop.png');
 
 INSERT INTO deliverable_files (deliverable_id, file_type, file_url, is_public, alt_text, sort_order)
-SELECT @pharaoh_deliverable_id, 'image', '/uploads/projects/pharaoh/03-product.png', TRUE,
+SELECT @pharaoh_deliverable_id, 'image', 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/pharaoh/03-product.png', TRUE,
   'Golden Pharaoh Bust product detail page with gallery, material details, and add-to-cart action', 2
-WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @pharaoh_deliverable_id AND file_url = '/uploads/projects/pharaoh/03-product.png');
+WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @pharaoh_deliverable_id AND file_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/pharaoh/03-product.png');
 
 INSERT INTO deliverable_files (deliverable_id, file_type, file_url, is_public, alt_text, sort_order)
-SELECT @pharaoh_deliverable_id, 'image', '/uploads/projects/pharaoh/04-story.png', TRUE,
+SELECT @pharaoh_deliverable_id, 'image', 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/pharaoh/04-story.png', TRUE,
   'Pharaoh Our Story page showing Egyptian artisans, heritage, and made-in-Egypt values', 3
-WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @pharaoh_deliverable_id AND file_url = '/uploads/projects/pharaoh/04-story.png');
+WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @pharaoh_deliverable_id AND file_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/pharaoh/04-story.png');
 
 INSERT INTO deliverable_files (deliverable_id, file_type, file_url, is_public, alt_text, sort_order)
-SELECT @pharaoh_deliverable_id, 'image', '/uploads/projects/pharaoh/05-visit-us.png', TRUE,
+SELECT @pharaoh_deliverable_id, 'image', 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/pharaoh/05-visit-us.png', TRUE,
   'Pharaoh Visit Us page with the Cairo flagship store location and contact details', 4
-WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @pharaoh_deliverable_id AND file_url = '/uploads/projects/pharaoh/05-visit-us.png');
+WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @pharaoh_deliverable_id AND file_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/pharaoh/05-visit-us.png');
 
 INSERT IGNORE INTO technologies (name, slug) VALUES
   ('Next.js', 'next-js'),
