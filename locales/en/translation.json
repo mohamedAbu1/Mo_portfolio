@@ -360,6 +360,33 @@
         "buildTitle": "A commerce experience rooted in Egyptian heritage.",
         "buildIntro": "Pharaoh presents handcrafted Egyptian treasures through a calm, editorial storefront that gives each collection and product room to tell its story.",
         "buildResult": "The result is a responsive commerce experience with curated collections, product detail storytelling, a made-in-Egypt narrative, and a clear path to visiting the Cairo flagship store."
+      },
+      "horus-alabaster-atelier": {
+        "title": "Horus — Alabaster Atelier for Spaces, Objects & Light",
+        "summary": "A contemporary alabaster atelier for spaces, objects, and light, presenting material-led architecture, sculptural objects, and a quiet luxury brand experience.",
+        "solutionType": "Responsive luxury brand website",
+        "category": [
+          "Website",
+          "Luxury brand",
+          "Architecture & interiors"
+        ],
+        "features": [
+          "Immersive atelier storytelling rooted in natural stone",
+          "Material library for alabaster, onyx, and travertine",
+          "Curated sculptural collections and quiet-form presentation",
+          "Handcrafted cutting process and material-led narrative",
+          "Contact journey for material consultations and commissions",
+          "Responsive dark editorial visual system for luxury positioning"
+        ],
+        "platforms": [
+          {
+            "name": "Website",
+            "detail": "Responsive luxury atelier and material-led brand experience"
+          }
+        ],
+        "buildTitle": "A quieter way to experience stone.",
+        "buildIntro": "Horus turns alabaster, light, and craftsmanship into a calm digital atelier where materials and objects lead the story.",
+        "buildResult": "The result is a responsive luxury brand experience with a materials library, curated collections, process storytelling, and a clear path to consultation."
       }
     },
     "app": "Open app build",
