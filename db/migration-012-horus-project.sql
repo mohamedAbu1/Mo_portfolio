@@ -57,7 +57,7 @@ SELECT
   'public',
   'Horus — Alabaster Atelier for Spaces, Objects & Light',
   'A contemporary alabaster atelier for spaces, objects, and light, presenting material-led architecture, sculptural objects, and a quiet luxury brand experience.',
-  'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/horus/01-home.png',
+  'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/541b9e8/public/uploads/projects/horus/01-home.png',
   'https://horus-pi-two.vercel.app/',
   NULL,
   'USD',
@@ -81,7 +81,7 @@ SET service_id = @website_service_id,
     visibility = 'public',
     public_title = 'Horus — Alabaster Atelier for Spaces, Objects & Light',
     public_description = 'A contemporary alabaster atelier for spaces, objects, and light, presenting material-led architecture, sculptural objects, and a quiet luxury brand experience.',
-    cover_image_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/horus/01-home.png',
+    cover_image_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/541b9e8/public/uploads/projects/horus/01-home.png',
     live_url = 'https://horus-pi-two.vercel.app/',
     price = NULL,
     currency = 'USD',
@@ -89,29 +89,29 @@ SET service_id = @website_service_id,
 WHERE id = @horus_deliverable_id;
 
 INSERT INTO deliverable_files (deliverable_id, file_type, file_url, is_public, alt_text, sort_order)
-SELECT @horus_deliverable_id, 'image', 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/horus/01-home.png', TRUE,
+SELECT @horus_deliverable_id, 'image', 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/541b9e8/public/uploads/projects/horus/01-home.png', TRUE,
   'Horus atelier homepage with illuminated alabaster, monolithic stone, and a quiet luxury visual language', 0
-WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @horus_deliverable_id AND file_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/horus/01-home.png');
+WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @horus_deliverable_id AND file_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/541b9e8/public/uploads/projects/horus/01-home.png');
 
 INSERT INTO deliverable_files (deliverable_id, file_type, file_url, is_public, alt_text, sort_order)
-SELECT @horus_deliverable_id, 'image', 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/horus/02-materials.png', TRUE,
+SELECT @horus_deliverable_id, 'image', 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/541b9e8/public/uploads/projects/horus/02-materials.png', TRUE,
   'Horus materials library presenting alabaster and the natural character of stone', 1
-WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @horus_deliverable_id AND file_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/horus/02-materials.png');
+WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @horus_deliverable_id AND file_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/541b9e8/public/uploads/projects/horus/02-materials.png');
 
 INSERT INTO deliverable_files (deliverable_id, file_type, file_url, is_public, alt_text, sort_order)
-SELECT @horus_deliverable_id, 'image', 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/horus/03-collections.png', TRUE,
+SELECT @horus_deliverable_id, 'image', 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/541b9e8/public/uploads/projects/horus/03-collections.png', TRUE,
   'Horus quiet forms collection featuring sculptural alabaster objects and architectural pieces', 2
-WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @horus_deliverable_id AND file_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/horus/03-collections.png');
+WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @horus_deliverable_id AND file_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/541b9e8/public/uploads/projects/horus/03-collections.png');
 
 INSERT INTO deliverable_files (deliverable_id, file_type, file_url, is_public, alt_text, sort_order)
-SELECT @horus_deliverable_id, 'image', 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/horus/04-process.png', TRUE,
+SELECT @horus_deliverable_id, 'image', 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/541b9e8/public/uploads/projects/horus/04-process.png', TRUE,
   'Horus stone-cutting process showing the slow handcrafted work behind each piece', 3
-WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @horus_deliverable_id AND file_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/horus/04-process.png');
+WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @horus_deliverable_id AND file_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/541b9e8/public/uploads/projects/horus/04-process.png');
 
 INSERT INTO deliverable_files (deliverable_id, file_type, file_url, is_public, alt_text, sort_order)
-SELECT @horus_deliverable_id, 'image', 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/horus/05-contact.png', TRUE,
+SELECT @horus_deliverable_id, 'image', 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/541b9e8/public/uploads/projects/horus/05-contact.png', TRUE,
   'Horus contact and material consultation experience for spaces, objects, and light', 4
-WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @horus_deliverable_id AND file_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/main/public/uploads/projects/horus/05-contact.png');
+WHERE NOT EXISTS (SELECT 1 FROM deliverable_files WHERE deliverable_id = @horus_deliverable_id AND file_url = 'https://raw.githubusercontent.com/mohamedAbu1/Mo_portfolio/541b9e8/public/uploads/projects/horus/05-contact.png');
 
 INSERT IGNORE INTO technologies (name, slug) VALUES
   ('Next.js', 'next-js'),
